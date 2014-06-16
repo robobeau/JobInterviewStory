@@ -1,0 +1,50 @@
+
+@import "compass";
+
+/** COLORS **/
+
+$color-charcoal	: #303030;
+$color-white	: #FFFFFF;
+
+/** FONTS **/
+
+@include font-face("Minecraftia",
+    font-files(
+        "/fonts/minecraftia.woff", woff,
+        "/fonts/minecraftia.ttf", truetype,
+        "/fonts/minecraftia.svg#minecraftiaregular", svg
+    ),
+    "/fonts/minecraftia.eot",
+    normal,
+    normal
+);
+
+// Font Sizes
+$base-font-size                 : 0.750;    // 12px
+$base-line-height               : 1;        // 16px
+
+$window-font-size 				: 1;        // 16px
+$window-line-height 			: 1.250;    // 20px
+
+$primary-title-font-size        : 1.500;    // 24px
+$primary-title-line-height      : 1.750;    // 28px
+
+$secondary-title-font-size      : 1.250;    // 20px
+$secondary-title-line-height    : 1.500;    // 24px
+
+$tertiary-title-font-size       : 1;        // 16px
+$tertiary-title-line-height     : 1.250;    // 20px
+
+/** MIXINS **/
+
+// Font Size
+@mixin font-size ($sizeValue: 1) {
+    font-size: ($sizeValue * 16) + px;
+    font-size: $sizeValue + rem;
+}
+
+// Line Height
+@mixin line-height ($sizeValue: 1) {
+    line-height: ($sizeValue * 16) + px;
+    line-height: $sizeValue + rem;
+}

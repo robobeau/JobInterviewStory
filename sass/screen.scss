@@ -1,0 +1,188 @@
+
+@import "_base";
+
+/** BASE **/
+
+* {
+    outline: 0;
+}
+
+html, body {
+    font-size: 100%;
+    line-height: 100%;
+}
+
+body {
+    @include font-size($base-font-size);
+    @include line-height($base-line-height);
+
+    background-color: #000000;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+/** STAGE **/
+
+#stage {
+    background-image: url(../img/test-stage.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 280px;
+    position: relative;
+    width: 384px;
+
+    .obstacle { // div
+        background-color: #FF0000;
+        position: absolute;
+        opacity: 0.5;
+    }
+}
+
+/** SPRITES **/
+
+#sprites { // div
+    position: relative;
+    z-index: 1;
+}
+
+#player { // div
+    background-image: url(../img/rene-down.gif);
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 42px;
+    position: absolute;
+    width: 32px;
+
+    &.down {
+        background-image: url(../img/rene-down.gif);
+
+        &.walking {
+            background-image: url(../img/rene-down-walking.gif);
+        }
+    }
+
+    &.left {
+        background-image: url(../img/rene-left.gif);
+
+        &.walking {
+            background-image: url(../img/rene-left-walking.gif);
+        }
+    }
+
+    &.right {
+        -webkit-transform:scaleX(-1);
+        -moz-transform:scaleX(-1);
+        -ms-transform:scaleX(-1);
+        -o-transform:scaleX(-1);
+        transform:scaleX(-1);
+
+        background-image: url(../img/rene-left.gif);
+
+        &.walking {
+            background-image: url(../img/rene-left-walking.gif);
+        }
+    }
+
+    &.up {
+        background-image: url(../img/rene-up.gif);
+
+        &.walking {
+            background-image: url(../img/rene-up-walking.gif);
+        }
+    }
+}
+
+.npc {
+    background-image: url(../img/dude.gif);
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 42px;
+    position: absolute;
+    width: 32px;
+
+    .emote {
+        background-position: left top;
+        background-repeat: no-repeat;
+        height: 32px;
+        position: relative;
+        top: -32px;
+        width: 30px;
+
+        &.happiness {
+            background-image: url(../img/emote-happiness.gif);
+        }
+
+        &.love {
+            background-image: url(../img/emote-love.gif);
+        }
+
+        &.question {
+            background-image: url(../img/emote-question.gif);
+        }
+
+        &.sadness {
+            background-image: url(../img/emote-sadness.gif);
+        }
+
+        &.talkAngry {
+            background-image: url(../img/emote-talk-angry.gif);
+        }
+
+        &.talkHappy {
+            background-image: url(../img/emote-talk-happy.gif);
+        }
+
+        &.think {
+            background-image: url(../img/emote-think.gif);
+        }
+    }
+}
+
+/** WINDOWS **/
+
+#windows { // div
+    position: relative;
+    z-index: 2;
+}
+
+.window { // div
+    @include font-size($window-font-size);
+    @include line-height($window-line-height);
+
+    -webkit-border-image: url(../img/window.png) 10 repeat;
+    -o-border-image: url(../img/window.png) 10 repeat;
+    border-image: url(../img/window.png) 10 repeat;
+    border-image-outset: 2px;
+
+    // background-color: $color-charcoal;
+    border-width: 10px;
+    color: $color-white;
+    font-family: 'Minecraftia';
+    minHeight: 30px;
+    position: absolute;
+    width: 30px;
+
+    .window-content {
+        padding: 10px;
+
+        .choice { // ul
+            list-style: none outside none;
+            margin: 0px;
+            padding: 0px;
+
+            li {
+                padding: 5px;
+
+                &:focus {
+                    background-color: $color-white;
+                    color: $color-charcoal;
+                }
+            }
+        }
+    }
+
+    &.dialogue {
+
+    }
+}

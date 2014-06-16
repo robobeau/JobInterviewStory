@@ -1,0 +1,7 @@
+## Directory Patterns
+.sass-cache
+/fonts
+/js/vendor
+
+## Filename Patterns
+.DS_Store
