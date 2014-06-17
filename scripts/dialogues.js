@@ -1,5 +1,5 @@
 
-dialogues = {
+Dialogues = {
     'd0': {
         type        : 'dialogue',
         text        : 'Hello, world!',

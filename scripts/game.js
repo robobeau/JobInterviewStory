@@ -1,5 +1,7 @@
 
-game = {
+Game = {
+    fps: 60,
+
     states: {
         activeNPC: ''
     },
@@ -9,157 +11,209 @@ game = {
         pressedKeys     : [],
         player          :
         {
-            accX        : 0,
-            accY        : 0,
-            speed       : 2
+            allowMoving : true,
+            direction   : null
         },
         scrollAmount    : 1,
 
         /**
          *
          */
-        colCheck: function (shapeA, shapeB) {
+        collisionCheck: function (player, obstacle) {
             var
-                vX          = (parseFloat(shapeA.css('left')) + (shapeA.width() / 2)) - (parseFloat(shapeB.css('left')) + (shapeB.width() / 2)),
-                vY          = (parseFloat(shapeA.css('top')) + (shapeA.height() / 2)) - (parseFloat(shapeB.css('top')) + (shapeB.height() / 2)),
-                hWidths     = (shapeA.width() / 2) + (shapeB.width() / 2),
-                hHeights    = (shapeA.height() / 2) + (shapeB.height() / 2),
-                colDir      = null;
+                playerH     = player.outerHeight(),
+                playerL     = parseFloat(player.css('left')),
+                playerT     = parseFloat(player.css('top')),
+                playerW     = player.outerWidth(),
+                obstacleH   = obstacle.outerHeight(),
+                obstacleL   = parseFloat(obstacle.css('left')),
+                obstacleT   = parseFloat(obstacle.css('top')),
+                obstacleW   = obstacle.outerWidth();
+
+                switch (Game.engine.player.direction) {
+                    case 'l':
+                        playerL -= (32 * Game.engine.player.speedMultiplier);
+
+                        break;
+
+                    case 'u':
+                        playerT -= (32 * Game.engine.player.speedMultiplier);
+
+                        break;
+
+                    case 'r':
+                        playerL += (32 * Game.engine.player.speedMultiplier);
+
+                        break;
+
+                    case 'd':
+                        playerT += (32 * Game.engine.player.speedMultiplier);
+
+                        break;
+                }
+
+            var
+                vX          = (playerL + (playerW / 2)) - (obstacleL + (obstacleW / 2)),
+                vY          = (playerT + (playerH / 2)) - (obstacleT + (obstacleH / 2)),
+                hWidths     = (playerW / 2) + (obstacleW / 2),
+                hHeights    = (playerH / 2) + (obstacleH / 2);
 
             if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {
-                var
-                    oX = hWidths - Math.abs(vX),
-                    oY = hHeights - Math.abs(vY);
+                console.log('Collision!');
 
-                if (oX >= oY) {
-                    if (vY > 0) {
-                        colDir = 'u';
+                // var
+                //     oX = hWidths - Math.abs(vX),
+                //     oY = hHeights - Math.abs(vY);
 
-                        $('#player').css('top', function (index, value) {
-                            return parseFloat(value) + oY - 0.1;
-                        });
-                    } else {
-                        colDir = 'd';
+                // if (oX >= oY) {
+                //     if (vY > 0) {
+                //         Game.engine.player.allowMoving = false;
 
-                        $('#player').css('top', function (index, value) {
-                            return parseFloat(value) - oY + 0.1;
-                        });
-                    }
-                } else {
-                    if (vX > 0) {
-                        colDir = 'l';
+                //         return true;
+                //     } else {
+                //         Game.engine.player.allowMoving = false;
 
-                        $(shapeA).css('left', function (index, value) {
-                            return parseFloat(value) + oX - 0.1;
-                        });
-                    } else {
-                        colDir = 'r';
+                //         return true;
+                //     }
+                // } else {
+                //     if (vX > 0) {
+                //         Game.engine.player.allowMoving = false;
 
-                        $(shapeA).css('left', function (index, value) {
-                            return parseFloat(value) - oX + 0.1;
-                        });
-                    }
-                }
+                //         return true;
+                //     } else {
+                //         Game.engine.player.allowMoving = false;
+
+                //         return true;
+                //     }
+                // }
+
+                return true;
+            } else {
+                return false;
             }
-
-            return game.engine.player.dir = colDir;
         },
 
         /**
          *
          */
         update: function () {
-            game.engine.friction      = 0.4;
-            game.engine.player.moving = false;
+            var player  = $('#player'),
+                left    = parseFloat(player.css('left')),
+                top     = parseFloat(player.css('top'));
 
-            if (game.engine.pressedKeys[16]) { // Shift
-                game.engine.friction = 0.6;
+            Game.engine.player.direction = null;
+            Game.engine.player.speedMultiplier = 1;
+
+            if (Game.engine.pressedKeys[16]) { // Shift
+                Game.engine.player.speedMultiplier = 2;
             }
 
             switch (true) {
-                case (game.engine.pressedKeys[65] || game.engine.pressedKeys[37]) : // A, Left
-                    game.engine.player.moving = true;
+                case ((Game.engine.pressedKeys[65] || Game.engine.pressedKeys[37]) && Game.engine.player.allowMoving) : // A, Left
+                    Game.engine.player.direction = 'l';
 
-                    $('#player').removeClass('down right up').addClass('left');
-
-                    if (game.engine.player.accX < game.engine.player.speed) {
-                        game.engine.player.accX--;
-                    }
+                    player.removeClass('down right up').addClass('left');
 
                     break;
 
-                case (game.engine.pressedKeys[87] || game.engine.pressedKeys[38]) : // W, Up
-                    game.engine.player.moving = true;
+                case ((Game.engine.pressedKeys[87] || Game.engine.pressedKeys[38]) && Game.engine.player.allowMoving) : // W, Up
+                    Game.engine.player.direction = 'u';
 
-                    $('#player').removeClass('down left right').addClass('up');
-
-                    if (game.engine.player.accY < game.engine.player.speed) {
-                        game.engine.player.accY--;
-                    }
+                    player.removeClass('down left right').addClass('up');
 
                     break;
 
-                case (game.engine.pressedKeys[68] || game.engine.pressedKeys[39]) : // D, Right
-                    game.engine.player.moving = true;
+                case ((Game.engine.pressedKeys[68] || Game.engine.pressedKeys[39]) && Game.engine.player.allowMoving) : // D, Right
+                    Game.engine.player.direction = 'r';
 
-                    $('#player').removeClass('down left up').addClass('right');
-
-                    if (game.engine.player.accX > -game.engine.player.speed) {
-                        game.engine.player.accX++;
-                    }
+                    player.removeClass('down left up').addClass('right');
 
                     break;
 
-                case (game.engine.pressedKeys[83] || game.engine.pressedKeys[40]) : // S, Down
-                    game.engine.player.moving = true;
+                case ((Game.engine.pressedKeys[83] || Game.engine.pressedKeys[40]) && Game.engine.player.allowMoving) : // S, Down
+                    Game.engine.player.direction = 'd';
 
-                    $('#player').removeClass('left right up').addClass('down');
-
-                    if (game.engine.player.accY > -game.engine.player.speed) {
-                        game.engine.player.accY++;
-                    }
+                    player.removeClass('left right up').addClass('down');
 
                     break;
             }
-
-            game.engine.player.accX *= game.engine.friction;
-            game.engine.player.accY *= game.engine.friction;
 
             for (var i = 0; i < $('.obstacle').length; i++) {
                 var
                     obstacle    = $('.obstacle').eq(i),
-                    dir         = game.engine.colCheck($('#player'), obstacle);
+                    colliding   = Game.engine.collisionCheck(player, obstacle);
 
-                if (dir == 'l' || dir == 'r') {
-                    game.engine.player.acclX = 0;
-                } else if (dir == 'u' || dir == 'd') {
-                    game.engine.player.acclY = 0;
+                if (colliding) {
+                    Game.engine.player.allowMoving = false;
                 }
 
-                if (game.engine.pressedKeys[13] || game.engine.pressedKeys[32]) { // Spacebar
-                    if (dir && obstacle.is('.npc')) {
-                        obstacle.npc('talk', obstacle.data('npc')['dialogue']);
-                    }
-                }
+                // if (Game.engine.pressedKeys[13] || Game.engine.pressedKeys[32]) { // Spacebar
+                //     if (dir && obstacle.is('.npc')) {
+                //         obstacle.npc('talk', obstacle.data('npc')['dialogue']);
+                //     }
+                // }
             }
 
-            if (game.engine.player.moving) {
-                $('#player').addClass('walking');
+            if (Game.engine.player.allowMoving) {
+                switch (Game.engine.player.direction) {
+                    case 'l':
+                        player.addClass('walking');
+
+                        Game.engine.player.allowMoving = false;
+
+                        player.animate({
+                            left: left - (32 * Game.engine.player.speedMultiplier)
+                        }, 200, 'linear', function () {
+                            Game.engine.player.allowMoving = true;
+                        });
+
+                        break;
+                    case 'u':
+                        player.addClass('walking');
+
+                        Game.engine.player.allowMoving = false;
+
+                        player.animate({
+                            top: top - (32 * Game.engine.player.speedMultiplier)
+                        }, 200, 'linear', function () {
+                            Game.engine.player.allowMoving = true;
+                        });
+
+                        break;
+                    case 'r':
+                        player.addClass('walking');
+
+                        Game.engine.player.allowMoving = false;
+
+                        player.animate({
+                            left: left + (32 * Game.engine.player.speedMultiplier)
+                        }, 200, 'linear', function () {
+                            Game.engine.player.allowMoving = true;
+                        });
+
+                        break;
+                    case 'd':
+                        player.addClass('walking');
+
+                        Game.engine.player.allowMoving = false;
+
+                        player.animate({
+                            top: top + (32 * Game.engine.player.speedMultiplier)
+                        }, 200, 'linear', function () {
+                            Game.engine.player.allowMoving = true;
+                        });
+
+                        break;
+                    default:
+                        player.removeClass('walking');
+
+                        break;
+                }
             } else {
-                $('#player').removeClass('walking');
+
             }
 
-            // Update player's X axis
-            $('#player').css('left', function (index, value) {
-                return parseFloat(value) + game.engine.player.accX;
-            });
-
-            // Update player's Y axis
-            $('#player').css('top', function (index, value) {
-                return parseFloat(value) + game.engine.player.accY;
-            });
-
-            // game.cameraCheck();
+            // Game.cameraCheck();
         },
     },
 
@@ -169,10 +223,10 @@ game = {
 
     start: function () {
         setInterval(function () {
-            game.engine.update();
-        }, 0);
+            Game.engine.update();
+        }, 1000 / Game.fps);
 
-        $('#sprites').append('<div id="player" tabindex="0" style="left: 50px; top: 300px;"></div>');
+        $('#sprites').append('<div id="player" tabindex="0" style="left: 64px; top: 320px;"></div>');
 
         $('#player').trigger('focus');
 
@@ -183,8 +237,8 @@ game = {
                 width   : 32
             },
             {
-                left    : 100,
-                top     : 250
+                left    : 128,
+                top     : 192
             },
             'd0'
         );
@@ -196,8 +250,8 @@ game = {
                 width   : 32
             },
             {
-                left    : 175,
-                top     : 200
+                left    : 160,
+                top     : 224
             },
             'd1'
         );
@@ -209,13 +263,13 @@ game = {
 $(document).on('keydown', '#player', function (event) {
     var key = event.keyCode || event.which;
 
-    game.engine.pressedKeys[event.keyCode] = true;
+    Game.engine.pressedKeys[event.keyCode] = true;
 });
 
 $(document).on('keyup', '#player', function (event) {
     var key = event.keyCode || event.which;
 
-    game.engine.pressedKeys[event.keyCode] = false;
+    Game.engine.pressedKeys[event.keyCode] = false;
 });
 
 /** NPCS **/
@@ -335,7 +389,7 @@ function NPC () {
     this.talk = function (dialogue) {
         var npc = $(this);
 
-        game.states.activeNPC = npc;
+        Game.states.activeNPC = npc;
 
         $.window.create(
             'dialogue',
@@ -347,7 +401,7 @@ function NPC () {
                 left    : 20,
                 top     : 20
             },
-            dialogues[dialogue]
+            Dialogues[dialogue]
         );
     }
 }
@@ -371,7 +425,7 @@ $.npc = new NPC();
 /** START **/
 
 $(document).on('ready', function () {
-    game.start();
+    Game.start();
 });
 
 /** WINDOWS **/
@@ -433,8 +487,8 @@ function Window () {
             $(this).remove();
         });
 
-        if (game.states.activeNPC) {
-            game.states.activeNPC.npc('destroyEmote');
+        if (Game.states.activeNPC) {
+            Game.states.activeNPC.npc('destroyEmote');
         }
 
         focus.trigger('focus');
@@ -472,7 +526,7 @@ function Window () {
             emote           = content.emote,
             modal           = $(this),
             modalContent    = modal.find('.window-content'),
-            npc             = game.states.activeNPC,
+            npc             = Game.states.activeNPC,
             type            = content.type;
 
         if (npc && emote) {
@@ -506,7 +560,7 @@ function Window () {
                             }
 
                             if (choice.goTo) {
-                                return modal.window('populate', dialogues[choice.goTo]);
+                                return modal.window('populate', Dialogues[choice.goTo]);
                             }
 
                             break;
@@ -542,7 +596,7 @@ function Window () {
                         case 13:
                         case 32: // Enter, Spacebar
                             if (content.goTo) {
-                                return modal.window('populate', dialogues[content.goTo]);
+                                return modal.window('populate', Dialogues[content.goTo]);
                             } else if (content.end) {
                                 return modal.window('destroy', modal.data('window')['id'], $('#player'));
                             }
