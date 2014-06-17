@@ -10,18 +10,18 @@
 
 /** MIXINS **/
 /** BASE **/
-/* line 6, ../sass/screen.scss */
+/* line 6, ../../sass/screen.scss */
 * {
   outline: 0;
 }
 
-/* line 10, ../sass/screen.scss */
+/* line 10, ../../sass/screen.scss */
 html, body {
   font-size: 100%;
   line-height: 100%;
 }
 
-/* line 15, ../sass/screen.scss */
+/* line 15, ../../sass/screen.scss */
 body {
   font-size: 12px;
   font-size: 0.75rem;
@@ -33,7 +33,7 @@ body {
 }
 
 /** STAGE **/
-/* line 27, ../sass/screen.scss */
+/* line 27, ../../sass/screen.scss */
 #stage {
   background-image: url(../img/test-stage.png);
   background-repeat: no-repeat;
@@ -42,7 +42,7 @@ body {
   position: relative;
   width: 384px;
 }
-/* line 35, ../sass/screen.scss */
+/* line 35, ../../sass/screen.scss */
 #stage .obstacle {
   background-color: #FF0000;
   position: absolute;
@@ -50,13 +50,13 @@ body {
 }
 
 /** SPRITES **/
-/* line 44, ../sass/screen.scss */
+/* line 44, ../../sass/screen.scss */
 #sprites {
   position: relative;
   z-index: 1;
 }
 
-/* line 49, ../sass/screen.scss */
+/* line 49, ../../sass/screen.scss */
 #player {
   background-image: url(../img/rene-down.gif);
   background-repeat: no-repeat;
@@ -65,23 +65,23 @@ body {
   position: absolute;
   width: 32px;
 }
-/* line 57, ../sass/screen.scss */
+/* line 57, ../../sass/screen.scss */
 #player.down {
   background-image: url(../img/rene-down.gif);
 }
-/* line 60, ../sass/screen.scss */
+/* line 60, ../../sass/screen.scss */
 #player.down.walking {
   background-image: url(../img/rene-down-walking.gif);
 }
-/* line 65, ../sass/screen.scss */
+/* line 65, ../../sass/screen.scss */
 #player.left {
   background-image: url(../img/rene-left.gif);
 }
-/* line 68, ../sass/screen.scss */
+/* line 68, ../../sass/screen.scss */
 #player.left.walking {
   background-image: url(../img/rene-left-walking.gif);
 }
-/* line 73, ../sass/screen.scss */
+/* line 73, ../../sass/screen.scss */
 #player.right {
   -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
@@ -90,20 +90,20 @@ body {
   transform: scaleX(-1);
   background-image: url(../img/rene-left.gif);
 }
-/* line 82, ../sass/screen.scss */
+/* line 82, ../../sass/screen.scss */
 #player.right.walking {
   background-image: url(../img/rene-left-walking.gif);
 }
-/* line 87, ../sass/screen.scss */
+/* line 87, ../../sass/screen.scss */
 #player.up {
   background-image: url(../img/rene-up.gif);
 }
-/* line 90, ../sass/screen.scss */
+/* line 90, ../../sass/screen.scss */
 #player.up.walking {
   background-image: url(../img/rene-up-walking.gif);
 }
 
-/* line 96, ../sass/screen.scss */
+/* line 96, ../../sass/screen.scss */
 .npc {
   background-image: url(../img/dude.gif);
   background-repeat: no-repeat;
@@ -112,7 +112,7 @@ body {
   position: absolute;
   width: 32px;
 }
-/* line 104, ../sass/screen.scss */
+/* line 104, ../../sass/screen.scss */
 .npc .emote {
   background-position: left top;
   background-repeat: no-repeat;
@@ -121,43 +121,43 @@ body {
   top: -32px;
   width: 30px;
 }
-/* line 112, ../sass/screen.scss */
+/* line 112, ../../sass/screen.scss */
 .npc .emote.happiness {
   background-image: url(../img/emote-happiness.gif);
 }
-/* line 116, ../sass/screen.scss */
+/* line 116, ../../sass/screen.scss */
 .npc .emote.love {
   background-image: url(../img/emote-love.gif);
 }
-/* line 120, ../sass/screen.scss */
+/* line 120, ../../sass/screen.scss */
 .npc .emote.question {
   background-image: url(../img/emote-question.gif);
 }
-/* line 124, ../sass/screen.scss */
+/* line 124, ../../sass/screen.scss */
 .npc .emote.sadness {
   background-image: url(../img/emote-sadness.gif);
 }
-/* line 128, ../sass/screen.scss */
+/* line 128, ../../sass/screen.scss */
 .npc .emote.talkAngry {
   background-image: url(../img/emote-talk-angry.gif);
 }
-/* line 132, ../sass/screen.scss */
+/* line 132, ../../sass/screen.scss */
 .npc .emote.talkHappy {
   background-image: url(../img/emote-talk-happy.gif);
 }
-/* line 136, ../sass/screen.scss */
+/* line 136, ../../sass/screen.scss */
 .npc .emote.think {
   background-image: url(../img/emote-think.gif);
 }
 
 /** WINDOWS **/
-/* line 144, ../sass/screen.scss */
+/* line 144, ../../sass/screen.scss */
 #windows {
   position: relative;
   z-index: 2;
 }
 
-/* line 149, ../sass/screen.scss */
+/* line 149, ../../sass/screen.scss */
 .window {
   font-size: 16px;
   font-size: 1rem;
@@ -174,21 +174,21 @@ body {
   position: absolute;
   width: 30px;
 }
-/* line 166, ../sass/screen.scss */
+/* line 166, ../../sass/screen.scss */
 .window .window-content {
   padding: 10px;
 }
-/* line 169, ../sass/screen.scss */
+/* line 169, ../../sass/screen.scss */
 .window .window-content .choice {
   list-style: none outside none;
   margin: 0px;
   padding: 0px;
 }
-/* line 174, ../sass/screen.scss */
+/* line 174, ../../sass/screen.scss */
 .window .window-content .choice li {
   padding: 5px;
 }
-/* line 177, ../sass/screen.scss */
+/* line 177, ../../sass/screen.scss */
 .window .window-content .choice li:focus {
   background-color: white;
   color: #303030;

@@ -1,7 +1,9 @@
 ## Directory Patterns
 .sass-cache
-/fonts
-/js/vendor
+/bower_components
+/node_modules
+/pub/fonts
 
 ## Filename Patterns
 .DS_Store
+/pub/js/vendor.min.js
