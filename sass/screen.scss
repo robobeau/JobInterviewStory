@@ -28,8 +28,10 @@ body {
     background-image: url(../img/test-stage.png);
     background-repeat: no-repeat;
     background-position: left top;
-    height: 280px;
-    position: relative;
+    height: 288px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
     width: 384px;
 
     .obstacle { // div
@@ -42,7 +44,11 @@ body {
 /** SPRITES **/
 
 #sprites { // div
-    position: relative;
+    height: 288px;
+    left: 0px;
+    position: absolute;
+    top: 0;
+    width: 384px;
     z-index: 1;
 }
 
@@ -50,9 +56,18 @@ body {
     background-image: url(../img/rene-down.gif);
     background-repeat: no-repeat;
     background-position: left top;
-    height: 42px;
+    height: 40px;
     position: absolute;
     width: 32px;
+
+    #player-collision {
+        background-color: #FF0000;
+        height: 32px;
+        opacity: 0.5;
+        position: absolute;
+        top: 8px;
+        width: 32px;
+    }
 
     &.down {
         background-image: url(../img/rene-down.gif);
@@ -97,9 +112,18 @@ body {
     background-image: url(../img/dude.gif);
     background-repeat: no-repeat;
     background-position: left top;
-    height: 42px;
+    height: 40px;
     position: absolute;
     width: 32px;
+
+    .npc-collision {
+        background-color: #FF0000;
+        height: 32px;
+        opacity: 0.5;
+        position: absolute;
+        top: 8px;
+        width: 32px;
+    }
 
     .emote {
         background-position: left top;
