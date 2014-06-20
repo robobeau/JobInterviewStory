@@ -7,6 +7,17 @@ Game = {
     /**
      *
      */
+    calculateZindex: function (object) {
+        var objectCollision = object.is('#player, .npc') ? object.find('#player-collision, .npc-collision') : object;
+
+        object.css({
+            zIndex: objectCollision.offset().top
+        });
+    },
+
+    /**
+     *
+     */
     collisionCheck: function () {
         for (var i = 0; i < $('.obstacle, .npc').length; i++) {
             var
@@ -59,9 +70,9 @@ Game = {
 
                 // if (oX >= oY) {
                 //     if (vY > 0) {
-                //         dir = 'd';
+                //         dir = 't';
                 //     } else {
-                //         dir = 'u';
+                //         dir = 'b';
                 //     }
                 // } else {
                 //     if (vX > 0) {
@@ -82,6 +93,57 @@ Game = {
             state       : false,
             obstacle    : null
         };
+    },
+
+    moveObject: function (object, direction, callback) {
+        var
+            animateOptions  = {},
+            left            = parseFloat(object.css('left')),
+            top             = parseFloat(object.css('top'));
+
+        switch (direction) {
+            case 'u':
+                animateOptions = {
+                    top: top - (32 * Game.player.speedMultiplier)
+                }
+
+                break;
+
+            case 'd':
+                animateOptions = {
+                    top: top + (32 * Game.player.speedMultiplier)
+                }
+
+                break;
+
+            case 'l':
+                animateOptions = {
+                    left: left - (32 * Game.player.speedMultiplier)
+                }
+
+                break;
+
+            case 'r':
+                animateOptions = {
+                    left: left + (32 * Game.player.speedMultiplier)
+                }
+
+                break;
+
+        }
+
+        object.stop().animate(
+            animateOptions,
+            200,
+            'linear',
+            function () {
+                Game.calculateZindex(object);
+
+                if (callback) {
+                    callback();
+                }
+            }
+        );
     },
 
     player: {
@@ -123,6 +185,10 @@ Game = {
             },
             'd1'
         );
+
+        for (i = 0; i < $('#player, .npc, .object').length; i++) {
+            Game.calculateZindex($('#player, .npc, .object').eq(i));
+        }
     },
 
     /**
@@ -151,81 +217,66 @@ Game = {
         }
 
         switch (true) {
-            case ((Game.pressedKeys[65] || Game.pressedKeys[37]) && !player.is(':animated')) : // A, Left
-                Game.player.direction = 'l';
-
-                var collide = Game.collisionCheck();
-
-                player.removeClass('down right up').addClass('walking left');
-
-                if (collide.state == false && !player.is(':animated')) {
-                    player.stop().animate({
-                        left: left - (32 * Game.player.speedMultiplier)
-                    }, 200, 'linear', function () {
-
-                    });
-                } else {
-                    player.removeClass('walking');
-                }
-
-                break;
-
-            case ((Game.pressedKeys[87] || Game.pressedKeys[38]) && !player.is(':animated')) : // W, Up
+            case ((Game.pressedKeys[87] || Game.pressedKeys[38]) && !player.is(':animated')) : // W, Up Arrow
                 Game.player.direction = 'u';
 
-                var collide = Game.collisionCheck();
+                var collide = Game.collisionCheck('u');
 
                 player.removeClass('down left right').addClass('walking up');
 
                 if (collide.state == false && !player.is(':animated')) {
-                    player.stop().animate({
-                        top: top - (32 * Game.player.speedMultiplier)
-                    }, 200, 'linear', function () {
-
-                    });
+                    Game.moveObject(player, Game.player.direction);
                 } else {
                     player.removeClass('walking');
                 }
 
                 break;
 
-            case ((Game.pressedKeys[68] || Game.pressedKeys[39]) && !player.is(':animated')) : // D, Right
-                Game.player.direction = 'r';
-
-                var collide = Game.collisionCheck();
-
-                player.removeClass('down left up').addClass('walking right');
-
-                if (collide.state == false && !player.is(':animated')) {
-                    player.stop().animate({
-                        left: left + (32 * Game.player.speedMultiplier)
-                    }, 200, 'linear', function () {
-
-                    });
-                } else {
-                    player.removeClass('walking');
-                }
-
-                break;
-
-            case ((Game.pressedKeys[83] || Game.pressedKeys[40]) && !player.is(':animated')) : // S, Down
+            case ((Game.pressedKeys[83] || Game.pressedKeys[40]) && !player.is(':animated')) : // S, Down Arrow
                 Game.player.direction = 'd';
 
-                var collide = Game.collisionCheck();
+                var collide = Game.collisionCheck('d');
 
                 player.removeClass('left right up').addClass('walking down');
 
                 if (collide.state == false && !player.is(':animated')) {
-                    player.stop().animate({
-                        top: top + (32 * Game.player.speedMultiplier)
-                    }, 200, 'linear', function () {
-
-                    });
+                    Game.moveObject(player, Game.player.direction);
                 } else {
                     player.removeClass('walking');
                 }
 
                 break;
+
+            case ((Game.pressedKeys[65] || Game.pressedKeys[37]) && !player.is(':animated')) : // A, Left Arrow
+                Game.player.direction = 'l';
+
+                var collide = Game.collisionCheck('l');
+
+                player.removeClass('down right up').addClass('walking left');
+
+                if (collide.state == false && !player.is(':animated')) {
+                    Game.moveObject(player, Game.player.direction);
+                } else {
+                    player.removeClass('walking');
+                }
+
+                break;
+
+            case ((Game.pressedKeys[68] || Game.pressedKeys[39]) && !player.is(':animated')) : // D, Right Arrow
+                Game.player.direction = 'r';
+
+                var collide = Game.collisionCheck('r');
+
+                player.removeClass('down left up').addClass('walking right');
+
+                if (collide.state == false && !player.is(':animated')) {
+                    Game.moveObject(player, Game.player.direction);
+                } else {
+                    player.removeClass('walking');
+                }
+
+                break;
+
 
             default:
                 if (!player.is(':animated')) {
@@ -314,51 +365,34 @@ function NPC () {
                 top     : '-32px'
             }, 100);
         } else {
-            npc.find('.emote').html('<div class="emote ' + emotion + '"></div>');
+            npc.find('.emote').replaceWith('<div class="emote ' + emotion + '"></div>');
         }
     },
 
     /**
      *
      */
-    this.move = function (direction, steps) {
-        var npc     = $(this),
-            speed   = 2;
+    this.move = function (direction) {
+        var npc = $(this);
 
         switch (direction) {
             case 'd':
-                var top = parseFloat(npc.css('top'));
-
-                npc.animate({
-                    top: top + (steps * speed)
-                }, 200);
+                Game.moveObject(npc, direction);
 
                 break;
 
             case 'l':
-                var left = parseFloat(npc.css('left'));
-
-                npc.animate({
-                    left: left - (steps * speed)
-                }, 200);
+                Game.moveObject(npc, direction);
 
                 break;
 
             case 'r':
-                var left = parseFloat(npc.css('left'));
-
-                npc.animate({
-                    left: left + (steps * speed)
-                }, 200);
+                Game.moveObject(npc, direction);
 
                 break;
 
             case 'u':
-                var top = parseFloat(npc.css('top'));
-
-                npc.animate({
-                    top: top - (steps * speed)
-                }, 200);
+                Game.moveObject(npc, direction);
 
                 break;
         }

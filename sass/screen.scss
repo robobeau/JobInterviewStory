@@ -22,6 +22,23 @@ body {
 
 }
 
+/** COLLISION **/
+
+#collision { // div
+    height: 288px;
+    left: 0px;
+    position: absolute;
+    top: 0;
+    width: 384px;
+    z-index: 2;
+
+    .obstacle { // div
+        @include collision-debug;
+
+        position: absolute;
+    }
+}
+
 /** STAGE **/
 
 #stage {
@@ -33,12 +50,7 @@ body {
     position: absolute;
     top: 0px;
     width: 384px;
-
-    .obstacle { // div
-        background-color: #FF0000;
-        position: absolute;
-        opacity: 0.5;
-    }
+    z-index: 0;
 }
 
 /** SPRITES **/
@@ -61,9 +73,8 @@ body {
     width: 32px;
 
     #player-collision {
-        background-color: #FF0000;
+        @include collision-debug;
         height: 32px;
-        opacity: 0.5;
         position: absolute;
         top: 8px;
         width: 32px;
@@ -117,9 +128,9 @@ body {
     width: 32px;
 
     .npc-collision {
-        background-color: #FF0000;
+        @include collision-debug;
+
         height: 32px;
-        opacity: 0.5;
         position: absolute;
         top: 8px;
         width: 32px;
@@ -163,11 +174,17 @@ body {
     }
 }
 
+.object { // div
+    background-position: left top;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
 /** WINDOWS **/
 
 #windows { // div
     position: relative;
-    z-index: 2;
+    z-index: 1000;
 }
 
 .window { // div

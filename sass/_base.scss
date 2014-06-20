@@ -37,6 +37,12 @@ $tertiary-title-line-height     : 1.250;    // 20px
 
 /** MIXINS **/
 
+// Collision Debug
+@mixin collision-debug {
+    background-color: #FF0000;
+    opacity: 0;
+}
+
 // Font Size
 @mixin font-size ($sizeValue: 1) {
     font-size: ($sizeValue * 16) + px;
