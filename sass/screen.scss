@@ -30,19 +30,19 @@ body {
     position: absolute;
     top: 0;
     width: 384px;
-    z-index: 2;
 
     .obstacle { // div
         @include collision-debug;
 
         position: absolute;
+        z-index: 2;
     }
 }
 
 /** STAGE **/
 
 #stage {
-    background-image: url(../img/test-stage.png);
+    // background-image: url(../img/test-stage.png);
     background-repeat: no-repeat;
     background-position: left top;
     height: 288px;
@@ -180,14 +180,85 @@ body {
     position: absolute;
 }
 
+.tile { // div
+    background-image: url(../img/tiles.gif);
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 32px;
+    position: absolute;
+    width: 32px;
+
+    // Grass
+
+    &.t0 {
+        background-position: 0px 0px;
+    }
+
+    &.t1 {
+        background-position: -32px 0px;
+    }
+
+    &.t2 {
+        background-position: -64px 0px;
+    }
+
+    &.t3 {
+        background-position: -96px 0px;
+    }
+
+    // Flower
+
+    &.t4 {
+        background-position: -128px 0px;
+    }
+
+    // Cobblestone
+
+    &.t9 {
+        background-position: 0px -32px;
+    }
+
+    &.t10 {
+        background-position: -32px -32px;
+    }
+
+    &.t11 {
+        background-position: -64px -32px;
+    }
+
+    &.t12 {
+        background-position: -96px -32px;
+    }
+
+    &.t13 {
+        background-position: -128px -32px;
+    }
+
+    &.t14 {
+        background-position: -160px -32px;
+    }
+
+    &.t15 {
+        background-position: -192px -32px;
+    }
+
+    &.t16 {
+        background-position: -224px -32px;
+    }
+
+    &.t17 {
+        background-position: -256px -32px;
+    }
+}
+
 /** WINDOWS **/
 
-#windows { // div
+#modals { // div
     position: relative;
     z-index: 1000;
 }
 
-.window { // div
+.modal { // div
     @include font-size($window-font-size);
     @include line-height($window-line-height);
 
@@ -200,11 +271,11 @@ body {
     border-width: 10px;
     color: $color-white;
     font-family: 'Minecraftia';
-    minHeight: 30px;
+    min-height: 0px;
     position: absolute;
-    width: 30px;
+    width: 0px;
 
-    .window-content {
+    .modal-content {
         padding: 10px;
 
         .choice { // ul
