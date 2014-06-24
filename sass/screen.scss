@@ -24,17 +24,17 @@ body {
 
 /** COLLISION **/
 
-#collision { // div
-    height: 288px;
+#collisions { // div
     left: 0px;
     position: absolute;
-    top: 0;
-    width: 384px;
+    top: 0px;
 
-    .obstacle { // div
+    .collision { // div
         @include collision-debug;
 
+        height: 32px;
         position: absolute;
+        width: 32px;
         z-index: 2;
     }
 }
@@ -45,12 +45,20 @@ body {
     // background-image: url(../img/test-stage.png);
     background-repeat: no-repeat;
     background-position: left top;
-    height: 288px;
     left: 0px;
     position: absolute;
     top: 0px;
-    width: 384px;
     z-index: 0;
+
+    #objects {
+        z-index: 1;
+        position: absolute;
+    }
+
+    #tiles {
+        z-index: 0;
+        position: absolute;
+    }
 }
 
 /** SPRITES **/
@@ -74,6 +82,7 @@ body {
 
     #player-collision {
         @include collision-debug;
+
         height: 32px;
         position: absolute;
         top: 8px;
@@ -175,9 +184,110 @@ body {
 }
 
 .object { // div
-    background-position: left top;
+    background-image: url(../img/tiles.gif);
     background-repeat: no-repeat;
+    background-position: left top;
+    height: 32px;
     position: absolute;
+    width: 32px;
+
+    // Building 4
+
+    &.o245 {
+        @include tile(4, 11);
+    }
+
+    &.o246 {
+        @include tile(5, 11);
+    }
+
+    &.o247 {
+        @include tile(6, 11);
+    }
+
+    &.o248 {
+        @include tile(7, 11);
+    }
+
+    &.o265 {
+        @include tile(4, 12);
+    }
+
+    &.o266 {
+        @include tile(5, 12);
+    }
+
+    &.o267 {
+        @include tile(6, 12);
+    }
+
+    &.o268 {
+        @include tile(7, 12);
+    }
+
+    &.o285 {
+        @include tile(4, 13);
+    }
+
+    &.o286 {
+        @include tile(5, 13);
+    }
+
+    &.o287 {
+        @include tile(6, 13);
+    }
+
+    &.o288 {
+        @include tile(7, 13);
+    }
+
+    &.o305 {
+        @include tile(4, 14);
+    }
+
+    &.o306 {
+        @include tile(5, 14);
+    }
+
+    &.o307 {
+        @include tile(6, 14);
+    }
+
+    &.o308 {
+        @include tile(7, 14);
+    }
+
+    &.o325 {
+        @include tile(4, 15);
+    }
+
+    &.o326 {
+        @include tile(5, 15);
+    }
+
+    &.o327 {
+        @include tile(6, 15);
+    }
+
+    &.o328 {
+        @include tile(7, 15);
+    }
+
+    &.o345 {
+        @include tile(4, 16);
+    }
+
+    &.o346 {
+        @include tile(5, 16);
+    }
+
+    &.o347 {
+        @include tile(6, 16);
+    }
+
+    &.o348 {
+        @include tile(7, 16);
+    }
 }
 
 .tile { // div
@@ -188,66 +298,72 @@ body {
     position: absolute;
     width: 32px;
 
-    // Grass
+    // Empty
 
     &.t0 {
-        background-position: 0px 0px;
+        @include tile(0, 0);
     }
 
+    // Grass
+
     &.t1 {
-        background-position: -32px 0px;
+        @include tile(1, 0);
     }
 
     &.t2 {
-        background-position: -64px 0px;
+        @include tile(2, 0);
     }
 
     &.t3 {
-        background-position: -96px 0px;
+        @include tile(3, 0);
+    }
+
+    &.t4 {
+        @include tile(4, 0);
     }
 
     // Flower
 
-    &.t4 {
-        background-position: -128px 0px;
+    &.t5 {
+        @include tile(5, 0);
     }
 
     // Cobblestone
 
-    &.t9 {
-        background-position: 0px -32px;
+    &.t51 {
+        @include tile(0, 1);
     }
 
-    &.t10 {
-        background-position: -32px -32px;
+    &.t52 {
+        @include tile(1, 1);
     }
 
-    &.t11 {
-        background-position: -64px -32px;
+    &.t53 {
+        @include tile(2, 1);
     }
 
-    &.t12 {
-        background-position: -96px -32px;
+    &.t101 {
+        @include tile(0, 2);
     }
 
-    &.t13 {
-        background-position: -128px -32px;
+    &.t102 {
+        @include tile(1, 2);
     }
 
-    &.t14 {
-        background-position: -160px -32px;
+    &.t103 {
+        @include tile(2, 2);
     }
 
-    &.t15 {
-        background-position: -192px -32px;
+    &.t151 {
+        @include tile(0, 3);
     }
 
-    &.t16 {
-        background-position: -224px -32px;
+    &.t152 {
+        @include tile(1, 3);
     }
 
-    &.t17 {
-        background-position: -256px -32px;
+    &.t153 {
+        @include tile(2, 3);
     }
 }
 

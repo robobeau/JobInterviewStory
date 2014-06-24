@@ -40,7 +40,7 @@ $tertiary-title-line-height     : 1.250;    // 20px
 // Collision Debug
 @mixin collision-debug {
     background-color: #FF0000;
-    opacity: 0;
+    opacity: 0.5;
 }
 
 // Font Size
@@ -53,4 +53,9 @@ $tertiary-title-line-height     : 1.250;    // 20px
 @mixin line-height ($sizeValue: 1) {
     line-height: ($sizeValue * 16) + px;
     line-height: $sizeValue + rem;
+}
+
+// Tile
+@mixin tile ($column: 0, $row: 0) {
+    background-position: (($column * 32) * -1) + px + ' ' + (($row * 32) * -1) + px
 }
