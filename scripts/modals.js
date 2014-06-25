@@ -2,7 +2,7 @@
 /** MODAL WINDOWS **/
 
 function Modal () {
-    this.backgroundColor    = '#303030';
+    this.backgroundColor    = '#F8F8F8';
     this.id                 = 0;
     this.initiator          = '';
 

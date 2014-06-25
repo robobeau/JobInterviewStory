@@ -194,99 +194,99 @@ body {
     // Building 4
 
     &.o245 {
-        @include tile(4, 11);
+        @include tile(4, 10);
     }
 
     &.o246 {
-        @include tile(5, 11);
+        @include tile(5, 10);
     }
 
     &.o247 {
-        @include tile(6, 11);
+        @include tile(6, 10);
     }
 
     &.o248 {
-        @include tile(7, 11);
+        @include tile(7, 10);
     }
 
     &.o265 {
-        @include tile(4, 12);
+        @include tile(4, 11);
     }
 
     &.o266 {
-        @include tile(5, 12);
+        @include tile(5, 11);
     }
 
     &.o267 {
-        @include tile(6, 12);
+        @include tile(6, 11);
     }
 
     &.o268 {
-        @include tile(7, 12);
+        @include tile(7, 11);
     }
 
     &.o285 {
-        @include tile(4, 13);
+        @include tile(4, 12);
     }
 
     &.o286 {
-        @include tile(5, 13);
+        @include tile(5, 12);
     }
 
     &.o287 {
-        @include tile(6, 13);
+        @include tile(6, 12);
     }
 
     &.o288 {
-        @include tile(7, 13);
+        @include tile(7, 12);
     }
 
     &.o305 {
-        @include tile(4, 14);
+        @include tile(4, 13);
     }
 
     &.o306 {
-        @include tile(5, 14);
+        @include tile(5, 13);
     }
 
     &.o307 {
-        @include tile(6, 14);
+        @include tile(6, 13);
     }
 
     &.o308 {
-        @include tile(7, 14);
+        @include tile(7, 13);
     }
 
     &.o325 {
-        @include tile(4, 15);
+        @include tile(4, 14);
     }
 
     &.o326 {
-        @include tile(5, 15);
+        @include tile(5, 14);
     }
 
     &.o327 {
-        @include tile(6, 15);
+        @include tile(6, 14);
     }
 
     &.o328 {
-        @include tile(7, 15);
+        @include tile(7, 14);
     }
 
     &.o345 {
-        @include tile(4, 16);
+        @include tile(4, 15);
     }
 
     &.o346 {
-        @include tile(5, 16);
+        @include tile(5, 15);
     }
 
     &.o347 {
-        @include tile(6, 16);
+        @include tile(6, 15);
     }
 
     &.o348 {
-        @include tile(7, 16);
+        @include tile(7, 15);
     }
 }
 
@@ -367,7 +367,7 @@ body {
     }
 }
 
-/** WINDOWS **/
+/** MODALS **/
 
 #modals { // div
     position: relative;
@@ -378,22 +378,20 @@ body {
     @include font-size($window-font-size);
     @include line-height($window-line-height);
 
-    -webkit-border-image: url(../img/window.png) 10 repeat;
-    -o-border-image: url(../img/window.png) 10 repeat;
-    border-image: url(../img/window.png) 10 repeat;
-    border-image-outset: 2px;
+    -webkit-border-image: url(../img/modal-border.gif) 16 repeat;
+    -o-border-image: url(../img/modal-border.gif) 16 repeat;
+    border-image: url(../img/modal-border.gif) 16 repeat;
+    border-image-outset: 10px;
 
-    // background-color: $color-charcoal;
-    border-width: 10px;
-    color: $color-white;
+    background-color: $color-alabaster;
+    border-width: 16px;
+    color: $color-mine-shaft;
     font-family: 'Minecraftia';
     min-height: 0px;
     position: absolute;
     width: 0px;
 
     .modal-content {
-        padding: 10px;
-
         .choice { // ul
             list-style: none outside none;
             margin: 0px;
@@ -403,8 +401,10 @@ body {
                 padding: 5px;
 
                 &:focus {
-                    background-color: $color-white;
-                    color: $color-charcoal;
+                    @include border-radius(2px);
+
+                    background-color: $color-rum;
+                    color: $color-white;
                 }
             }
         }

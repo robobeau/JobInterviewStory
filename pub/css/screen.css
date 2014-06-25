@@ -204,99 +204,99 @@ body {
 }
 /* line 196, ../../sass/screen.scss */
 .object.o245 {
-  background-position: -128px -352px;
+  background-position: -128px -320px;
 }
 /* line 200, ../../sass/screen.scss */
 .object.o246 {
-  background-position: -160px -352px;
+  background-position: -160px -320px;
 }
 /* line 204, ../../sass/screen.scss */
 .object.o247 {
-  background-position: -192px -352px;
+  background-position: -192px -320px;
 }
 /* line 208, ../../sass/screen.scss */
 .object.o248 {
-  background-position: -224px -352px;
+  background-position: -224px -320px;
 }
 /* line 212, ../../sass/screen.scss */
 .object.o265 {
-  background-position: -128px -384px;
+  background-position: -128px -352px;
 }
 /* line 216, ../../sass/screen.scss */
 .object.o266 {
-  background-position: -160px -384px;
+  background-position: -160px -352px;
 }
 /* line 220, ../../sass/screen.scss */
 .object.o267 {
-  background-position: -192px -384px;
+  background-position: -192px -352px;
 }
 /* line 224, ../../sass/screen.scss */
 .object.o268 {
-  background-position: -224px -384px;
+  background-position: -224px -352px;
 }
 /* line 228, ../../sass/screen.scss */
 .object.o285 {
-  background-position: -128px -416px;
+  background-position: -128px -384px;
 }
 /* line 232, ../../sass/screen.scss */
 .object.o286 {
-  background-position: -160px -416px;
+  background-position: -160px -384px;
 }
 /* line 236, ../../sass/screen.scss */
 .object.o287 {
-  background-position: -192px -416px;
+  background-position: -192px -384px;
 }
 /* line 240, ../../sass/screen.scss */
 .object.o288 {
-  background-position: -224px -416px;
+  background-position: -224px -384px;
 }
 /* line 244, ../../sass/screen.scss */
 .object.o305 {
-  background-position: -128px -448px;
+  background-position: -128px -416px;
 }
 /* line 248, ../../sass/screen.scss */
 .object.o306 {
-  background-position: -160px -448px;
+  background-position: -160px -416px;
 }
 /* line 252, ../../sass/screen.scss */
 .object.o307 {
-  background-position: -192px -448px;
+  background-position: -192px -416px;
 }
 /* line 256, ../../sass/screen.scss */
 .object.o308 {
-  background-position: -224px -448px;
+  background-position: -224px -416px;
 }
 /* line 260, ../../sass/screen.scss */
 .object.o325 {
-  background-position: -128px -480px;
+  background-position: -128px -448px;
 }
 /* line 264, ../../sass/screen.scss */
 .object.o326 {
-  background-position: -160px -480px;
+  background-position: -160px -448px;
 }
 /* line 268, ../../sass/screen.scss */
 .object.o327 {
-  background-position: -192px -480px;
+  background-position: -192px -448px;
 }
 /* line 272, ../../sass/screen.scss */
 .object.o328 {
-  background-position: -224px -480px;
+  background-position: -224px -448px;
 }
 /* line 276, ../../sass/screen.scss */
 .object.o345 {
-  background-position: -128px -512px;
+  background-position: -128px -480px;
 }
 /* line 280, ../../sass/screen.scss */
 .object.o346 {
-  background-position: -160px -512px;
+  background-position: -160px -480px;
 }
 /* line 284, ../../sass/screen.scss */
 .object.o347 {
-  background-position: -192px -512px;
+  background-position: -192px -480px;
 }
 /* line 288, ../../sass/screen.scss */
 .object.o348 {
-  background-position: -224px -512px;
+  background-position: -224px -480px;
 }
 
 /* line 293, ../../sass/screen.scss */
@@ -369,7 +369,7 @@ body {
   background-position: -64px -96px;
 }
 
-/** WINDOWS **/
+/** MODALS **/
 /* line 372, ../../sass/screen.scss */
 #modals {
   position: relative;
@@ -382,33 +382,35 @@ body {
   font-size: 1rem;
   line-height: 20px;
   line-height: 1.25rem;
-  -webkit-border-image: url(../img/window.png) 10 repeat;
-  -o-border-image: url(../img/window.png) 10 repeat;
-  border-image: url(../img/window.png) 10 repeat;
-  border-image-outset: 2px;
-  border-width: 10px;
-  color: white;
+  -webkit-border-image: url(../img/modal-border.gif) 16 repeat;
+  -o-border-image: url(../img/modal-border.gif) 16 repeat;
+  border-image: url(../img/modal-border.gif) 16 repeat;
+  border-image-outset: 10px;
+  background-color: #f8f8f8;
+  border-width: 16px;
+  color: #303030;
   font-family: 'Minecraftia';
   min-height: 0px;
   position: absolute;
   width: 0px;
 }
-/* line 394, ../../sass/screen.scss */
-.modal .modal-content {
-  padding: 10px;
-}
-/* line 397, ../../sass/screen.scss */
+/* line 395, ../../sass/screen.scss */
 .modal .modal-content .choice {
   list-style: none outside none;
   margin: 0px;
   padding: 0px;
 }
-/* line 402, ../../sass/screen.scss */
+/* line 400, ../../sass/screen.scss */
 .modal .modal-content .choice li {
   padding: 5px;
 }
-/* line 405, ../../sass/screen.scss */
+/* line 403, ../../sass/screen.scss */
 .modal .modal-content .choice li:focus {
-  background-color: white;
-  color: #303030;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #706880;
+  color: white;
 }
