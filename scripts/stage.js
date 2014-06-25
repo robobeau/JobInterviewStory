@@ -24,7 +24,9 @@ Stage = {
             var row = index;
 
             $.each(value, function (index, value) {
-                $('#objects').append('<div class="object o' + value + '" style="left: ' + index * 32 + 'px; top: ' + row * 32 + 'px"></div>');
+                if (value > 0) {
+                    $('#objects').append('<div class="object o' + value + '" style="left: ' + index * 32 + 'px; top: ' + row * 32 + 'px"></div>');
+                }
             });
         });
     },
