@@ -26,13 +26,13 @@ function Modal () {
         modal.data('modal')['initiator']   = initiator ? initiator : '';
 
         modal.css({
-            backgroundColor: modal.data('modal')['backgroundColor']
+            backgroundColor : modal.data('modal')['backgroundColor'],
+            left            : position.left + 'px',
+            top             : position.top + 'px',
         });
 
         modal.animate({
             height  : size.height + 'px',
-            left    : position.left + 'px',
-            top     : position.top + 'px',
             width   : size.width + 'px',
             zIndex  : position.zIndex
         }, 200, function () {
@@ -51,10 +51,8 @@ function Modal () {
         modalContent.html('');
 
         modal.animate({
-            height  : '30px',
-            left    : '0px',
-            top     : '0px',
-            width   : '30px',
+            height  : '0px',
+            width   : '0px',
             zIndex  : '0'
         }, 200, function () {
             $(this).remove();

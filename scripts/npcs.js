@@ -108,11 +108,11 @@ function NPC () {
         $.modal.create(
             'dialogue',
             {
-                height  : 110,
-                width   : 640
+                height  : 80,
+                width   : 720
             },
             {
-                left    : 20,
+                left    : ($(window).width() - (720 + 32)) / 2,
                 top     : 20
             },
             Dialogues[dialogue],
