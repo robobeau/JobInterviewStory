@@ -195,7 +195,7 @@ body {
 
 /* line 186, ../../sass/screen.scss */
 .object {
-  background-image: url(../img/tiles.gif);
+  background-image: url(../img/tile-map.gif);
   background-repeat: no-repeat;
   background-position: left top;
   height: 32px;
@@ -301,7 +301,7 @@ body {
 
 /* line 293, ../../sass/screen.scss */
 .tile {
-  background-image: url(../img/tiles.gif);
+  background-image: url(../img/tile-map.gif);
   background-repeat: no-repeat;
   background-position: left top;
   height: 32px;
