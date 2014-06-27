@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
+  <image source="../pub/img/tile-map.gif" width="2816" height="2560"/>
+ </tileset>
+ <layer name="tiles" width="14" height="10">
+  <data encoding="base64" compression="zlib">
+   eJyd0csKAWEYxvFnNZs5XQdFyooVG2xxNRQ5rJzK1ga3RJGyciqX4a+3KSn6eOtX70zP8/VNI/0/Ld/0MAqlMTrsXQwDKYVyLKUDyyWz8c0BJzpn7Nj3OJLtY0FvEFguma1vcrwvRFIRGfYs8pwxwRSz0HKvvfYXF/JX3EJ7du29c+mt+a4KqqjFv/WWWH3ozbn7HaXI/Z7PqXtSA03P7Z8/AEuIOKo=
+  </data>
+ </layer>
+ <layer name="collisions" width="14" height="10" opacity="0.5">
+  <data encoding="base64" compression="zlib">
+   eJzjZGBg4KQzhgFS1REC6GpI0UeOfYTMwacGWS0t9RFjFikYAETVAqQ=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="14" height="10">
+  <object name="d002" type="doorway" gid="447" x="320" y="128">
+   <properties>
+    <property name="area" value="a001"/>
+   </properties>
+  </object>
+  <object name="player" type="player" gid="978" x="352" y="128"/>
+ </objectgroup>
+</map>

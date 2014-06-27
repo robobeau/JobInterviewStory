@@ -5,16 +5,15 @@
  </tileset>
  <layer name="tiles" width="14" height="10">
   <data encoding="base64" compression="zlib">
-   eJylzskKwjAUheG7T1N8CV2p4LjSB7OoG6e1VsG1PpGiggPuHRY+gn8JpW2ICBr4aJJ7TqjI76ujRAaeyNQXmaHLuYc+8srM0+K1YX+md6Nzx47zHgcUlJlHWszaftLbclfT5hsp8kYJZS+5C8nPsbB6QzIjyxiBMh7kn1jlsr0LmQmOOOFF5prqxdaO3pJshf+tavOuqxeobK9OtmFp6u891/yTf9YbUeE5lA==
+   eJyljrsKwkAQRQfbZEN+QhsL8ZXKx3ephYWvzhQqWOsXaSM+sNTCxk/wLGNwWRRBBw53mL0nROT36QQig1CkT/YCTXubGpHU6J5/3izZbNiPeDsyyWna2wXnanQvQCMSaUYvb8utynsJtxhq2luLTjvSfUbOYeF5Q7ojjzF0A+VGfxUrrneiM4E9HOBO7+x4lnWs+N6Sbpn/rRj9ru9luF6Nbt0jMd+9d++f+GceWgA3qQ==
   </data>
  </layer>
  <layer name="collisions" width="14" height="10" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzjZGBg4BwimBRAjj5c9hHrDmrpI9W95OojBwMAlJECyA==
+   eJzjZGBg4KQzZiAghgzQ1RALyNGHzU34xHHpp1Qfqe4lVx85GABLBQKb
   </data>
  </layer>
  <objectgroup name="objects" width="14" height="10">
-  <object name="player" type="player" gid="9" x="320" y="128"/>
   <object name="n000" type="npc" gid="9" x="288" y="256">
    <properties>
     <property name="dialogue" value="d000"/>
@@ -27,10 +26,16 @@
     <property name="wander" value="true"/>
    </properties>
   </object>
-  <object name="d001" type="doorway" gid="9" x="352" y="128">
+  <object name="d000" type="doorway" gid="447" x="352" y="96">
    <properties>
     <property name="area" value="a002"/>
    </properties>
   </object>
+  <object name="d001" type="doorway" gid="447" x="352" y="128">
+   <properties>
+    <property name="area" value="a002"/>
+   </properties>
+  </object>
+  <object name="player" type="player" gid="978" x="320" y="128"/>
  </objectgroup>
 </map>
