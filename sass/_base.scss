@@ -42,7 +42,13 @@ $tertiary-title-line-height     : 1.250;    // 20px
 // Collision Debug
 @mixin collision-debug {
     background-color: #FF0000;
-    opacity: 0.5;
+    opacity: 0;
+}
+
+// Doorway Debug
+@mixin doorway-debug {
+    background-color: #00FF00;
+    opacity: 0;
 }
 
 // Font Size
