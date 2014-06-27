@@ -5,14 +5,21 @@ Stage = {
      *
      */
     drawCollisions: function (collisions) {
-        $.each(collisions.data, function (index, value) {
-            var row = index;
+        var counter = 0,
+            height  = collisions.height,
+            row     = 0,
+            width   = collisions.width;
 
-            $.each(value, function (index, value) {
-                if (value == 1) {
-                    $('#collisions').append('<div class="collision" style="left: ' + index * 32 + 'px; top: ' + row * 32 + 'px"></div>');
-                }
-            });
+        $.each(collisions.data, function (index, value) {
+            var x   = value - (Math.floor(value / 88) * 88) - 1,
+                y   = Math.floor(value / 88);
+
+            if (value > 0) {
+                $('#collisions').append('<div class="collision" style="left: ' + counter * 32 + 'px; top: ' + row * 32 + 'px"></div>');
+            }
+
+            counter += (index + 1) % width === 0 ? -counter : 1;
+            row += (index + 1) % width === 0 ? 1 : 0;
         });
     },
 
@@ -20,14 +27,36 @@ Stage = {
      *
      */
     drawObjects: function (objects) {
-        $.each(objects, function (index, value) {
-            var row = index;
+        $.each(objects.objects, function (index, value) {
+            switch (value.type) {
+                case 'player':
+                    $('#objects').append('<div id="player" tabindex="0" style="left: ' + value.x + 'px; top: ' + ((value.y - 8) - 32) + 'px;"><div id="player-collision"></div></div>');
 
-            $.each(value, function (index, value) {
-                if (value > 0) {
-                    $('#objects').append('<div class="object o' + value + '" style="left: ' + index * 32 + 'px; top: ' + row * 32 + 'px"></div>');
-                }
-            });
+                    $('#player').trigger('focus');
+
+                    break;
+
+                case 'npc':
+                    $.npc.create(
+                        value.name,
+                        {
+                            height  : 40,
+                            width   : 32
+                        },
+                        {
+                            left    : value.x,
+                            top     : (value.y - 8) - 32
+                        },
+                        value.properties.dialogue
+                    );
+
+                    break;
+
+                case 'doorway':
+                    $('#objects').append('<div id="' + value.name + '" class="object doorway" style="left: ' + value.x + 'px; top: ' + (value.y - 32) + 'px"></div>');
+
+                    break;
+            }
         });
     },
 
@@ -41,22 +70,20 @@ Stage = {
             width   = tiles.width;
 
         $.each(tiles.data, function (index, value) {
-            var x   = value % 88,
-                y   = value % 88;
-
-            console.log(x);
-            console.log(y);
+            var x   = value - (Math.floor(value / 88) * 88) - 1,
+                y   = Math.floor(value / 88);
 
             $('#tiles').append('<div class="tile t' + value + '" style="background-position: -' + (x * 32) + 'px -' + (y * 32) + 'px; left: ' + counter * 32 + 'px; top: ' + row * 32 + 'px"></div>');
 
             counter += (index + 1) % width === 0 ? -counter : 1;
             row += (index + 1) % width === 0 ? 1 : 0;
+        });
 
-            // var row = index;
-
-            // $.each(value, function (index, value) {
-            //     $('#tiles').append('<div class="tile t' + value + '" style="left: ' + index * 32 + 'px; top: ' + row * 32 + 'px"></div>');
-            // });
+        $('#stage').css({
+            height  : height * 32,
+            left    : ($(window).width() - (width * 32)) / 2 + 'px',
+            top     : ($(window).height() - (height * 32)) / 2 + 'px',
+            width   : width * 32
         });
     }
 }

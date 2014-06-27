@@ -1,61 +1,46 @@
 
 Dialogues = {
-    'd0': {
+    'd000': {
         type        : 'dialogue',
         text        : 'Hello, world!',
         emote       : 'talkHappy',
         end         : true
     },
 
-    'd1': {
+    'd001': {
         type        : 'dialogue',
         text        : 'Do you want to go to lunch? I\'m hungry...',
         emote       : 'question',
-        goTo        : 'c0',
-        action      : function () {
-
-        }
+        goTo        : 'c000'
     },
 
-    'c0': {
+    'c000': {
         type    : 'choice',
         emote   : 'think',
         choices : [
             {
                 label       : 'Yes',
-                goTo        : 'd2',
-                action      : function () {
-
-                }
+                goTo        : 'd002'
             },
 
             {
                 label       : 'No',
-                goTo        : 'd3',
-                action      : function () {
-
-                }
+                goTo        : 'd003'
             }
         ]
     },
 
-    'd2': {
+    'd002': {
         type        : 'dialogue',
         text        : 'Alright!',
         emote       : 'happiness',
-        end         : true,
-        action      : function () {
-
-        }
+        end         : true
     },
 
-    'd3': {
+    'd003': {
         type        : 'dialogue',
         text        : 'Awwwww!',
         emote       : 'sadness',
-        end         : true,
-        action      : function () {
-
-        }
+        end         : true
     }
 }
