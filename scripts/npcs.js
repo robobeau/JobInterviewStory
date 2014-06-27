@@ -19,7 +19,7 @@ function NPC () {
 
         npc.data('npc', new NPC());
         npc.data('npc')['id']       = data.name;
-        npc.data('npc')['dialogue'] = data.dialogue;
+        npc.data('npc')['dialogue'] = data.properties.dialogue;
 
         npc.css({
             left    : data.x + 'px',

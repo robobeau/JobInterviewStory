@@ -9,7 +9,6 @@ Stage = {
             $(element).npc('destroy');
         });
 
-
         $('#collisions').html('');
         $('#objects').html('');
         $('#tiles').html('');
