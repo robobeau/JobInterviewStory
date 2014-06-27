@@ -3,10 +3,11 @@
 
 /** COLORS **/
 
-$color-mine-shaft   : #303030;
-$color-white        : #FFFFFF;
 $color-alabaster    : #F8F8F8;
+$color-black        : #000000;
+$color-mine-shaft   : #303030;
 $color-rum          : #706880;
+$color-white        : #FFFFFF;
 
 /** FONTS **/
 
@@ -37,18 +38,22 @@ $secondary-title-line-height    : 1.500;    // 24px
 $tertiary-title-font-size       : 1;        // 16px
 $tertiary-title-line-height     : 1.250;    // 20px
 
+/** DEBUG **/
+
+$collisionOpacity : 0;
+
 /** MIXINS **/
 
 // Collision Debug
 @mixin collision-debug {
     background-color: #FF0000;
-    opacity: 0;
+    opacity: $collisionOpacity;
 }
 
 // Doorway Debug
 @mixin doorway-debug {
     background-color: #00FF00;
-    opacity: 0;
+    opacity: $collisionOpacity;
 }
 
 // Font Size

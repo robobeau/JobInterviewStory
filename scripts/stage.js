@@ -4,6 +4,20 @@ Stage = {
     /**
      *
      */
+    cleanup: function () {
+        $('.npc').each(function (index, element) {
+            $(element).npc('destroy');
+        });
+
+
+        $('#collisions').html('');
+        $('#objects').html('');
+        $('#tiles').html('');
+    },
+
+    /**
+     *
+     */
     drawCollisions: function (collisions) {
         var counter = 0,
             height  = collisions.height,
@@ -30,30 +44,17 @@ Stage = {
         $.each(objects.objects, function (index, value) {
             switch (value.type) {
                 case 'player':
-                    $('#objects').append('<div id="player" tabindex="0" style="left: ' + value.x + 'px; top: ' + ((value.y - 8) - 32) + 'px;"><div id="player-collision"></div></div>');
-
-                    $('#player').trigger('focus');
+                    $.player.create(value);
 
                     break;
 
                 case 'npc':
-                    $.npc.create(
-                        value.name,
-                        {
-                            height  : 40,
-                            width   : 32
-                        },
-                        {
-                            left    : value.x,
-                            top     : (value.y - 8) - 32
-                        },
-                        value.properties.dialogue
-                    );
+                    $.npc.create(value);
 
                     break;
 
                 case 'doorway':
-                    $('#objects').append('<div id="' + value.name + '" class="object doorway" style="left: ' + value.x + 'px; top: ' + (value.y - 32) + 'px"></div>');
+                    $('#objects').append('<div id="' + value.name + '" class="object doorway" rel="' + value.properties.area + '" style="left: ' + value.x + 'px; top: ' + (value.y - 32) + 'px"></div>');
 
                     break;
             }
@@ -85,5 +86,30 @@ Stage = {
             top     : ($(window).height() - (height * 32)) / 2 + 'px',
             width   : width * 32
         });
-    }
+    },
+
+    /**
+     *
+     */
+    init: function (stage) {
+        var transition = $('#transition');
+
+        transition.animate({
+            opacity: 1
+        }, 200, function () {
+            Stage.cleanup();
+
+            $.get('../json/'+ stage +'.json', function (data) {
+                Stage.drawTiles(data.layers[0]);
+
+                Stage.drawCollisions(data.layers[1]);
+
+                Stage.drawObjects(data.layers[2]);
+
+                transition.animate({
+                    opacity: 0
+                }, 200);
+            });
+        });
+    },
 }

@@ -10,28 +10,37 @@ function NPC () {
     /**
      *
      */
-    this.create = function (id, size, position, dialogue) {
-        var npc = $('#' + id);
+    this.create = function (data) {
+        var npc, npcOffsetT  = 8;
 
-        if (npc.length === 0) {
-            $('#objects').append('<div id="' + id + '" class="npc"><div class="npc-collision"></div></div>');
-        } else {
-            return false;
-        }
+        $('#objects').append('<div id="' + data.name + '" class="npc"><div class="npc-collision"></div></div>');
 
-        npc = $('#' + id);
+        npc = $('#' + data.name);
 
         npc.data('npc', new NPC());
-
-        npc.data('npc')['id']       = id;
-        npc.data('npc')['dialogue'] = dialogue;
+        npc.data('npc')['id']       = data.name;
+        npc.data('npc')['dialogue'] = data.dialogue;
 
         npc.css({
-            left    : position.left + 'px',
-            top     : position.top + 'px',
-            zIndex  : position.zIndex
+            left    : data.x + 'px',
+            top     : ((data.y - npcOffsetT) - 32) + 'px'
         });
+
+        if (data.properties.wander) {
+            npc.npc('wander');
+        }
     },
+
+    /**
+     *
+     */
+    this.destroy = function () {
+        var npc = $(this);
+
+        clearInterval(npc.data('npc')['wanderInterval']);
+
+        npc.remove();
+    }
 
     /**
      *
@@ -126,9 +135,9 @@ function NPC () {
     this.wander = function () {
         var npc = $(this);
 
-        clearInterval(this.wanderInterval);
+        clearInterval(npc.data('npc')['wanderInterval']);
 
-        this.wanderInterval = setInterval(function () {
+        npc.data('npc')['wanderInterval'] = setInterval(function () {
             var direction = Game.directions[Math.floor(Math.random() * Game.directions.length)];
 
             if (Math.random() < 0.5 || npc.data('npc')['wanderPause'] === true) {
@@ -137,10 +146,8 @@ function NPC () {
 
             var collide = Game.collisionCheck(npc, direction);
 
-            if (collide.state == false && !npc.is(':animated')) {
+            if (collide.state == false && !npc.is(':animated') && !collide.doorway) {
                 Game.moveObject(npc, direction);
-            } else {
-
             }
         }, 1000);
     }

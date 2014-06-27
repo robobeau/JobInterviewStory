@@ -24,9 +24,19 @@ body {
 
 /** STAGE **/
 
-#stage {
+#stage { // div
     position: absolute;
     z-index: 0;
+
+    // Transition
+
+    #transition { // div
+        background-color: $color-black;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        z-index: 3;
+    }
 
     // Collision
 
