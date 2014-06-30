@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
+  <image source="../pub/img/tile-map.gif" width="2816" height="2560"/>
+ </tileset>
+ <layer name="tiles" width="14" height="10">
+  <data encoding="base64" compression="zlib">
+   eJyljrsKwkAQRQfbZEN+QhsL8ZXKx3ephYWvzhQqWOsXaSM+sNTCxk/wLGNwWRRBBw53mL0nROT36QQig1CkT/YCTXubGpHU6J5/3izZbNiPeDsyyWna2wXnanQvQCMSaUYvb8utynsJtxhq2luLTjvSfUbOYeF5Q7ojjzF0A+VGfxUrrneiM4E9HOBO7+x4lnWs+N6Sbpn/rRj9ru9luF6Nbt0jMd+9d++f+GceWgA3qQ==
+  </data>
+ </layer>
+ <layer name="collisions" width="14" height="10" opacity="0.5">
+  <data encoding="base64" compression="zlib">
+   eJzjZGBg4BwimBRAjj589hFjHro8se4nx3/U0EcOBgCLJQK/
+  </data>
+ </layer>
+ <objectgroup name="objects" width="14" height="10">
+  <object name="n000" type="npc" gid="9" x="288" y="256">
+   <properties>
+    <property name="dialogue" value="d000"/>
+    <property name="wander" value="true"/>
+   </properties>
+  </object>
+  <object name="n001" type="npc" gid="9" x="352" y="256">
+   <properties>
+    <property name="dialogue" value="d001"/>
+    <property name="wander" value="true"/>
+   </properties>
+  </object>
+  <object name="s000" type="stairs" gid="447" x="352" y="128">
+   <properties>
+    <property name="area" value="a001"/>
+    <property name="direction" value="ur"/>
+   </properties>
+  </object>
+  <object name="player" type="player" gid="978" x="320" y="128">
+   <properties>
+    <property name="prevArea" value="a001"/>
+   </properties>
+  </object>
+  <object name="player" type="player" gid="978" x="128" y="160">
+   <properties>
+    <property name="prevArea" value="a000"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

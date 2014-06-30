@@ -144,7 +144,7 @@ function NPC () {
                 return;
             }
 
-            var collide = Game.collisionCheck(npc, direction);
+            var collide = Game.checkCollision(npc, direction);
 
             if (collide.state == false && !npc.is(':animated') && !collide.doorway) {
                 Game.moveObject(npc, direction);

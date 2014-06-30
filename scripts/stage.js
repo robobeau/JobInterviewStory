@@ -104,6 +104,9 @@ Stage = {
             Stage.cleanup();
 
             $.get('../json/'+ stage +'.json', function (data) {
+                Game.prevArea       = Game.currentArea;
+                Game.currentArea    = stage;
+
                 Stage.drawTiles(data.layers[0]);
 
                 Stage.drawCollisions(data.layers[1]);

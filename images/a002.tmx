@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="56" height="30" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
   <image source="../pub/img/tile-map.gif" width="2816" height="2560"/>
  </tileset>
- <layer name="tiles" width="14" height="10">
+ <layer name="tiles" width="56" height="30">
   <data encoding="base64" compression="zlib">
-   eJyd0csKAWEYxvFnNZs5XQdFyooVG2xxNRQ5rJzK1ga3RJGyciqX4a+3KSn6eOtX70zP8/VNI/0/Ld/0MAqlMTrsXQwDKYVyLKUDyyWz8c0BJzpn7Nj3OJLtY0FvEFguma1vcrwvRFIRGfYs8pwxwRSz0HKvvfYXF/JX3EJ7du29c+mt+a4KqqjFv/WWWH3ozbn7HaXI/Z7PqXtSA03P7Z8/AEuIOKo=
+   eJztlj0vQ1Ecxh9JpbeV9t4wYVKTt6HFisnESMIXqBWbzdsgGDAxqAHpQqILXwGfwNuKkmDwthDPcdr0KDrd5p7bnKS/PL295ybn+f9ymmtXAQ45BHBE7Nz1CL+Pwv9Z3Ct/fUAyFZDFvYw/f6Xx5+8s5a8+AjQoNEYKc2kJAK2kjbSTjsDPua04wCpZc/T09xECxtlnQmGSfPL3NJlmnxkyS+bIPHmzgHdLrsmy1x25d/T0NxQGjtnnROGUDPP3hyBwxj7n5IJckqtA4Vmx5toGbsitrac/0a8pCiRrgFhU0hyVe++no3g1kCCdpIt0kySfH8v166G3XtKnsT/h6VHhKSj3vsl+C+yTYi4yl8gy4ecbseaZ917Iq6WvP9EjpbBlyb3/Ny+13wDP4CCJ01/C0dNfzP49D7F3kbES5+qvfrr4y5+hPe5xypZzSIcK7IdlinuZonvqmm3mDtkN6XX+RO9sLf/bXUSn8yd6r9cBGy6imz8d3hvL6U+H90a3/Xk953Kl1/Mtd3o9X+PP+DP+Kje9nq/xZ/wZf5WbX1Gwakc=
   </data>
  </layer>
- <layer name="collisions" width="14" height="10" opacity="0.5">
+ <layer name="collisions" width="56" height="30" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzjZGBg4BwimBBAV0OKPk48fGIBre2jtjvJwQBp9QKk
+   eJzt1MsKwCAMRNFs/f8f7rakI0b6IEnvAZE6CJlFNbsa4qwT+tVGv9r+0m+IZYHM59mo2e+sbCLzdunnv89nKqvUb5b5Xf2bmUX6re7v3vlS1367b8kqyybrXE+hX23d+wEAAABvOwD6HwQM
   </data>
  </layer>
- <objectgroup name="objects" width="14" height="10">
-  <object name="s001" type="stairs" gid="447" x="320" y="128">
+ <objectgroup name="objects" width="56" height="30">
+  <object name="player" type="player" gid="978" x="256" y="352">
    <properties>
-    <property name="area" value="a001"/>
-    <property name="direction" value="dl"/>
+    <property name="prevArea" value="a001"/>
    </properties>
   </object>
-  <object name="player" type="player" gid="978" x="352" y="128"/>
+  <object name="d001" type="doorway" gid="447" x="256" y="320">
+   <properties>
+    <property name="area" value="a001"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
