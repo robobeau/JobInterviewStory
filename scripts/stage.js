@@ -53,7 +53,12 @@ Stage = {
                     break;
 
                 case 'doorway':
-                    $('#objects').append('<div id="' + value.name + '" class="object doorway" rel="' + value.properties.area + '" style="left: ' + value.x + 'px; top: ' + (value.y - 32) + 'px"></div>');
+                    $('#objects').append('<div id="' + value.name + '" class="object doorway" data-area="' + value.properties.area + '" style="left: ' + value.x + 'px; top: ' + (value.y - 32) + 'px"></div>');
+
+                    break;
+
+                case 'stairs':
+                    $('#objects').append('<div id="' + value.name + '" class="object stairs" data-area="' + value.properties.area + '" data-direction="' + value.properties.direction + '" style="left: ' + value.x + 'px; top: ' + (value.y - 32) + 'px"></div>');
 
                     break;
             }

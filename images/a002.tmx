@@ -10,13 +10,14 @@
  </layer>
  <layer name="collisions" width="14" height="10" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzjZGBg4KQzhgFS1REC6GpI0UeOfYTMwacGWS0t9RFjFikYAETVAqQ=
+   eJzjZGBg4BwimBBAV0OKPk48fGIBre2jtjvJwQBp9QKk
   </data>
  </layer>
  <objectgroup name="objects" width="14" height="10">
-  <object name="d002" type="doorway" gid="447" x="320" y="128">
+  <object name="s001" type="stairs" gid="447" x="320" y="128">
    <properties>
     <property name="area" value="a001"/>
+    <property name="direction" value="dl"/>
    </properties>
   </object>
   <object name="player" type="player" gid="978" x="352" y="128"/>

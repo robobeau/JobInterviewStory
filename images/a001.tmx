@@ -10,7 +10,7 @@
  </layer>
  <layer name="collisions" width="14" height="10" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzjZGBg4KQzZiAghgzQ1RALyNGHzU34xHHpp1Qfqe4lVx85GABLBQKb
+   eJzjZGBg4BwimBRAjj589hFjHro8se4nx3/U0EcOBgCLJQK/
   </data>
  </layer>
  <objectgroup name="objects" width="14" height="10">
@@ -26,14 +26,10 @@
     <property name="wander" value="true"/>
    </properties>
   </object>
-  <object name="d000" type="doorway" gid="447" x="352" y="96">
+  <object name="s000" type="stairs" gid="447" x="352" y="128">
    <properties>
     <property name="area" value="a002"/>
-   </properties>
-  </object>
-  <object name="d001" type="doorway" gid="447" x="352" y="128">
-   <properties>
-    <property name="area" value="a002"/>
+    <property name="direction" value="ur"/>
    </properties>
   </object>
   <object name="player" type="player" gid="978" x="320" y="128"/>

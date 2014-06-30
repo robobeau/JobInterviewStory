@@ -53,7 +53,7 @@ Game = {
         var
             objectCollision     = object.is('#player, .npc') ? object.find('#player-collision, .npc-collision') : object,
             objectOffsetT       = object.is('#player, .npc') ? 8 : 0;
-            obstacle            = $('#player, .npc, .collision, .doorway').filter(function () {
+            obstacle            = $('#player, .npc, .collision, .doorway, .stairs').filter(function () {
                 var obstacleOffsetT = $(this).is('#player, .npc') ? 8 : 0;
 
                 return parseFloat($(this).css('left')) == parseFloat(object.css('left')) + offsetL && parseFloat($(this).css('top')) + obstacleOffsetT == (parseFloat(object.css('top')) + offsetT + objectOffsetT);
@@ -72,7 +72,7 @@ Game = {
             hWidths             = (objectW / 2) + (obstacleW / 2),
             hHeights            = (objectH / 2) + (obstacleH / 2);
 
-        if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights && obstacle.is(':not(.doorway)')) {
+        if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights && obstacle.is(':not(.doorway, .stairs)')) {
             // var
             //     dir = '',
             //     oX  = hWidths - Math.abs(vX),
@@ -100,8 +100,11 @@ Game = {
 
         return {
             state       : false,
+            obstacle    : obstacle,
             doorway     : obstacle.is('.doorway'),
-            area        : obstacle.is('.doorway') ? obstacle.attr('rel') : ''
+            area        : obstacle.is('.doorway, .stairs') ? obstacle.attr('data-area') : '',
+            stairs      : obstacle.is('.stairs'),
+            direction   : obstacle.is('.stairs') ? obstacle.attr('data-direction') : ''
         };
     },
 
@@ -211,7 +214,11 @@ Game = {
                     if (collide.state == false && !player.is(':animated')) {
                         Game.moveObject(player, player.data('player')['direction']);
 
-                        if (collide.doorway) {
+                        if (collide.doorway || collide.stairs) {
+                            if (collide.stairs) {
+                                player.player('useStairs', collide.direction);
+                            }
+
                             Stage.init(collide.area);
                         }
                     } else {
@@ -230,7 +237,11 @@ Game = {
                     if (collide.state == false && !player.is(':animated')) {
                         Game.moveObject(player, player.data('player')['direction']);
 
-                        if (collide.doorway) {
+                        if (collide.doorway || collide.stairs) {
+                            if (collide.stairs) {
+                                player.player('useStairs', collide.direction);
+                            }
+
                             Stage.init(collide.area);
                         }
                     } else {
@@ -249,7 +260,11 @@ Game = {
                     if (collide.state == false && !player.is(':animated')) {
                         Game.moveObject(player, player.data('player')['direction']);
 
-                        if (collide.doorway) {
+                        if (collide.doorway || collide.stairs) {
+                            if (collide.stairs) {
+                                player.player('useStairs', collide.direction);
+                            }
+
                             Stage.init(collide.area);
                         }
                     } else {
@@ -268,7 +283,11 @@ Game = {
                     if (collide.state == false && !player.is(':animated')) {
                         Game.moveObject(player, player.data('player')['direction']);
 
-                        if (collide.doorway) {
+                        if (collide.doorway || collide.stairs) {
+                            if (collide.stairs) {
+                                player.player('useStairs', collide.direction);
+                            }
+
                             Stage.init(collide.area);
                         }
                     } else {
@@ -311,6 +330,47 @@ function Player () {
         player.data('player', new Player());
 
         player.trigger('focus');
+    },
+
+    /**
+     *
+     */
+    this.useStairs = function (direction, callback) {
+        var player  = $(this),
+            offsetL = 0,
+            offsetT = 0;
+
+        switch (direction) {
+            case 'dl':
+                offsetL = -32;
+                offsetT = 0;
+
+                break;
+
+            case 'dr':
+                offsetL = 32;
+                offsetT = 32;
+
+                break;
+
+            case 'ul':
+                offsetL = -32;
+                offsetT = -32;
+
+                break;
+
+            case 'ur':
+                offsetL = 32;
+                offsetT = -32;
+
+                break;
+        }
+
+        player.stop().animate({
+            left    : parseFloat(player.css('left')) + offsetL,
+            opacity : 0,
+            top     : parseFloat(player.css('top')) + offsetT
+        }, 200, 'linear');
     }
 }
 
