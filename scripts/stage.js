@@ -113,6 +113,8 @@ Stage = {
 
                 Stage.drawObjects(data.layers[2]);
 
+                Game.areaObstacles = $('#player, .npc, .collision, .doorway, .stairs');
+
                 transition.animate({
                     opacity: 0
                 }, 200);

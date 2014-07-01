@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="56" height="30" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="54" height="34" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
   <image source="../pub/img/tile-map.gif" width="2816" height="2560"/>
  </tileset>
- <layer name="tiles" width="56" height="30">
+ <layer name="tiles" width="54" height="34">
   <data encoding="base64" compression="zlib">
-   eJztlj0vQ1Ecxh9JpbeV9t4wYVKTt6HFisnESMIXqBWbzdsgGDAxqAHpQqILXwGfwNuKkmDwthDPcdr0KDrd5p7bnKS/PL295ybn+f9ymmtXAQ45BHBE7Nz1CL+Pwv9Z3Ct/fUAyFZDFvYw/f6Xx5+8s5a8+AjQoNEYKc2kJAK2kjbSTjsDPua04wCpZc/T09xECxtlnQmGSfPL3NJlmnxkyS+bIPHmzgHdLrsmy1x25d/T0NxQGjtnnROGUDPP3hyBwxj7n5IJckqtA4Vmx5toGbsitrac/0a8pCiRrgFhU0hyVe++no3g1kCCdpIt0kySfH8v166G3XtKnsT/h6VHhKSj3vsl+C+yTYi4yl8gy4ecbseaZ917Iq6WvP9EjpbBlyb3/Ny+13wDP4CCJ01/C0dNfzP49D7F3kbES5+qvfrr4y5+hPe5xypZzSIcK7IdlinuZonvqmm3mDtkN6XX+RO9sLf/bXUSn8yd6r9cBGy6imz8d3hvL6U+H90a3/Xk953Kl1/Mtd3o9X+PP+DP+Kje9nq/xZ/wZf5WbX1Gwakc=
+   eJztmUloE1EYx79szSQlmdA2BRW3iIrboVWvruBJwYti6pIKpfUkqKjgze0gKric9GA9qMQl1cTWFjy743Kty1Wt+8HtYvH/+WaYzzFLJZ1kqoH8ePO99yZ5/+8/894H6SOiGyDiIYqCvgrFSbC0kWgZWN5Y+d93Ks7adI329/fjekDEXWCLx/m4kF/lfr+pR8d1TMScxxxZ852K7X7J8Tb6+7iQHjPmPI6LEI0XTIiofr5/lp9oNpgD5oJ5ftVvjh+PEZ0AJ2O/9+drpa5i80bSFtJjxj9CRNugY7tgBxhGfxrshY59YD84AA6CbxrRd03NGYKeN+BtzPKlUCt1FZs3kraUX2vCRPeg477gAViL/g9BokHoeAqegefghd+6l+e81Ilegde6u/xiXVOjeH7riRJRxbSoWvMKeNISIGoF88ECsDBgPes8ZxF8WgyWGH5dbCK6JLgMeqvkF/vyUfApqNZ8BroOQUc32sNoj4CjAJ9f8JzPGPsCvoJjdUSeOJFX4APXjTxnoLEHXG2qjF+8/m7BWU2tuVC+pK6VeMdWgRb41QqS0NEG1oMN4Ao01Bv7WABxHQjGK+NXQv8zH7xmbhNF3pt8urJYc449Ar3ADzqMfXcjrjeBVNx5vzJY2x5d5SEdsugJq5bHcrYxOecc2vPgQsjKJ79Dm5uJboLO5ursh0MN2KdHGV57vv53xtj7Buf9OoXfOV0FnPaLz+VbXqLbgjte9ZwN53n2JDxebt6d3A8n+ogmCSb71JnD+wLn5xrWnwpbrNZUvzleTt6d3A93QsddeLTLp9jtU2cOr5vzo6HtF6Q1az90s18PoWMKeASegMdCF+enHa2OeiTJez+gkHV+udmv6aj5ZhhshW8z/eosNf0YCKs6K8tnNVgndLnZL7N+CIh8dHhK++F2v3JGHux1h+lHvnrE7e9XJmzt2/a6Q9Yc9nrEHHerX+XWG271q9x6w61+VSvfTvtVrXzX/Kr59T/5lQLtYygu5Zc5f6zGdj3m/xH/WuyW/49qcfH4J3/5a3M=
   </data>
  </layer>
- <layer name="collisions" width="56" height="30" opacity="0.5">
+ <layer name="collisions" width="54" height="34" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzt1MsKwCAMRNFs/f8f7rakI0b6IEnvAZE6CJlFNbsa4qwT+tVGv9r+0m+IZYHM59mo2e+sbCLzdunnv89nKqvUb5b5Xf2bmUX6re7v3vlS1367b8kqyybrXE+hX23d+wEAAABvOwD6HwQM
+   eJztlUsOwCAIBdl6/wt32xCgWKFIfZOw8Itj1Q4iGgXBqVgDvPb14nmyyprXatny8vhqe299k0wqz1omq+vs7iX1JaNtdh8qvLRxnrm9uaI52UvKy8+hNreUS8obTcQb8dRWwU5vWCSneq1GFZnr7u5l1VcBL9mDHPUVvL1Df7hf9758rFSv9f+S6PvU5Z3vCrx6Aa9ewKsXM//kjmUEApEfF4H2HSY=
   </data>
  </layer>
- <objectgroup name="objects" width="56" height="30">
-  <object name="player" type="player" gid="978" x="256" y="352">
+ <objectgroup name="objects" width="54" height="34">
+  <object name="player" type="player" gid="978" x="192" y="288">
    <properties>
     <property name="prevArea" value="a001"/>
    </properties>
   </object>
-  <object name="d001" type="doorway" gid="447" x="256" y="320">
+  <object name="d001" type="doorway" gid="447" x="192" y="256">
    <properties>
     <property name="area" value="a001"/>
    </properties>
