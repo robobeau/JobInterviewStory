@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
-  <image source="../pub/img/tile-map.gif" width="2816" height="2560"/>
+  <image source="../pub/img/tile-map2.gif" width="1600" height="1600"/>
  </tileset>
  <layer name="tiles" width="14" height="10">
   <data encoding="base64" compression="zlib">
-   eJyd0csKAWEYxvFnNZs5XQdFyooVG2xxNRQ5rJzK1ga3RJGyciqX4a+3KSn6eOtX70zP8/VNI/0/Ld/0MAqlMTrsXQwDKYVyLKUDyyWz8c0BJzpn7Nj3OJLtY0FvEFguma1vcrwvRFIRGfYs8pwxwRSz0HKvvfYXF/JX3EJ7du29c+mt+a4KqqjFv/WWWH3ozbn7HaXI/Z7PqXtSA03P7Z8/AEuIOKo=
+   eJxjYCAflDGRhmFgBRNpGAZuA9l38OBbUAxTBwO8zAwMfHgwTB9MHbH6YPbykagPHQ+UPnIAAOtMHyE=
+  </data>
+ </layer>
+ <layer name="tiles2" width="14" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAM7GBkYOgD0v1APAFJfCcjhFYBYlUgVkPT9woofwBIHwTiQ0CsCcRaQPwaKG4ApMOAOByII9D0yTAxMHwC0p+B+AsQRwNxDBDLAsWTgHQyEDsyo+p5COTLA7ECED9CkwOBKUA8FYiL0eRcWRgYAoFiQUDsxoI3GIgGDUB3NgLNawLiRibS9G0G6tmCQ99doNg9IL5PgpkgwA80TwCIBbGECzYAAKIFGko=
   </data>
  </layer>
  <layer name="collisions" width="14" height="10" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzjZGBg4BwimBBAV0OKPk48fGIBre2jtjuR9RMbBwBoaQKb
+   eJxjYmBgYBoimBBAV4OsD58Z6HLE6iNkDrHqaK0PlznY/EkIAwDM2ACd
   </data>
  </layer>
  <objectgroup name="objects" width="14" height="10">
-  <object name="s001" type="stairs" gid="447" x="320" y="128">
+  <object name="s001" type="stairs" gid="4" x="320" y="128">
    <properties>
     <property name="area" value="a000"/>
     <property name="direction" value="dl"/>
    </properties>
   </object>
-  <object name="player" type="player" gid="978" x="352" y="128">
+  <object name="player" type="player" gid="3" x="352" y="128">
    <properties>
     <property name="prevArea" value="a000"/>
    </properties>
   </object>
-  <object name="d000" type="doorway" gid="447" x="96" y="320">
+  <object name="d000" type="doorway" gid="4" x="96" y="320">
    <properties>
     <property name="area" value="a002"/>
    </properties>
   </object>
-  <object name="player" type="player" gid="978" x="96" y="288">
+  <object name="player" type="player" gid="3" x="96" y="288">
    <properties>
     <property name="prevArea" value="a002"/>
    </properties>
