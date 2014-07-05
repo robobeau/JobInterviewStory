@@ -10,6 +10,7 @@ Game = {
         'r'
     ],
     fps             : 60,
+    gridCellSize    : 32,
     pressedKeys     : [],
     prevArea        : 'a000',
 
@@ -181,6 +182,12 @@ Game = {
         }
     },
 
+    checkCamera: function () {
+        var player  = $('#player'),
+            stage   = $('#stage'),
+            map     = $('#map');
+    },
+
     /**
      *
      */
@@ -346,7 +353,7 @@ Game = {
         if (player.length > 0) { // Don't bother updating if there isn't a player
             Game.checkButtons();
 
-            // Game.cameraCheck();
+            Game.checkCamera();
         }
     }
 };

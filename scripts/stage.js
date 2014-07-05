@@ -1,5 +1,31 @@
 
 Stage = {
+    height  : 0,
+    tileMap : {
+        height  : 50,
+        width   : 50
+    },
+    width   : 0,
+
+    /**
+     *
+     */
+    center: function () {
+        var left    = 0,
+            player  = $('#player'),
+            stage   = $('#stage'),
+            top     = 0;
+
+        left    = ($(window).width() / 2) - (parseFloat(player.css('left')) + (player.width() / 2));
+        top     = ($(window).height() / 2) - (parseFloat(player.css('top')) + ((player.height() + 8)/ 2));
+
+        stage.css({
+            height  : Stage.height,
+            left    : left + 'px',
+            top     : top + 'px',
+            width   : Stage.width
+        });
+    },
 
     /**
      *
@@ -25,7 +51,7 @@ Stage = {
 
         $.each(collisions.data, function (index, value) {
             if (value !== 0) { // 0 is empty, 2 is a collision
-                $('#collisions').append('<div class="collision" style="left: ' + counter * 32 + 'px; top: ' + row * 32 + 'px"></div>');
+                $('#collisions').append('<div class="collision" style="left: ' + counter * Game.gridCellSize + 'px; top: ' + row * Game.gridCellSize + 'px"></div>');
             }
 
             counter += (index + 1) % width === 0 ? -counter : 1;
@@ -50,12 +76,12 @@ Stage = {
                     break;
 
                 case 'doorway':
-                    $('#objects').append('<div id="' + value.name + '" class="object doorway" data-area="' + value.properties.area + '" style="left: ' + value.x + 'px; top: ' + (value.y - 32) + 'px"></div>');
+                    $('#objects').append('<div id="' + value.name + '" class="object doorway" data-area="' + value.properties.area + '" style="left: ' + value.x + 'px; top: ' + (value.y - Game.gridCellSize) + 'px"></div>');
 
                     break;
 
                 case 'stairs':
-                    $('#objects').append('<div id="' + value.name + '" class="object stairs" data-area="' + value.properties.area + '" data-direction="' + value.properties.direction + '" style="left: ' + value.x + 'px; top: ' + (value.y - 32) + 'px"></div>');
+                    $('#objects').append('<div id="' + value.name + '" class="object stairs" data-area="' + value.properties.area + '" data-direction="' + value.properties.direction + '" style="left: ' + value.x + 'px; top: ' + (value.y - Game.gridCellSize) + 'px"></div>');
 
                     break;
             }
@@ -72,27 +98,15 @@ Stage = {
             width   = tiles.width;
 
         $.each(tiles.data, function (index, value) {
-            var x   = (value - (Math.floor(value / 50) * 50) - 1),
-                y   = Math.floor(value / 50);
+            var y   = Math.ceil(value / Stage.tileMap.width),
+                x   = (value - ((y - 1) * Stage.tileMap.width));
 
-            if (value > 0) { // 0 is empty, therefore don't draw init
-                console.log("Value: " + value);
-                console.log("X: " + x);
-                console.log("Y: " + y);
-                console.log("==========");
-
-                $('#tiles').append('<div class="tile t' + value + '" style="background-position: -' + (x * 32) + 'px -' + (y * 32) + 'px; left: ' + (counter * 32) + 'px; top: ' + (row * 32) + 'px"></div>');
+            if (value !== 0) { // 0 is empty, therefore don't draw it
+                $('#tiles').append('<div class="tile t' + value + '" style="background-position: -' + ((x * Game.gridCellSize) - Game.gridCellSize) + 'px -' + ((y * Game.gridCellSize) - Game.gridCellSize) + 'px; left: ' + (counter * Game.gridCellSize) + 'px; top: ' + (row * Game.gridCellSize) + 'px"></div>');
             }
 
             counter += (index + 1) % width === 0 ? -counter : 1;
             row += (index + 1) % width === 0 ? 1 : 0;
-        });
-
-        $('#stage').css({
-            height  : height * 32,
-            left    : ($(window).width() - (width * 32)) / 2 + 'px',
-            top     : ($(window).height() - (height * 32)) / 2 + 'px',
-            width   : width * 32
         });
     },
 
@@ -107,9 +121,15 @@ Stage = {
         }, 200, function () {
             Stage.cleanup();
 
-            $.get('../json/'+ stage +'.json', function (data) {
+            $.ajax({
+                cache   : false,
+                type    : 'GET',
+                url     : '../json/'+ stage +'.json',
+            }).done(function (data, textStatus, jqXHR) {
                 Game.prevArea       = Game.currentArea;
                 Game.currentArea    = stage;
+                Stage.height    = data.height * Game.gridCellSize;
+                Stage.width     = data.width * Game.gridCellSize;
 
                 $.each(data.layers, function (index, value) {
                     var layer = value;
@@ -136,11 +156,17 @@ Stage = {
                     }
                 });
 
+                Stage.center();
+
                 Game.areaObstacles = $('#player, .npc, .collision, .doorway, .stairs');
 
                 transition.animate({
                     opacity: 0
                 }, 200);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+
+            }).always(function (data, textStatus, jqXHR) {
+
             });
         });
     },
