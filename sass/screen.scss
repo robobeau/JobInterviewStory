@@ -18,25 +18,26 @@ body {
 
     background-color: #000000;
     margin: 0px;
+    overflow: hidden;
     padding: 0px;
+    position: relative;
+}
 
+/** TRANSITION **/
+
+#transition { // div
+    background-color: $color-black;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 3;
 }
 
 /** STAGE **/
 
 #stage { // div
+    overflow: hidden;
     position: absolute;
-    z-index: 0;
-
-    // Transition
-
-    #transition { // div
-        background-color: $color-black;
-        height: 100%;
-        position: absolute;
-        width: 100%;
-        z-index: 3;
-    }
 
     // Collision
 
