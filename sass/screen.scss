@@ -176,7 +176,8 @@ body {
             position: absolute;
             width: 32px;
 
-            &.doorway {
+            &.doorway,
+            &.stairs {
                 @include doorway-debug;
             }
         }
