@@ -19,6 +19,17 @@ Stage = {
         left    = ($(window).width() / 2) - (parseFloat(player.css('left')) + (player.width() / 2));
         top     = ($(window).height() / 2) - (parseFloat(player.css('top')) + ((player.height() + 8)/ 2));
 
+        if (Stage.width <= $(window).width() && Stage.height <= $(window).height()) {
+            left    = ($(window).width() - Stage.width) / 2;
+            top     = ($(window).height() - Stage.height) / 2;
+        }
+
+        if (Stage.width > $(window).width() && stage.offset().left > 0 && parseFloat(player.css('left')) < $(window).width()
+            && Stage.height > $(window).height() && stage.offset().top > 0 && parseFloat(player.css('top')) < $(window).height()) {
+            left    = 0;
+            top     = 0;
+        }
+
         stage.css({
             height  : Stage.height,
             left    : left + 'px',
@@ -169,5 +180,58 @@ Stage = {
 
             });
         });
+    },
+
+    scrollStage: function (direction) {
+        var player      = $('#player'),
+            offset      = 0,
+            scrollArea  = $('#scroll-area'),
+            stage       = $('#stage'),
+            stageL      = parseFloat(stage.css('left')),
+            stageT      = parseFloat(stage.css('top')),
+            windowH     = $(window).height(),
+            windowW     = $(window).width();
+
+        if ((Stage.width > windowW || Stage.height > windowH)) {
+            switch (direction) {
+                case 'u':
+                    if ((player.offset().top + 24) < (windowH / 2) && stageT < 0) {
+                        stage.stop().animate({
+                            top: stageT + Game.gridCellSize + offset
+                        }, 180, 'linear');
+                    }
+
+                    break;
+
+                case 'd':
+                    if ((player.offset().top + 24) > (windowH / 2)
+                        && Math.abs(stageT - windowH) < Stage.height) {
+                        stage.stop().animate({
+                            top: stageT - Game.gridCellSize + offset
+                        }, 180, 'linear');
+                    }
+
+                    break;
+
+                case 'l':
+                    if ((player.offset().left + 16) < (windowW / 2) && stageL < 0) {
+                        stage.stop().animate({
+                            left: stageL + Game.gridCellSize + offset
+                        }, 180, 'linear');
+                    }
+
+                    break;
+
+                case 'r':
+                    if ((player.offset().left + 16) > (windowW / 2)
+                        && Math.abs(stageL - windowW) < Stage.width) {
+                        stage.stop().animate({
+                            left: stageL - Game.gridCellSize + offset
+                        }, 180, 'linear');
+                    }
+
+                    break;
+            }
+        }
     },
 }

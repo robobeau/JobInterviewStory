@@ -182,12 +182,6 @@ Game = {
         }
     },
 
-    checkCamera: function () {
-        var player  = $('#player'),
-            stage   = $('#stage'),
-            map     = $('#map');
-    },
-
     /**
      *
      */
@@ -327,6 +321,10 @@ Game = {
                 }
             }
         );
+
+        if (object.is('#player')) {
+            Stage.scrollStage(direction);
+        }
     },
 
     /**
@@ -352,8 +350,6 @@ Game = {
 
         if (player.length > 0) { // Don't bother updating if there isn't a player
             Game.checkButtons();
-
-            Game.checkCamera();
         }
     }
 };
