@@ -133,9 +133,10 @@ Stage = {
             Stage.cleanup();
 
             $.ajax({
-                cache   : false,
-                type    : 'GET',
-                url     : '../json/'+ stage +'.json',
+                cache       : false,
+                dataType    : 'json',
+                type        : 'GET',
+                url         : '../json/'+ stage +'.json',
             }).done(function (data, textStatus, jqXHR) {
                 Game.prevArea       = Game.currentArea;
                 Game.currentArea    = stage;
