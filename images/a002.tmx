@@ -15,15 +15,10 @@
  </layer>
  <layer name="collisions" width="70" height="50" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20IX6AAAAAAAAAAAAAAAAAA4Dc2sAAB
+   eJzt2ssKgzAUQEHx/z+6mxaKPaiBgq8ZCOEuAvFs3GSaGDG/11PmLUff7+i5jPS7m7Vvn7/2tXVHe7t89mUPXX77bJ2/spEuo+evTJemSxv9Hy3nJ3d5Il2aLk2XpkvTpenSdGm6NF2aLk2XpkvTpenSdGm6NF2aLk2XpkvTpenSdGm6NF2aLk2XpkvTpenSdGm6NF2aLm3PW/h/vre/2rzl6PudrQeseQHXdwHl
   </data>
  </layer>
  <objectgroup name="objects" width="70" height="50">
-  <object name="d001" type="doorway" gid="257" x="192" y="256">
-   <properties>
-    <property name="area" value="a001"/>
-   </properties>
-  </object>
   <object name="player" type="player" gid="3" x="256" y="256">
    <properties>
     <property name="prevArea" value="a001"/>
