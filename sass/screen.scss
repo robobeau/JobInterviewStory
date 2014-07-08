@@ -83,75 +83,73 @@ body {
         z-index: 1;
 
         #player { // div
-            background-image: url(../img/rene-down.gif);
-            background-repeat: no-repeat;
-            background-position: left top;
-            height: 40px;
+            background-color: rgba(255, 0, 0, $collisionOpacity);
+            height: 32px;
             position: absolute;
             width: 32px;
 
-            #player-collision {
-                background-color: $color-red;
-                height: 32px;
-                opacity: $collisionOpacity;
-                position: absolute;
-                top: 8px;
-                width: 32px;
-            }
-
-            &.down {
+            #player-sprite {
                 background-image: url(../img/rene-down.gif);
+                background-repeat: no-repeat;
+                background-position: left top;
+                height: 40px;
+                position: absolute;
+                top: -8px;
+                width: 32px;
 
-                &.walking {
-                    background-image: url(../img/rene-down-walking.gif);
+                &.down {
+                    background-image: url(../img/rene-down.gif);
+
+                    &.walking {
+                        background-image: url(../img/rene-down-walking.gif);
+                    }
                 }
-            }
 
-            &.left {
-                background-image: url(../img/rene-left.gif);
+                &.left {
+                    background-image: url(../img/rene-left.gif);
 
-                &.walking {
-                    background-image: url(../img/rene-left-walking.gif);
+                    &.walking {
+                        background-image: url(../img/rene-left-walking.gif);
+                    }
                 }
-            }
 
-            &.right {
-                -webkit-transform:scaleX(-1);
-                -moz-transform:scaleX(-1);
-                -ms-transform:scaleX(-1);
-                -o-transform:scaleX(-1);
-                transform:scaleX(-1);
+                &.right {
+                    -webkit-transform:scaleX(-1);
+                    -moz-transform:scaleX(-1);
+                    -ms-transform:scaleX(-1);
+                    -o-transform:scaleX(-1);
+                    transform:scaleX(-1);
 
-                background-image: url(../img/rene-left.gif);
+                    background-image: url(../img/rene-left.gif);
 
-                &.walking {
-                    background-image: url(../img/rene-left-walking.gif);
+                    &.walking {
+                        background-image: url(../img/rene-left-walking.gif);
+                    }
                 }
-            }
 
-            &.up {
-                background-image: url(../img/rene-up.gif);
+                &.up {
+                    background-image: url(../img/rene-up.gif);
 
-                &.walking {
-                    background-image: url(../img/rene-up-walking.gif);
+                    &.walking {
+                        background-image: url(../img/rene-up-walking.gif);
+                    }
                 }
             }
         }
 
         .npc {
-            background-image: url(../img/dude.gif);
-            background-repeat: no-repeat;
-            background-position: left top;
-            height: 40px;
+            background-color: rgba(255, 0, 0, $collisionOpacity);
+            height: 32px;
             position: absolute;
             width: 32px;
 
-            .npc-collision {
-                background-color: $color-red;
-                height: 32px;
-                opacity: $collisionOpacity;
+            .npc-sprite {
+                background-image: url(../img/dude.gif);
+                background-repeat: no-repeat;
+                background-position: left top;
+                height: 40px;
                 position: absolute;
-                top: 8px;
+                top: -8px;
                 width: 32px;
             }
 
