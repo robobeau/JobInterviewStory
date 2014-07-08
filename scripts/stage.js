@@ -1,11 +1,12 @@
 
 Stage = {
-    height  : 0,
-    tileMap : {
+    collisionMap    : [],
+    height          : 0,
+    tileMap         : {
         height  : 50,
         width   : 50
     },
-    width   : 0,
+    width           : 0,
 
     /**
      *
@@ -64,6 +65,12 @@ Stage = {
             width   = collisions.width;
 
         $.each(collisions.data, function (index, value) {
+            if (!Stage.collisionMap[row]) {
+                Stage.collisionMap[row] = {};
+            }
+
+            Stage.collisionMap[row][counter] = value === 2;
+
             if (value !== 0) { // 0 is empty, 2 is a collision
                 $('#collisions').append('<div class="collision" style="left: ' + counter * Game.gridCellSize + 'px; top: ' + row * Game.gridCellSize + 'px"></div>');
             }
