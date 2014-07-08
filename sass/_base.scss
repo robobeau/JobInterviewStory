@@ -5,7 +5,9 @@
 
 $color-alabaster    : #F8F8F8;
 $color-black        : #000000;
+$color-green        : #00FF00;
 $color-mine-shaft   : #303030;
+$color-red          : #FF0000;
 $color-rum          : #706880;
 $color-white        : #FFFFFF;
 
@@ -43,18 +45,6 @@ $tertiary-title-line-height     : 1.250;    // 20px
 $collisionOpacity : 0;
 
 /** MIXINS **/
-
-// Collision Debug
-@mixin collision-debug {
-    background-color: #FF0000;
-    opacity: $collisionOpacity;
-}
-
-// Doorway Debug
-@mixin doorway-debug {
-    background-color: #00FF00;
-    opacity: $collisionOpacity;
-}
 
 // Font Size
 @mixin font-size ($sizeValue: 1) {

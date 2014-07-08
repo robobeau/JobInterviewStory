@@ -35,8 +35,32 @@ body {
   position: relative;
 }
 
+/* line 26, ../../sass/screen.scss */
+#x-axis {
+  background-color: red;
+  height: 1px;
+  left: 0px;
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* line 37, ../../sass/screen.scss */
+#y-axis {
+  background-color: red;
+  height: 100%;
+  left: 50%;
+  opacity: 0;
+  position: fixed;
+  top: 0px;
+  width: 1px;
+  z-index: 1000;
+}
+
 /** TRANSITION **/
-/* line 28, ../../sass/screen.scss */
+/* line 50, ../../sass/screen.scss */
 #transition {
   background-color: black;
   height: 100%;
@@ -45,45 +69,31 @@ body {
   z-index: 3;
 }
 
-/** SCROLL AREA **/
-/* line 38, ../../sass/screen.scss */
-#scroll-area {
-  background-color: #FF0000;
-  opacity: 0;
-  height: 96px;
-  left: 50%;
-  margin: -48px 0px 0px -48px;
-  position: absolute;
-  top: 50%;
-  width: 96px;
-  z-index: 1;
-}
-
 /** STAGE **/
-/* line 52, ../../sass/screen.scss */
+/* line 60, ../../sass/screen.scss */
 #stage {
   overflow: hidden;
   position: absolute;
 }
-/* line 58, ../../sass/screen.scss */
+/* line 66, ../../sass/screen.scss */
 #stage #collisions {
   position: relative;
   z-index: 2;
 }
-/* line 62, ../../sass/screen.scss */
+/* line 70, ../../sass/screen.scss */
 #stage #collisions .collision {
-  background-color: #FF0000;
-  opacity: 0;
+  background-color: red;
   height: 32px;
+  opacity: 0;
   position: absolute;
   width: 32px;
 }
-/* line 73, ../../sass/screen.scss */
+/* line 81, ../../sass/screen.scss */
 #stage #objects {
   position: relative;
   z-index: 1;
 }
-/* line 77, ../../sass/screen.scss */
+/* line 85, ../../sass/screen.scss */
 #stage #objects #player {
   background-image: url(../img/rene-down.gif);
   background-repeat: no-repeat;
@@ -92,32 +102,32 @@ body {
   position: absolute;
   width: 32px;
 }
-/* line 85, ../../sass/screen.scss */
+/* line 93, ../../sass/screen.scss */
 #stage #objects #player #player-collision {
-  background-color: #FF0000;
-  opacity: 0;
+  background-color: red;
   height: 32px;
+  opacity: 0;
   position: absolute;
   top: 8px;
   width: 32px;
 }
-/* line 94, ../../sass/screen.scss */
+/* line 102, ../../sass/screen.scss */
 #stage #objects #player.down {
   background-image: url(../img/rene-down.gif);
 }
-/* line 97, ../../sass/screen.scss */
+/* line 105, ../../sass/screen.scss */
 #stage #objects #player.down.walking {
   background-image: url(../img/rene-down-walking.gif);
 }
-/* line 102, ../../sass/screen.scss */
+/* line 110, ../../sass/screen.scss */
 #stage #objects #player.left {
   background-image: url(../img/rene-left.gif);
 }
-/* line 105, ../../sass/screen.scss */
+/* line 113, ../../sass/screen.scss */
 #stage #objects #player.left.walking {
   background-image: url(../img/rene-left-walking.gif);
 }
-/* line 110, ../../sass/screen.scss */
+/* line 118, ../../sass/screen.scss */
 #stage #objects #player.right {
   -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
@@ -126,19 +136,19 @@ body {
   transform: scaleX(-1);
   background-image: url(../img/rene-left.gif);
 }
-/* line 119, ../../sass/screen.scss */
+/* line 127, ../../sass/screen.scss */
 #stage #objects #player.right.walking {
   background-image: url(../img/rene-left-walking.gif);
 }
-/* line 124, ../../sass/screen.scss */
+/* line 132, ../../sass/screen.scss */
 #stage #objects #player.up {
   background-image: url(../img/rene-up.gif);
 }
-/* line 127, ../../sass/screen.scss */
+/* line 135, ../../sass/screen.scss */
 #stage #objects #player.up.walking {
   background-image: url(../img/rene-up-walking.gif);
 }
-/* line 133, ../../sass/screen.scss */
+/* line 141, ../../sass/screen.scss */
 #stage #objects .npc {
   background-image: url(../img/dude.gif);
   background-repeat: no-repeat;
@@ -147,16 +157,16 @@ body {
   position: absolute;
   width: 32px;
 }
-/* line 141, ../../sass/screen.scss */
+/* line 149, ../../sass/screen.scss */
 #stage #objects .npc .npc-collision {
-  background-color: #FF0000;
-  opacity: 0;
+  background-color: red;
   height: 32px;
+  opacity: 0;
   position: absolute;
   top: 8px;
   width: 32px;
 }
-/* line 150, ../../sass/screen.scss */
+/* line 158, ../../sass/screen.scss */
 #stage #objects .npc .emote {
   background-position: left top;
   background-repeat: no-repeat;
@@ -165,51 +175,51 @@ body {
   top: -32px;
   width: 30px;
 }
-/* line 158, ../../sass/screen.scss */
+/* line 166, ../../sass/screen.scss */
 #stage #objects .npc .emote.happiness {
   background-image: url(../img/emote-happiness.gif);
 }
-/* line 162, ../../sass/screen.scss */
+/* line 170, ../../sass/screen.scss */
 #stage #objects .npc .emote.love {
   background-image: url(../img/emote-love.gif);
 }
-/* line 166, ../../sass/screen.scss */
+/* line 174, ../../sass/screen.scss */
 #stage #objects .npc .emote.question {
   background-image: url(../img/emote-question.gif);
 }
-/* line 170, ../../sass/screen.scss */
+/* line 178, ../../sass/screen.scss */
 #stage #objects .npc .emote.sadness {
   background-image: url(../img/emote-sadness.gif);
 }
-/* line 174, ../../sass/screen.scss */
+/* line 182, ../../sass/screen.scss */
 #stage #objects .npc .emote.talkAngry {
   background-image: url(../img/emote-talk-angry.gif);
 }
-/* line 178, ../../sass/screen.scss */
+/* line 186, ../../sass/screen.scss */
 #stage #objects .npc .emote.talkHappy {
   background-image: url(../img/emote-talk-happy.gif);
 }
-/* line 182, ../../sass/screen.scss */
+/* line 190, ../../sass/screen.scss */
 #stage #objects .npc .emote.think {
   background-image: url(../img/emote-think.gif);
 }
-/* line 188, ../../sass/screen.scss */
+/* line 196, ../../sass/screen.scss */
 #stage #objects .object {
   height: 32px;
   position: absolute;
   width: 32px;
 }
-/* line 194, ../../sass/screen.scss */
+/* line 202, ../../sass/screen.scss */
 #stage #objects .object.doorway, #stage #objects .object.stairs {
-  background-color: #00FF00;
+  background-color: lime;
   opacity: 0;
 }
-/* line 202, ../../sass/screen.scss */
+/* line 211, ../../sass/screen.scss */
 #stage #tiles {
   position: relative;
   z-index: 0;
 }
-/* line 206, ../../sass/screen.scss */
+/* line 215, ../../sass/screen.scss */
 #stage #tiles .tile {
   background-image: url(../img/tile-map.gif);
   background-repeat: no-repeat;
@@ -220,12 +230,12 @@ body {
 }
 
 /** MODALS **/
-/* line 219, ../../sass/screen.scss */
+/* line 228, ../../sass/screen.scss */
 #modals {
   position: relative;
   z-index: 1000;
 }
-/* line 223, ../../sass/screen.scss */
+/* line 232, ../../sass/screen.scss */
 #modals .modal {
   font-size: 16px;
   font-size: 1rem;
@@ -243,17 +253,17 @@ body {
   position: absolute;
   width: 0px;
 }
-/* line 241, ../../sass/screen.scss */
+/* line 250, ../../sass/screen.scss */
 #modals .modal .modal-content .choice {
   list-style: none outside none;
   margin: 0px;
   padding: 0px;
 }
-/* line 246, ../../sass/screen.scss */
+/* line 255, ../../sass/screen.scss */
 #modals .modal .modal-content .choice li {
   padding: 5px;
 }
-/* line 249, ../../sass/screen.scss */
+/* line 258, ../../sass/screen.scss */
 #modals .modal .modal-content .choice li:focus {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
