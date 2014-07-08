@@ -16,16 +16,16 @@ Stage = {
             stage   = $('#stage'),
             top     = 0;
 
-        left    = ($(window).width() / 2) - (parseFloat(player.css('left')) + (player.width() / 2));
-        top     = ($(window).height() / 2) - (parseFloat(player.css('top')) + ((player.height() + 8)/ 2));
+        left    = ($(window).width() / 2) - (player.position().left + (player.width() / 2));
+        top     = ($(window).height() / 2) - (player.position().top + ((player.height() + 8)/ 2));
 
         if (Stage.width <= $(window).width() && Stage.height <= $(window).height()) {
             left    = ($(window).width() - Stage.width) / 2;
             top     = ($(window).height() - Stage.height) / 2;
         }
 
-        if (Stage.width > $(window).width() && stage.offset().left > 0 && parseFloat(player.css('left')) < $(window).width()
-            && Stage.height > $(window).height() && stage.offset().top > 0 && parseFloat(player.css('top')) < $(window).height()) {
+        if (Stage.width > $(window).width() && stage.offset().left > 0 && player.position().left < $(window).width()
+            && Stage.height > $(window).height() && stage.offset().top > 0 && player.position().top < $(window).height()) {
             left    = 0;
             top     = 0;
         }
@@ -124,6 +124,13 @@ Stage = {
     /**
      *
      */
+    getTile: function (x, y) {
+
+    },
+
+    /**
+     *
+     */
     init: function (stage) {
         var transition = $('#transition');
 
@@ -188,8 +195,8 @@ Stage = {
             offset      = 0,
             scrollArea  = $('#scroll-area'),
             stage       = $('#stage'),
-            stageL      = parseFloat(stage.css('left')),
-            stageT      = parseFloat(stage.css('top')),
+            stageL      = stage.position().left,
+            stageT      = stage.position().top,
             windowH     = $(window).height(),
             windowW     = $(window).width();
 

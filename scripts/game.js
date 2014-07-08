@@ -18,10 +18,8 @@ Game = {
      *
      */
     calculateZindex: function (object) {
-        var objectCollision = object.is('#player, .npc') ? object.find('#player-collision, .npc-collision') : object;
-
         object.css({
-            zIndex: objectCollision.offset().top
+            zIndex: object.offset().top
         });
     },
 
@@ -30,9 +28,8 @@ Game = {
      */
     checkButtons: function () {
         var
-            player  = $('#player'),
-            left    = parseFloat(player.css('left')),
-            top     = parseFloat(player.css('top'));
+            player          = $('#player'),
+            playerSprite    = $('#player-sprite');
 
         player.data('player')['speedMultiplier'] = 1;
 
@@ -63,7 +60,7 @@ Game = {
 
                 var collide = Game.checkCollision(player, player.data('player')['direction']);
 
-                player.removeClass('down left right').addClass('walking up');
+                playerSprite.removeClass('down left right').addClass('walking up');
 
                 if (collide.state == false && player.data('player')['allowMove']) {
                     player.data('player')['allowMove'] = false;
@@ -80,7 +77,7 @@ Game = {
                         Stage.init(collide.area);
                     }
                 } else {
-                    player.removeClass('walking');
+                    playerSprite.removeClass('walking');
                 }
 
                 break;
@@ -92,7 +89,7 @@ Game = {
 
                 var collide = Game.checkCollision(player, player.data('player')['direction']);
 
-                player.removeClass('left right up').addClass('walking down');
+                playerSprite.removeClass('left right up').addClass('walking down');
 
                 if (collide.state == false && player.data('player')['allowMove']) {
                     player.data('player')['allowMove'] = false;
@@ -109,7 +106,7 @@ Game = {
                         Stage.init(collide.area);
                     }
                 } else {
-                    player.removeClass('walking');
+                    playerSprite.removeClass('walking');
                 }
 
                 break;
@@ -121,7 +118,7 @@ Game = {
 
                 var collide = Game.checkCollision(player, player.data('player')['direction']);
 
-                player.removeClass('down right up').addClass('walking left');
+                playerSprite.removeClass('down right up').addClass('walking left');
 
                 if (collide.state == false && player.data('player')['allowMove']) {
                     player.data('player')['allowMove'] = false;
@@ -138,7 +135,7 @@ Game = {
                         Stage.init(collide.area);
                     }
                 } else {
-                    player.removeClass('walking');
+                    playerSprite.removeClass('walking');
                 }
 
                 break;
@@ -150,7 +147,7 @@ Game = {
 
                 var collide = Game.checkCollision(player, player.data('player')['direction']);
 
-                player.removeClass('down left up').addClass('walking right');
+                playerSprite.removeClass('down left up').addClass('walking right');
 
                 if (collide.state == false && player.data('player')['allowMove']) {
                     player.data('player')['allowMove'] = false;
@@ -167,7 +164,7 @@ Game = {
                         Stage.init(collide.area);
                     }
                 } else {
-                    player.removeClass('walking');
+                    playerSprite.removeClass('walking');
                 }
 
                 break;
@@ -175,7 +172,7 @@ Game = {
 
             default:
                 if (player.data('player')['allowMove']) {
-                    player.removeClass('walking');
+                    playerSprite.removeClass('walking');
                 }
 
                 break;
@@ -212,26 +209,34 @@ Game = {
         }
 
         var
-            objectCollision     = object.is('#player, .npc') ? object.find('#player-collision, .npc-collision') : object,
-            objectOffsetT       = object.is('#player, .npc') ? 8 : 0,
-            obstacle            = Game.areaObstacles.filter(function () {
-                var obstacleOffsetT = $(this).is('#player, .npc') ? 8 : 0;
+            objectPos   = object.position(),
+            obstacle    = Game.areaObstacles.filter(function () {
+                var obstaclePos = $(this).position();
 
-                return parseFloat($(this).css('left')) == parseFloat(object.css('left')) + offsetL && parseFloat($(this).css('top')) + obstacleOffsetT == (parseFloat(object.css('top')) + offsetT + objectOffsetT);
-            }),
-            obstacleCollision   = obstacle.is('.npc') ? obstacle.find('.npc-collision') : obstacle,
-            objectH             = objectCollision.outerHeight(),
-            objectL             = parseFloat(object.css('left')) + offsetL,
-            objectT             = parseFloat(object.css('top')) + parseFloat(objectCollision.css('top')) + offsetT,
-            objectW             = object.outerWidth(),
-            obstacleH           = obstacleCollision.outerHeight(),
-            obstacleL           = parseFloat(obstacle.css('left')),
-            obstacleT           = obstacle.is('.npc') ? parseFloat(obstacle.css('top')) + parseFloat(obstacleCollision.css('top')) : parseFloat(obstacleCollision.css('top')),
-            obstacleW           = obstacle.outerWidth(),
-            hWidths             = (objectW / 2) + (obstacleW / 2),
-            hHeights            = (objectH / 2) + (obstacleH / 2),
-            vX                  = (objectL + (objectW / 2)) - (obstacleL + (obstacleW / 2)),
-            vY                  = (objectT + (objectH / 2)) - (obstacleT + (obstacleH / 2));
+                return obstaclePos.left == objectPos.left + offsetL && obstaclePos.top == (objectPos.top + offsetT);
+            });
+
+        if (obstacle.length === 0) {
+            return {
+                state: false,
+            };
+        }
+
+        var
+            objectPos       = object.position(),
+            objectL         = objectPos.left + offsetL,
+            objectT         = objectPos.top + offsetT,
+            objectH         = object.height(),
+            objectW         = object.width(),
+            obstaclePos     = obstacle.position(),
+            obstacleL       = obstaclePos.left,
+            obstacleT       = obstaclePos.top,
+            obstacleH       = obstacle.height(),
+            obstacleW       = obstacle.width(),
+            hWidths         = (objectW / 2) + (obstacleW / 2),
+            hHeights        = (objectH / 2) + (obstacleH / 2),
+            vX              = (objectL + (objectW / 2)) - (obstacleL + (obstacleW / 2)),
+            vY              = (objectT + (objectH / 2)) - (obstacleT + (obstacleH / 2));
 
         if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights && obstacle.is(':not(.doorway, .stairs)')) {
             // var
@@ -275,8 +280,9 @@ Game = {
     moveObject: function (object, direction, callback) {
         var
             animateOptions  = {},
-            left            = parseFloat(object.css('left')),
-            top             = parseFloat(object.css('top'));
+            objectPos       = object.position(),
+            left            = objectPos.left,
+            top             = objectPos.top;
 
         switch (direction) {
             case 'u':
@@ -368,7 +374,7 @@ function Player () {
         var player;
 
         if (data.properties.prevArea === Game.prevArea) {
-            $('#objects').append('<div id="player" tabindex="0" style="left: ' + data.x + 'px; top: ' + ((data.y - 8) - 32) + 'px;"><div id="player-collision"></div></div>');
+            $('#objects').append('<div id="player" tabindex="0" style="left: ' + data.x + 'px; top: ' + (data.y - 32) + 'px;"><div id="player-sprite"></div></div>');
 
             player = $('#player');
 
@@ -381,10 +387,24 @@ function Player () {
     /**
      *
      */
+    this.getCoordinates = function () {
+        var player          = $(this),
+            playerPosition  = player.position();
+
+        return {
+            'x': playerPosition.left / Game.gridCellSize,
+            'y': playerPosition.top / Game.gridCellSize
+        }
+    }
+
+    /**
+     *
+     */
     this.useStairs = function (direction, callback) {
-        var player  = $(this),
-            offsetL = 0,
-            offsetT = 0;
+        var player      = $(this),
+            playerPos   = player.position(),
+            offsetL     = 0,
+            offsetT     = 0;
 
         switch (direction) {
             case 'dl':
@@ -413,8 +433,8 @@ function Player () {
         }
 
         player.stop().animate({
-            left    : parseFloat(player.css('left')) + offsetL,
-            top     : parseFloat(player.css('top')) + offsetT
+            left    : playerPos.left + offsetL,
+            top     : playerPos.top + offsetT
         }, 180, 'linear');
     }
 }

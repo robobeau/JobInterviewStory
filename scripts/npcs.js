@@ -11,9 +11,9 @@ function NPC () {
      *
      */
     this.create = function (data) {
-        var npc, npcOffsetT  = 8;
+        var npc;
 
-        $('#objects').append('<div id="' + data.name + '" class="npc"><div class="npc-collision"></div></div>');
+        $('#objects').append('<div id="' + data.name + '" class="npc"><div class="npc-sprite"></div></div>');
 
         npc = $('#' + data.name);
 
@@ -23,7 +23,7 @@ function NPC () {
 
         npc.css({
             left    : data.x + 'px',
-            top     : ((data.y - npcOffsetT) - 32) + 'px'
+            top     : (data.y - 32) + 'px'
         });
 
         if (data.properties.wander) {
