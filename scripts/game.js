@@ -223,7 +223,6 @@ Game = {
         }
 
         var
-            objectPos       = object.position(),
             objectL         = objectPos.left + offsetL,
             objectT         = objectPos.top + offsetT,
             objectH         = object.height(),
