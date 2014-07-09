@@ -1,8 +1,9 @@
 
 Stage = {
-    collisionMap    : [],
+    collisionsMap   : [],
     height          : 0,
-    objectMap       : [],
+    npcsMap         : [],
+    portalsMap      : [],
     tileMap         : {
         height  : 50,
         width   : 50
@@ -47,6 +48,10 @@ Stage = {
      *
      */
     cleanup: function () {
+        Stage.collisionsMap = [];
+        Stage.npcsMap = [];
+        Stage.portalsMap = [];
+
         $('.npc').each(function (index, element) {
             $(element).npc('destroy');
         });
@@ -66,11 +71,11 @@ Stage = {
             width   = collisions.width;
 
         $.each(collisions.data, function (index, value) {
-            if (!Stage.collisionMap[row]) {
-                Stage.collisionMap[row] = {};
+            if (!Stage.collisionsMap[row]) {
+                Stage.collisionsMap[row] = {};
             }
 
-            Stage.collisionMap[row][counter] = value === 2;
+            Stage.collisionsMap[row][counter] = value === 2;
 
             if (value !== 0) { // 0 is empty, 2 is a collision
                 $('#collisions').append('<div class="collision" style="left: ' + counter * Game.gridCellSize + 'px; top: ' + row * Game.gridCellSize + 'px"></div>');
@@ -86,10 +91,6 @@ Stage = {
      */
     drawObjects: function (objects) {
         $.each(objects.objects, function (index, value) {
-            if (!Stage.objectMap[(value.y / Game.gridCellSize)]) {
-                Stage.objectMap[(value.y / Game.gridCellSize)] = {};
-            }
-
             switch (value.type) {
                 case 'player':
                     $.player.create(value);
@@ -104,14 +105,22 @@ Stage = {
                 case 'doorway':
                     $('#objects').append('<div id="' + value.name + '" class="object doorway" data-area="' + value.properties.area + '" style="left: ' + value.x + 'px; top: ' + (value.y - Game.gridCellSize) + 'px"></div>');
 
-                    Stage.objectMap[(value.y / Game.gridCellSize)][(value.x / Game.gridCellSize)] = $('#' + value.name);
+                    if (!Stage.portalsMap[(value.y / Game.gridCellSize) - 1]) {
+                        Stage.portalsMap[(value.y / Game.gridCellSize) - 1] = {};
+                    }
+
+                    Stage.portalsMap[(value.y / Game.gridCellSize) - 1][(value.x / Game.gridCellSize)] = $('#' + value.name);
 
                     break;
 
                 case 'stairs':
                     $('#objects').append('<div id="' + value.name + '" class="object stairs" data-area="' + value.properties.area + '" data-direction="' + value.properties.direction + '" style="left: ' + value.x + 'px; top: ' + (value.y - Game.gridCellSize) + 'px"></div>');
 
-                    Stage.objectMap[(value.y / Game.gridCellSize)][(value.x / Game.gridCellSize)] = $('#' + value.name);
+                    if (!Stage.portalsMap[(value.y / Game.gridCellSize) - 1]) {
+                        Stage.portalsMap[(value.y / Game.gridCellSize) - 1] = {};
+                    }
+
+                    Stage.portalsMap[(value.y / Game.gridCellSize) - 1][(value.x / Game.gridCellSize)] = $('#' + value.name);
 
                     break;
             }
@@ -204,6 +213,7 @@ Stage = {
 
     scrollStage: function (direction) {
         var player      = $('#player'),
+            playerOff   = player.offset(),
             offset      = 0,
             scrollArea  = $('#scroll-area'),
             stage       = $('#stage'),
@@ -216,7 +226,7 @@ Stage = {
         if ((Stage.width > windowW || Stage.height > windowH)) {
             switch (direction) {
                 case 'u':
-                    if ((player.offset().top + 24) < (windowH / 2) && stageT < 0) {
+                    if ((playerOff.top + (Game.gridCellSize / 2)) < (windowH / 2) && stageT < 0) {
                         stage.stop().animate({
                             top: stageT + Game.gridCellSize + offset
                         }, 180, 'linear');
@@ -225,7 +235,7 @@ Stage = {
                     break;
 
                 case 'd':
-                    if ((player.offset().top + 24) > (windowH / 2)
+                    if ((playerOff.top + (Game.gridCellSize / 2)) > (windowH / 2)
                         && Math.abs(stageT - windowH) < Stage.height) {
                         stage.stop().animate({
                             top: stageT - Game.gridCellSize + offset
@@ -235,7 +245,7 @@ Stage = {
                     break;
 
                 case 'l':
-                    if ((player.offset().left + 16) < (windowW / 2) && stageL < 0) {
+                    if ((playerOff.left + (Game.gridCellSize / 2)) < (windowW / 2) && stageL < 0) {
                         stage.stop().animate({
                             left: stageL + Game.gridCellSize + offset
                         }, 180, 'linear');
@@ -244,7 +254,7 @@ Stage = {
                     break;
 
                 case 'r':
-                    if ((player.offset().left + 16) > (windowW / 2)
+                    if ((playerOff.left + (Game.gridCellSize / 2)) > (windowW / 2)
                         && Math.abs(stageL - windowW) < Stage.width) {
                         stage.stop().animate({
                             left: stageL - Game.gridCellSize + offset

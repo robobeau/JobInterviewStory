@@ -40,7 +40,7 @@ body {
   background-color: red;
   height: 1px;
   left: 0px;
-  opacity: 0.25;
+  opacity: 0;
   position: fixed;
   top: 50%;
   width: 100%;
@@ -52,7 +52,7 @@ body {
   background-color: red;
   height: 100%;
   left: 50%;
-  opacity: 0.25;
+  opacity: 0;
   position: fixed;
   top: 0px;
   width: 1px;
@@ -84,7 +84,7 @@ body {
 #stage #collisions .collision {
   background-color: red;
   height: 32px;
-  opacity: 0.25;
+  opacity: 0;
   position: absolute;
   width: 32px;
 }
@@ -95,7 +95,7 @@ body {
 }
 /* line 85, ../../sass/screen.scss */
 #stage #objects #player {
-  background-color: rgba(255, 0, 0, 0.25);
+  background-color: rgba(255, 0, 0, 0);
   height: 32px;
   position: absolute;
   width: 32px;
@@ -149,7 +149,7 @@ body {
 }
 /* line 140, ../../sass/screen.scss */
 #stage #objects .npc {
-  background-color: rgba(255, 0, 0, 0.25);
+  background-color: rgba(255, 0, 0, 0);
   height: 32px;
   position: absolute;
   width: 32px;
@@ -210,7 +210,7 @@ body {
 /* line 200, ../../sass/screen.scss */
 #stage #objects .object.doorway, #stage #objects .object.stairs {
   background-color: lime;
-  opacity: 0.25;
+  opacity: 0;
 }
 /* line 209, ../../sass/screen.scss */
 #stage #tiles {

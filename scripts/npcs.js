@@ -23,12 +23,18 @@ function NPC () {
 
         npc.css({
             left    : data.x + 'px',
-            top     : (data.y - 32) + 'px'
+            top     : (data.y - Game.gridCellSize) + 'px'
         });
 
-        // if (data.properties.wander) {
-        //     npc.npc('wander');
-        // }
+        if (!Stage.npcsMap[(data.y / Game.gridCellSize) - 1]) {
+            Stage.npcsMap[(data.y / Game.gridCellSize) - 1] = {};
+        }
+
+        Stage.npcsMap[(data.y / Game.gridCellSize) - 1][(data.x / Game.gridCellSize)] = npc;
+
+        if (data.properties.wander) {
+            npc.npc('wander');
+        }
     },
 
     /**
@@ -121,7 +127,7 @@ function NPC () {
                 width   : 720
             },
             {
-                left    : ($(window).width() - (720 + 32)) / 2,
+                left    : ($(window).width() - (720 + Game.gridCellSize)) / 2,
                 top     : 20
             },
             Dialogues[dialogue],
@@ -138,16 +144,27 @@ function NPC () {
         clearInterval(npc.data('npc')['wanderInterval']);
 
         npc.data('npc')['wanderInterval'] = setInterval(function () {
-            var direction = Game.directions[Math.floor(Math.random() * Game.directions.length)];
+            var direction   = Game.directions[Math.floor(Math.random() * Game.directions.length)],
+                npcPos      = Game.getCoordinates(npc);
 
             if (Math.random() < 0.5 || npc.data('npc')['wanderPause'] === true) {
                 return;
             }
 
-            var collide = Game.checkCollision(npc, direction);
+            var collision = Game.checkCollisions(npc, direction);
 
-            if (collide.state == false && !npc.is(':animated') && !collide.doorway) {
-                Game.moveObject(npc, direction);
+            if (collision == false && !npc.is(':animated')) {
+                delete Stage.npcsMap[npcPos.y][npcPos.x];
+
+                Game.moveObject(npc, direction, function () {
+                    var newPos = Game.getCoordinates(npc);
+
+                    if (!Stage.npcsMap[newPos.y]) {
+                        Stage.npcsMap[newPos.y] = {};
+                    }
+
+                    Stage.npcsMap[newPos.y][newPos.x] = npc;
+                });
             }
         }, 1000);
     }
