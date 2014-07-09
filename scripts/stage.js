@@ -2,6 +2,7 @@
 Stage = {
     collisionMap    : [],
     height          : 0,
+    objectMap       : [],
     tileMap         : {
         height  : 50,
         width   : 50
@@ -85,6 +86,10 @@ Stage = {
      */
     drawObjects: function (objects) {
         $.each(objects.objects, function (index, value) {
+            if (!Stage.objectMap[(value.y / Game.gridCellSize)]) {
+                Stage.objectMap[(value.y / Game.gridCellSize)] = {};
+            }
+
             switch (value.type) {
                 case 'player':
                     $.player.create(value);
@@ -99,10 +104,14 @@ Stage = {
                 case 'doorway':
                     $('#objects').append('<div id="' + value.name + '" class="object doorway" data-area="' + value.properties.area + '" style="left: ' + value.x + 'px; top: ' + (value.y - Game.gridCellSize) + 'px"></div>');
 
+                    Stage.objectMap[(value.y / Game.gridCellSize)][(value.x / Game.gridCellSize)] = $('#' + value.name);
+
                     break;
 
                 case 'stairs':
                     $('#objects').append('<div id="' + value.name + '" class="object stairs" data-area="' + value.properties.area + '" data-direction="' + value.properties.direction + '" style="left: ' + value.x + 'px; top: ' + (value.y - Game.gridCellSize) + 'px"></div>');
+
+                    Stage.objectMap[(value.y / Game.gridCellSize)][(value.x / Game.gridCellSize)] = $('#' + value.name);
 
                     break;
             }
@@ -129,13 +138,6 @@ Stage = {
             counter += (index + 1) % width === 0 ? -counter : 1;
             row += (index + 1) % width === 0 ? 1 : 0;
         });
-    },
-
-    /**
-     *
-     */
-    getTile: function (x, y) {
-
     },
 
     /**

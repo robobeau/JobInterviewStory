@@ -42,11 +42,11 @@ Game = {
         // Spacebar, Enter
 
         if (Game.pressedKeys[13] || Game.pressedKeys[32]) {
-            var collide = Game.checkCollision(player, player.data('player')['direction']);
+            var collision = Game.checkCollision(player, player.data('player')['direction']);
 
-            if (collide.state == true && player.data('player')['allowMove']) {
-                if (collide.obstacle.is('.npc')) {
-                    collide.obstacle.npc('talk', collide.obstacle.data('npc')['dialogue']);
+            if (collision == true && player.data('player')['allowMove']) {
+                if (collision.obstacle.is('.npc')) {
+                    collision.obstacle.npc('talk', collision.obstacle.data('npc')['dialogue']);
                 }
             }
         }
@@ -58,23 +58,23 @@ Game = {
             case ((Game.pressedKeys[87] || Game.pressedKeys[38]) && player.data('player')['allowMove']) :
                 player.data('player')['direction'] = 'u';
 
-                var collide = Game.checkCollision(player, player.data('player')['direction']);
+                var collision = Game.checkCollision(player, player.data('player')['direction']);
 
                 playerSprite.removeClass('down left right').addClass('walking up');
 
-                if (collide.state == false && player.data('player')['allowMove']) {
+                if (collision == false && player.data('player')['allowMove']) {
                     player.data('player')['allowMove'] = false;
 
                     Game.moveObject(player, player.data('player')['direction'], function () {
                         player.data('player')['allowMove'] = true;
                     });
 
-                    if (collide.doorway || collide.stairs) {
-                        if (collide.stairs) {
-                            player.player('useStairs', collide.direction);
+                    if (collision.doorway || collision.stairs) {
+                        if (collision.stairs) {
+                            player.player('useStairs', collision.direction);
                         }
 
-                        Stage.init(collide.area);
+                        Stage.init(collision.area);
                     }
                 } else {
                     playerSprite.removeClass('walking');
@@ -87,23 +87,23 @@ Game = {
             case ((Game.pressedKeys[83] || Game.pressedKeys[40]) && player.data('player')['allowMove']) :
                 player.data('player')['direction'] = 'd';
 
-                var collide = Game.checkCollision(player, player.data('player')['direction']);
+                var collision = Game.checkCollision(player, player.data('player')['direction']);
 
                 playerSprite.removeClass('left right up').addClass('walking down');
 
-                if (collide.state == false && player.data('player')['allowMove']) {
+                if (collision == false && player.data('player')['allowMove']) {
                     player.data('player')['allowMove'] = false;
 
                     Game.moveObject(player, player.data('player')['direction'], function () {
                         player.data('player')['allowMove'] = true;
                     });
 
-                    if (collide.doorway || collide.stairs) {
-                        if (collide.stairs) {
-                            player.player('useStairs', collide.direction);
+                    if (collision.doorway || collision.stairs) {
+                        if (collision.stairs) {
+                            player.player('useStairs', collision.direction);
                         }
 
-                        Stage.init(collide.area);
+                        Stage.init(collision.area);
                     }
                 } else {
                     playerSprite.removeClass('walking');
@@ -116,23 +116,23 @@ Game = {
             case ((Game.pressedKeys[65] || Game.pressedKeys[37]) && player.data('player')['allowMove']) :
                 player.data('player')['direction'] = 'l';
 
-                var collide = Game.checkCollision(player, player.data('player')['direction']);
+                var collision = Game.checkCollision(player, player.data('player')['direction']);
 
                 playerSprite.removeClass('down right up').addClass('walking left');
 
-                if (collide.state == false && player.data('player')['allowMove']) {
+                if (collision == false && player.data('player')['allowMove']) {
                     player.data('player')['allowMove'] = false;
 
                     Game.moveObject(player, player.data('player')['direction'], function () {
                         player.data('player')['allowMove'] = true;
                     });
 
-                    if (collide.doorway || collide.stairs) {
-                        if (collide.stairs) {
-                            player.player('useStairs', collide.direction);
+                    if (collision.doorway || collision.stairs) {
+                        if (collision.stairs) {
+                            player.player('useStairs', collision.direction);
                         }
 
-                        Stage.init(collide.area);
+                        Stage.init(collision.area);
                     }
                 } else {
                     playerSprite.removeClass('walking');
@@ -145,24 +145,29 @@ Game = {
             case ((Game.pressedKeys[68] || Game.pressedKeys[39]) && player.data('player')['allowMove']) :
                 player.data('player')['direction'] = 'r';
 
-                var collide = Game.checkCollision(player, player.data('player')['direction']);
+                var collision = Game.checkCollision(player, player.data('player')['direction']);
+
+                console.log(obstacle);
 
                 playerSprite.removeClass('down left up').addClass('walking right');
 
-                if (collide.state == false && player.data('player')['allowMove']) {
+                if (collision == false && player.data('player')['allowMove']) {
+                    var obstacle = Game.checkObstacles(player, player.data('player')['direction']);
+
                     player.data('player')['allowMove'] = false;
+
+                    if (obstacle) {
+                        console.log('Derp');
+                        // if (obstacle.is('.stairs')) {
+                        //     player.player('useStairs', collision.direction);
+                        // }
+
+                        Stage.init(obstacle.attr('data-area'));
+                    }
 
                     Game.moveObject(player, player.data('player')['direction'], function () {
                         player.data('player')['allowMove'] = true;
                     });
-
-                    if (collide.doorway || collide.stairs) {
-                        if (collide.stairs) {
-                            player.player('useStairs', collide.direction);
-                        }
-
-                        Stage.init(collide.area);
-                    }
                 } else {
                     playerSprite.removeClass('walking');
                 }
@@ -183,61 +188,68 @@ Game = {
      *
      */
     checkCollision: function (object, direction) {
-        var offsetL = 0,
-            offsetT = 0;
+        var objectCoord = Game.getCoordinates(object),
+            offsetL     = 0,
+            offsetT     = 0;
 
         switch (direction) {
             case 'u':
-                offsetT = -32;
+                offsetT = -1;
 
                 break;
 
             case 'd':
-                offsetT = 32;
+                offsetT = 1;
 
                 break;
 
             case 'l':
-                offsetL = -32;
+                offsetL = -1;
 
                 break;
 
             case 'r':
-                offsetL = 32;
+                offsetL = 1;
 
                 break;
         }
 
-        var
-            objectPos   = object.position(),
-            obstacle    = Game.areaObstacles.filter(function () {
-                var obstaclePos = $(this).position();
-
-                return obstaclePos.left == objectPos.left + offsetL && obstaclePos.top == (objectPos.top + offsetT);
-            });
-
-        if (obstacle.length === 0) {
-            return {
-                state: false,
-            };
+        if (Stage.collisionMap[objectCoord.y + offsetT]) {
+            return Stage.collisionMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
         }
 
-        var
-            objectL         = objectPos.left + offsetL,
-            objectT         = objectPos.top + offsetT,
-            objectH         = object.height(),
-            objectW         = object.width(),
-            obstaclePos     = obstacle.position(),
-            obstacleL       = obstaclePos.left,
-            obstacleT       = obstaclePos.top,
-            obstacleH       = obstacle.height(),
-            obstacleW       = obstacle.width(),
-            hWidths         = (objectW / 2) + (obstacleW / 2),
-            hHeights        = (objectH / 2) + (obstacleH / 2),
-            vX              = (objectL + (objectW / 2)) - (obstacleL + (obstacleW / 2)),
-            vY              = (objectT + (objectH / 2)) - (obstacleT + (obstacleH / 2));
+        return;
 
-        if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights && obstacle.is(':not(.doorway, .stairs)')) {
+        // var
+        //     objectPos   = object.position(),
+        //     obstacle    = Game.areaObstacles.filter(function () {
+        //         var obstaclePos = $(this).position();
+
+        //         return obstaclePos.left == objectPos.left + offsetL && obstaclePos.top == (objectPos.top + offsetT);
+        //     });
+
+        // if (obstacle.length === 0) {
+        //     return {
+        //         state: false,
+        //     };
+        // }
+
+        // var
+        //     objectL         = objectPos.left + offsetL,
+        //     objectT         = objectPos.top + offsetT,
+        //     objectH         = object.height(),
+        //     objectW         = object.width(),
+        //     obstaclePos     = obstacle.position(),
+        //     obstacleL       = obstaclePos.left,
+        //     obstacleT       = obstaclePos.top,
+        //     obstacleH       = obstacle.height(),
+        //     obstacleW       = obstacle.width(),
+        //     hWidths         = (objectW / 2) + (obstacleW / 2),
+        //     hHeights        = (objectH / 2) + (obstacleH / 2),
+        //     vX              = (objectL + (objectW / 2)) - (obstacleL + (obstacleW / 2)),
+        //     vY              = (objectT + (objectH / 2)) - (obstacleT + (obstacleH / 2));
+
+        // if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights && obstacle.is(':not(.doorway, .stairs)')) {
             // var
             //     dir = '',
             //     oX  = hWidths - Math.abs(vX),
@@ -257,20 +269,69 @@ Game = {
             //     }
             // }
 
-            return {
-                state       : true,
-                obstacle    : obstacle
-            };
+            // return {
+            //     state       : true,
+            //     obstacle    : obstacle
+            // };
+        // }
+
+        // return {
+        //     state       : false,
+        //     obstacle    : obstacle,
+        //     doorway     : obstacle.is('.doorway'),
+        //     area        : obstacle.is('.doorway, .stairs') ? obstacle.attr('data-area') : '',
+        //     stairs      : obstacle.is('.stairs'),
+        //     direction   : obstacle.is('.stairs') ? obstacle.attr('data-direction') : ''
+        // };
+    },
+
+    /**
+     *
+     */
+    checkObstacles: function (object, direction) {
+        var objectCoord = Game.getCoordinates(object),
+            offsetL     = 0,
+            offsetT     = 0;
+
+        switch (direction) {
+            case 'u':
+                offsetT = -1;
+
+                break;
+
+            case 'd':
+                offsetT = 1;
+
+                break;
+
+            case 'l':
+                offsetL = -1;
+
+                break;
+
+            case 'r':
+                offsetL = 1;
+
+                break;
         }
 
+        if (Stage.objectMap[objectCoord.y + offsetT]) {
+            return Stage.objectMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
+        }
+
+        return;
+    },
+
+    /**
+     *
+     */
+    getCoordinates: function (object) {
+        var objectPos = object.position();
+
         return {
-            state       : false,
-            obstacle    : obstacle,
-            doorway     : obstacle.is('.doorway'),
-            area        : obstacle.is('.doorway, .stairs') ? obstacle.attr('data-area') : '',
-            stairs      : obstacle.is('.stairs'),
-            direction   : obstacle.is('.stairs') ? obstacle.attr('data-direction') : ''
-        };
+            'x': objectPos.left / Game.gridCellSize + 1,
+            'y': objectPos.top / Game.gridCellSize + 1
+        }
     },
 
     /**
@@ -382,19 +443,6 @@ function Player () {
             player.trigger('focus');
         }
     },
-
-    /**
-     *
-     */
-    this.getCoordinates = function () {
-        var player          = $(this),
-            playerPosition  = player.position();
-
-        return {
-            'x': playerPosition.left / Game.gridCellSize,
-            'y': playerPosition.top / Game.gridCellSize
-        }
-    }
 
     /**
      *

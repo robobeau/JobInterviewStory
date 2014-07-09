@@ -26,9 +26,9 @@ function NPC () {
             top     : (data.y - 32) + 'px'
         });
 
-        if (data.properties.wander) {
-            npc.npc('wander');
-        }
+        // if (data.properties.wander) {
+        //     npc.npc('wander');
+        // }
     },
 
     /**
