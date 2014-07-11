@@ -4,6 +4,7 @@
 function NPC () {
     this.dialogue       = 'd0';
     this.id             = 0;
+    this.talking        = false;
     this.wanderInterval = '';
     this.wanderPause    = false;
 
@@ -32,9 +33,9 @@ function NPC () {
 
         Stage.npcsMap[(data.y / Game.gridCellSize) - 1][(data.x / Game.gridCellSize)] = npc;
 
-        if (data.properties.wander) {
-            npc.npc('wander');
-        }
+        // if (data.properties.wander) {
+        //     npc.npc('wander');
+        // }
     },
 
     /**
@@ -87,27 +88,7 @@ function NPC () {
     this.move = function (direction) {
         var npc = $(this);
 
-        switch (direction) {
-            case 'd':
-                Game.moveObject(npc, direction);
-
-                break;
-
-            case 'l':
-                Game.moveObject(npc, direction);
-
-                break;
-
-            case 'r':
-                Game.moveObject(npc, direction);
-
-                break;
-
-            case 'u':
-                Game.moveObject(npc, direction);
-
-                break;
-        }
+        Game.moveObject(npc, direction);
     },
 
     /**
@@ -116,12 +97,17 @@ function NPC () {
     this.talk = function (dialogue) {
         var npc = $(this);
 
+        if (npc.data('npc')['talking']) {
+            return;
+        }
+
+        npc.data('npc')['talking']      = true;
+        npc.data('npc')['wanderPause']  = true;
+
         Game.activeNPC = npc;
 
-        npc.data('npc')['wanderPause'] = true;
-
         $.modal.create(
-            'dialogue',
+            dialogue,
             {
                 height  : 80,
                 width   : 720
@@ -144,7 +130,7 @@ function NPC () {
         clearInterval(npc.data('npc')['wanderInterval']);
 
         npc.data('npc')['wanderInterval'] = setInterval(function () {
-            var direction   = Game.directions[Math.floor(Math.random() * Game.directions.length)],
+            var direction   = Game.directions[Object.keys(Game.directions)[Math.floor(Math.random() * Object.keys(Game.directions).length)]],
                 npcPos      = Game.getCoordinates(npc);
 
             if (Math.random() < 0.5 || npc.data('npc')['wanderPause'] === true) {

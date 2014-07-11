@@ -231,7 +231,7 @@ Stage = {
 
         if ((Stage.width > windowW || Stage.height > windowH)) {
             switch (direction) {
-                case 'u':
+                case Game.directions.up:
                     if ((playerOff.top + (Game.gridCellSize / 2)) < (windowH / 2) && stageT < 0) {
                         stage.stop().animate({
                             top: stageT + Game.gridCellSize + offset
@@ -240,7 +240,7 @@ Stage = {
 
                     break;
 
-                case 'd':
+                case Game.directions.down:
                     if ((playerOff.top + (Game.gridCellSize / 2)) > (windowH / 2)
                         && Math.abs(stageT - windowH) < Stage.height) {
                         stage.stop().animate({
@@ -250,7 +250,7 @@ Stage = {
 
                     break;
 
-                case 'l':
+                case Game.directions.left:
                     if ((playerOff.left + (Game.gridCellSize / 2)) < (windowW / 2) && stageL < 0) {
                         stage.stop().animate({
                             left: stageL + Game.gridCellSize + offset
@@ -259,7 +259,7 @@ Stage = {
 
                     break;
 
-                case 'r':
+                case Game.directions.right:
                     if ((playerOff.left + (Game.gridCellSize / 2)) > (windowW / 2)
                         && Math.abs(stageL - windowW) < Stage.width) {
                         stage.stop().animate({
