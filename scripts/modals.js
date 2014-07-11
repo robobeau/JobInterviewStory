@@ -2,33 +2,30 @@
 /** MODAL WINDOWS **/
 
 function Modal () {
-    this.backgroundColor    = '#F8F8F8';
-    this.id                 = 0;
-    this.initiator          = '';
+    this.id     = 0;
+    this.npc    = '';
 
     /**
      *
      */
-    this.create = function (id, size, position, content, initiator) {
+    this.create = function (id, size, position, content, npc) {
         var modal = $('#' + id);
 
-        if (modal.length === 0) {
-            $('#modals').append('<div id="' + id + '" class="modal"><div class="modal-content" tabindex="0"></div></div>');
-        } else {
-            return false;
+        if (modal.length > 0) {
+            return;
         }
+
+        $('#modals').append('<div id="' + id + '" class="modal" tabindex="0"></div>');
 
         modal = $('#' + id);
 
         modal.data('modal', new Modal());
-
         modal.data('modal')['id']          = id;
-        modal.data('modal')['initiator']   = initiator ? initiator : '';
+        modal.data('modal')['npc']   = npc ? npc : '';
 
         modal.css({
-            backgroundColor : modal.data('modal')['backgroundColor'],
-            left            : position.left + 'px',
-            top             : position.top + 'px',
+            left    : position.left + 'px',
+            top     : position.top + 'px'
         });
 
         modal.animate({
@@ -36,33 +33,37 @@ function Modal () {
             width   : size.width + 'px',
             zIndex  : position.zIndex
         }, 200, function () {
-            $(this).modal('populate', content);
+            $(this).modal('populate', id, content);
         });
     },
 
     /**
      *
      */
-    this.destroy = function (id, focus) {
+    this.destroy = function (focus) {
         var
-            modal = $('#' + id),
-            modalContent = modal.find('.modal-content');
+            modal   = $(this),
+            npc     = modal.data('modal')['npc'];
 
-        modalContent.html('');
+        modal.html('');
 
         modal.animate({
-            height  : '0px',
-            width   : '0px',
-            zIndex  : '0'
+            height  : 0,
+            width   : 0,
+            zIndex  : 0
         }, 200, function () {
             $(this).remove();
         });
 
-        if (Game.activeNPC) {
-            Game.activeNPC.npc('destroyEmote');
+        if (npc) {
+            npc.npc('destroyEmote');
+
+            npc.data('npc')['talking'] = false;
         }
 
-        focus.trigger('focus');
+        if (focus) {
+            focus.trigger('focus');
+        }
     },
 
     /**
@@ -79,12 +80,7 @@ function Modal () {
             data[option] = value;
 
             switch (option) {
-                case 'backgroundColor':
-                    element.css({
-                        backgroundColor: value
-                    });
 
-                    break;
             }
         }
     },
@@ -92,17 +88,19 @@ function Modal () {
     /**
      *
      */
-    this.populate = function (content) {
+    this.populate = function (id, content) {
         var
-            emote           = content.emote,
-            modal           = $(this),
-            modalContent    = modal.find('.modal-content'),
-            npc             = Game.activeNPC,
-            type            = content.type;
+            emote   = content.emote,
+            modal   = $(this),
+            npc     = Game.activeNPC,
+            type    = content.type;
 
         if (npc && emote) {
             npc.npc('emote', emote);
         }
+
+        modal.attr('id', id);
+        modal.data('modal')['id'] = id;
 
         switch (type) {
             case 'choice':
@@ -114,10 +112,10 @@ function Modal () {
 
                 choices += '</ul>';
 
-                modalContent.html(choices).find('li:first').trigger('focus');
+                modal.html(choices).find('li:first').trigger('focus');
 
                 //
-                modalContent.off().on('keyup', function (event) {
+                modal.off().on('keyup', function (event) {
                     var choice  = $(document.activeElement),
                         key     = event.keyCode || event.which;
 
@@ -131,7 +129,7 @@ function Modal () {
                             }
 
                             if (choice.goTo) {
-                                return modal.modal('populate', Dialogues[choice.goTo]);
+                                return modal.modal('populate', choice.goTo, Dialogues[choice.goTo]);
                             }
 
                             break;
@@ -153,28 +151,28 @@ function Modal () {
                 break;
 
             case 'dialogue':
-                modalContent.html(content.text).trigger('focus');
+                modal.html(content.text).trigger('focus');
 
                 if (content.action) {
                     content.action();
                 }
 
                 //
-                modalContent.off().on('keyup', function (event) {
+                modal.off().on('keyup', function (event) {
                     var key = event.keyCode || event.which;
 
                     switch (key) {
                         case 13:
                         case 32: // Enter, Spacebar
                             if (content.goTo) {
-                                modal.modal('populate', Dialogues[content.goTo]);
+                                modal.modal('populate', content.goTo, Dialogues[content.goTo]);
 
                                 return;
                             } else if (content.end) {
-                                modal.modal('destroy', modal.data('modal')['id'], $('#player'));
+                                modal.modal('destroy', $('#player'));
 
-                                if (modal.data('modal')['initiator']) {
-                                    modal.data('modal')['initiator'].data('npc')['wanderPause'] = false;
+                                if (modal.data('modal')['npc']) {
+                                    modal.data('modal')['npc'].data('npc')['wanderPause'] = false;
                                 }
 
                                 return;

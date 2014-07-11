@@ -233,10 +233,9 @@ body {
 
         -webkit-border-image: url(../img/modal-border.gif) 16 repeat;
         -o-border-image: url(../img/modal-border.gif) 16 repeat;
+        background-color: $color-alabaster;
         border-image: url(../img/modal-border.gif) 16 repeat;
         border-image-outset: 10px;
-
-        background-color: $color-alabaster;
         border-width: 16px;
         color: $color-mine-shaft;
         font-family: 'Minecraftia';
@@ -244,21 +243,19 @@ body {
         position: absolute;
         width: 0px;
 
-        .modal-content {
-            .choice { // ul
-                list-style: none outside none;
-                margin: 0px;
-                padding: 0px;
+        .choice { // ul
+            list-style: none outside none;
+            margin: 0px;
+            padding: 0px;
 
-                li {
-                    padding: 5px;
+            li {
+                padding: 5px;
 
-                    &:focus {
-                        @include border-radius(2px);
+                &:focus {
+                    @include border-radius(2px);
 
-                        background-color: $color-rum;
-                        color: $color-white;
-                    }
+                    background-color: $color-rum;
+                    color: $color-white;
                 }
             }
         }

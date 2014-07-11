@@ -241,9 +241,9 @@ body {
   line-height: 1.25rem;
   -webkit-border-image: url(../img/modal-border.gif) 16 repeat;
   -o-border-image: url(../img/modal-border.gif) 16 repeat;
+  background-color: #f8f8f8;
   border-image: url(../img/modal-border.gif) 16 repeat;
   border-image-outset: 10px;
-  background-color: #f8f8f8;
   border-width: 16px;
   color: #303030;
   font-family: 'Minecraftia';
@@ -251,18 +251,18 @@ body {
   position: absolute;
   width: 0px;
 }
-/* line 248, ../../sass/screen.scss */
-#modals .modal .modal-content .choice {
+/* line 246, ../../sass/screen.scss */
+#modals .modal .choice {
   list-style: none outside none;
   margin: 0px;
   padding: 0px;
 }
-/* line 253, ../../sass/screen.scss */
-#modals .modal .modal-content .choice li {
+/* line 251, ../../sass/screen.scss */
+#modals .modal .choice li {
   padding: 5px;
 }
-/* line 256, ../../sass/screen.scss */
-#modals .modal .modal-content .choice li:focus {
+/* line 254, ../../sass/screen.scss */
+#modals .modal .choice li:focus {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
