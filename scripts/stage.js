@@ -56,9 +56,15 @@ Stage = {
             $(element).npc('destroy');
         });
 
+        $('#player').each(function (index, element) {
+            $(element).player('destroy');
+        });
+
         $('#collisions').html('');
         $('#objects').html('');
         $('#tiles').html('');
+
+        $(document).trigger('keyup');
     },
 
     /**

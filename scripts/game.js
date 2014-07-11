@@ -27,8 +27,15 @@ Game = {
      *
      */
     checkButtons: function () {
+        var player = $('#player');
+
+        if (player.length == 0) {
+            return;
+        }
+
         var
-            player          = $('#player'),
+            allowMove       = player.data('player')['allowMove'],
+            direction,
             playerSprite    = $('#player-sprite');
 
         player.data('player')['speedMultiplier'] = 1;
@@ -39,162 +46,71 @@ Game = {
             player.data('player')['speedMultiplier'] = 2;
         }
 
-        // Spacebar, Enter
+        if (allowMove) {
 
-        if (Game.pressedKeys[13] || Game.pressedKeys[32]) {
-            var npc = Game.checkNPCs(player, player.data('player')['direction']);
+            // Spacebar, Enter
 
-            if (npc == true && player.data('player')['allowMove']) {
-                if (npc.is('.npc')) {
-                    npc.npc('talk', npc.obstacle.data('npc')['dialogue']);
+            if (Game.pressedKeys[13] || Game.pressedKeys[32]) {
+                var npc = Game.checkNPCs(player, player.data('player')['direction']);
+
+                if (npc) {
+                    npc.npc('talk', npc.data('npc')['dialogue']);
                 }
             }
-        }
 
-        switch (true) {
+            switch (true) {
 
-            // W, Up Arrow
+                // W, Up Arrow
 
-            case ((Game.pressedKeys[87] || Game.pressedKeys[38]) && player.data('player')['allowMove']) :
-                var direction = 'u';
+                case ((Game.pressedKeys[87] || Game.pressedKeys[38])) :
+                    direction = player.data('player')['direction'] = 'u';
 
-                player.data('player')['direction'] = direction;
+                    playerSprite.removeClass('down left right').addClass('walking up');
 
-                var collision   = Game.checkCollisions(player, direction),
-                    npc         = Game.checkNPCs(player, direction);
-                    portal      = Game.checkPortals(player, direction);
+                    break;
 
-                playerSprite.removeClass('down left right').addClass('walking up');
+                // S, Down Arrow
 
-                if (collision == false && npc == false && player.data('player')['allowMove']) {
-                    player.data('player')['allowMove'] = false;
+                case ((Game.pressedKeys[83] || Game.pressedKeys[40])) :
+                    direction = player.data('player')['direction'] = 'd';
 
-                    Game.moveObject(player, direction, function () {
-                        player.data('player')['allowMove'] = true;
-                    });
+                    playerSprite.removeClass('left right up').addClass('walking down');
 
-                    if (portal) {
-                        if (portal.is('.stairs')) {
-                            player.player('useStairs', portal.attr('data-direction'));
-                        }
+                    break;
 
-                        Stage.init(portal.attr('data-area'));
-                    }
+                // A, Left Arrow
 
-                } else {
+                case ((Game.pressedKeys[65] || Game.pressedKeys[37])) :
+                    direction = player.data('player')['direction'] = 'l';
+
+                    playerSprite.removeClass('down right up').addClass('walking left');
+
+                    break;
+
+                // D, Right Arrow
+
+                case ((Game.pressedKeys[68] || Game.pressedKeys[39])) :
+                    direction = player.data('player')['direction'] = 'r';
+
+                    playerSprite.removeClass('down left up').addClass('walking right');
+
+                    break;
+
+                default:
                     playerSprite.removeClass('walking');
-                }
 
-                break;
+                    break;
+            }
 
-            // S, Down Arrow
+            collision   = Game.checkCollisions(player, direction);
+            npc         = Game.checkNPCs(player, direction);
 
-            case ((Game.pressedKeys[83] || Game.pressedKeys[40]) && player.data('player')['allowMove']) :
-                var direction = 'd';
+            if (collision == false && npc == false) {
+                Game.moveChecks(player, direction, collision, npc);
+            } else {
+                playerSprite.removeClass('walking');
+            }
 
-                player.data('player')['direction'] = direction;
-
-                var collision   = Game.checkCollisions(player, direction),
-                    npc         = Game.checkNPCs(player, direction);
-                    portal      = Game.checkPortals(player, direction);
-
-                playerSprite.removeClass('left right up').addClass('walking down');
-
-                if (collision == false && npc == false && player.data('player')['allowMove']) {
-                    player.data('player')['allowMove'] = false;
-
-                    Game.moveObject(player, direction, function () {
-                        player.data('player')['allowMove'] = true;
-                    });
-
-                    if (portal) {
-                        if (portal.is('.stairs')) {
-                            player.player('useStairs', portal.attr('data-direction'));
-                        }
-
-                        Stage.init(portal.attr('data-area'));
-                    }
-
-                } else {
-                    playerSprite.removeClass('walking');
-                }
-
-                break;
-
-            // A, Left Arrow
-
-            case ((Game.pressedKeys[65] || Game.pressedKeys[37]) && player.data('player')['allowMove']) :
-                var direction = 'l';
-
-                player.data('player')['direction'] = direction;
-
-                var collision   = Game.checkCollisions(player, direction),
-                    npc         = Game.checkNPCs(player, direction);
-                    portal      = Game.checkPortals(player, direction);
-
-                playerSprite.removeClass('down right up').addClass('walking left');
-
-                if (collision == false && npc == false && player.data('player')['allowMove']) {
-                    player.data('player')['allowMove'] = false;
-
-                    Game.moveObject(player, direction, function () {
-                        player.data('player')['allowMove'] = true;
-                    });
-
-                    if (portal) {
-                        if (portal.is('.stairs')) {
-                            player.player('useStairs', portal.attr('data-direction'));
-                        }
-
-                        Stage.init(portal.attr('data-area'));
-                    }
-
-                } else {
-                    playerSprite.removeClass('walking');
-                }
-
-                break;
-
-            // D, Right Arrow
-
-            case ((Game.pressedKeys[68] || Game.pressedKeys[39]) && player.data('player')['allowMove']) :
-                var direction = 'r';
-
-                player.data('player')['direction'] = direction;
-
-                var collision   = Game.checkCollisions(player, direction),
-                    npc         = Game.checkNPCs(player, direction);
-                    portal      = Game.checkPortals(player, direction);
-
-                playerSprite.removeClass('down left up').addClass('walking right');
-
-                if (collision == false && npc == false && player.data('player')['allowMove']) {
-                    player.data('player')['allowMove'] = false;
-
-                    Game.moveObject(player, direction, function () {
-                        player.data('player')['allowMove'] = true;
-                    });
-
-                    if (portal) {
-                        if (portal.is('.stairs')) {
-                            player.player('useStairs', portal.attr('data-direction'));
-                        }
-
-                        Stage.init(portal.attr('data-area'));
-                    }
-                } else {
-                    playerSprite.removeClass('walking');
-                }
-
-                break;
-
-
-            default:
-                if (player.data('player')['allowMove']) {
-                    playerSprite.removeClass('walking');
-                }
-
-                break;
         }
     },
 
@@ -243,8 +159,7 @@ Game = {
             offsetL     = 0,
             offsetT     = 0;
 
-        switch (direction) {
-            case 'u':
+        switch (direction) {            case 'u':
                 offsetT = -1;
 
                 break;
@@ -320,6 +235,37 @@ Game = {
         return {
             'x': objectPos.left / Game.gridCellSize,
             'y': objectPos.top / Game.gridCellSize
+        }
+    },
+
+    /**
+     *
+     */
+    moveChecks: function (player, direction, collision, npc) {
+        var portal = Game.checkPortals(player, direction);
+
+        player.data('player')['allowMove'] = false;
+
+        if (portal) {
+            switch (true) {
+                case (portal.is('.doorway')) :
+                    Game.moveObject(player, direction, function () {
+                        Stage.init(portal.attr('data-area'));
+                    });
+
+                    break;
+
+                case (portal.is('.stairs')) :
+                    player.player('useStairs', portal.attr('data-direction'), function () {
+                        Stage.init(portal.attr('data-area'));
+                    });
+
+                    break;
+            }
+        } else {
+            Game.moveObject(player, direction, function () {
+                player.data('player')['allowMove'] = true;
+            });
         }
     },
 
@@ -431,7 +377,16 @@ function Player () {
 
             player.trigger('focus');
         }
-    },
+    }
+
+    /**
+     *
+     */
+    this.destroy = function () {
+        var player = $(this);
+
+        player.remove();
+    }
 
     /**
      *
@@ -471,7 +426,11 @@ function Player () {
         player.stop().animate({
             left    : playerPos.left + offsetL,
             top     : playerPos.top + offsetT
-        }, 180, 'linear');
+        }, 180, 'linear', function () {
+            if (callback) {
+                callback();
+            }
+        });
     }
 }
 
@@ -491,16 +450,15 @@ $.fn.player = function (option) {
 
 $.player = new Player();
 
-
 //
-$(document).on('keydown', '#player', function (event) {
+$(document).on('keydown', function (event) {
     var key = event.keyCode || event.which;
 
     Game.pressedKeys[event.keyCode] = true;
 });
 
 //
-$(document).on('keyup', '#player', function (event) {
+$(document).on('keyup', function (event) {
     var key = event.keyCode || event.which;
 
     Game.pressedKeys[event.keyCode] = false;
