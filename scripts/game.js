@@ -1,19 +1,20 @@
 
 Game = {
-    activeNPC       : '',
-    areaObstacles   : '',
-    currentArea     : 'a000',
-    currentFocus    : '',
-    directions      : {
+    activeNPC           : '',
+    areaObstacles       : '',
+    currentArea         : 'a000',
+    currentDirection    : 'down',
+    currentFocus        : '',
+    directions          : {
         up      : 'up',
         down    : 'down',
         left    : 'left',
         right   : 'right'
     },
-    fps             : 60,
-    gridCellSize    : 32,
-    pressedKeys     : [],
-    prevArea        : 'a000',
+    fps                 : 60,
+    gridCellSize        : 32,
+    pressedKeys         : [],
+    prevArea            : 'a000',
 
     /**
      *
@@ -51,10 +52,21 @@ Game = {
         // Spacebar, Enter
 
         if (Game.pressedKeys[13] || Game.pressedKeys[32]) {
-            var npc = Game.checkNPCs(player, player.data('player')['direction']);
+            var collision = Game.checkCollisions(player, player.data('player')['direction']);
 
-            if (npc) {
-                npc.npc('talk', npc.data('npc')['dialogue']);
+            if (collision) {
+                console.log(collision);
+                switch (true) {
+                    case (collision) :
+                        // Do nothing
+
+                        break;
+
+                    case (collision.is('.npc')) :
+                        collision.npc('talk', collision.data('npc')['dialogue']);
+
+                        break;
+                }
             }
         }
 
@@ -262,7 +274,7 @@ function Player () {
         var player;
 
         if (data.properties.prevArea === Game.prevArea) {
-            $('#objects').append('<div id="player" tabindex="0" style="left: ' + data.x + 'px; top: ' + (data.y - 32) + 'px;"><div id="player-sprite"></div></div>');
+            $('#objects').append('<div id="player" tabindex="0" style="left: ' + data.x + 'px; top: ' + (data.y - 32) + 'px;"><div id="player-sprite" class="' + Game.currentDirection + '"></div></div>');
 
             player = $('#player');
 
@@ -366,7 +378,7 @@ function Player () {
                 break;
         }
 
-        player.stop().animate({
+        player.addClass('walking').stop().animate({
             left    : playerPos.left + offsetL,
             top     : playerPos.top + offsetT
         }, 180, 'linear', function () {
