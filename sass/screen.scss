@@ -23,26 +23,30 @@ body {
     position: relative;
 }
 
-#x-axis { // div
-    background-color: $color-red;
-    height: 1px;
-    left: 0px;
-    opacity: $collisionOpacity;
-    position: fixed;
-    top: 50%;
-    width: 100%;
-    z-index: 1000;
-}
+/** DEBUG **/
 
-#y-axis { // div
-    background-color: $color-red;
-    height: 100%;
-    left: 50%;
-    opacity: $collisionOpacity;
-    position: fixed;
-    top: 0px;
-    width: 1px;
-    z-index: 1000;
+#debug { // div
+    #x-axis { // div
+        background-color: $color-red;
+        height: 1px;
+        left: 0px;
+        opacity: $collisionOpacity;
+        position: fixed;
+        top: 50%;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    #y-axis { // div
+        background-color: $color-red;
+        height: 100%;
+        left: 50%;
+        opacity: $collisionOpacity;
+        position: fixed;
+        top: 0px;
+        width: 1px;
+        z-index: 1000;
+    }
 }
 
 /** TRANSITION **/
@@ -52,7 +56,7 @@ body {
     height: 100%;
     position: absolute;
     width: 100%;
-    z-index: 3;
+    z-index: 100;
 }
 
 /** STAGE **/
@@ -208,7 +212,6 @@ body {
 
     #tiles {
         position: relative;
-        z-index: 0;
 
         .tile { // div
             background-image: url(../img/tile-map.gif);
@@ -225,7 +228,7 @@ body {
 
 #modals { // div
     position: relative;
-    z-index: 1000;
+    z-index: 2;
 
     .modal { // div
         @include font-size($window-font-size);
