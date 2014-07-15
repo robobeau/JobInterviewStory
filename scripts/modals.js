@@ -11,12 +11,18 @@ function Modal () {
      *
      */
     this.checkButtons = function () {
-        var activeElement   = $(document.activeElement),
+        var modal = $.modal.activeModal;
+
+        if (modal.length == 0 || modal.html() == '') {
+            return;
+        }
+
+        var
+            activeElement   = $(document.activeElement),
             allowPress      = $.modal.allowPress,
-            modal           = $.modal.activeModal,
             dialogue        = modal.data('modal')['dialogue'];
 
-        if (modal.html() == '' || !allowPress) {
+        if (!allowPress) {
             return;
         }
 
@@ -146,10 +152,10 @@ function Modal () {
             height  : size.height + 'px',
             width   : size.width + 'px'
         }, 180, function () {
-            $(this).modal('populate', dialogue);
-        });
+            modal.modal('populate', dialogue);
 
-        $.modal.activeModal = modal;
+            $.modal.activeModal = modal;
+        });
     },
 
     /**
@@ -167,7 +173,7 @@ function Modal () {
             width   : 0,
             zIndex  : 0
         }, 180, function () {
-            $(this).remove();
+            modal.remove();
 
             if (npc) {
                 npc.npc('destroyEmote');
@@ -239,6 +245,8 @@ function Modal () {
 
                 break;
         }
+
+        $.modal.allowPress = false;
     }
 }
 

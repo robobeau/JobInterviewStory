@@ -3,6 +3,7 @@
 
 function Player () {
     this.allowMove          = true;
+    this.allowPress         = true;
     this.direction          = null;
     this.speedMultiplier    = 1;
 
@@ -10,9 +11,20 @@ function Player () {
      *
      */
     this.checkButtons = function () {
-        var player          = $('#player'),
+        var player = $('#player');
+
+        if (player.length == 0) {
+            return;
+        }
+
+        var
             allowMove       = player.data('player')['allowMove'],
+            allowPress      = $.player.allowPress;
             playerSprite    = $('#player-sprite');
+
+        if (!allowPress) {
+            return;
+        }
 
         player.data('player')['speedMultiplier'] = 1;
 
@@ -26,6 +38,8 @@ function Player () {
 
         if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
             var collision = $.game.checkCollisions(player, player.data('player')['direction']);
+
+            $.player.allowPress = false;
 
             if (collision) {
                 switch (true) {

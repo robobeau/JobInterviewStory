@@ -206,6 +206,7 @@ $(document).on('keyup', function (event) {
 
     $.game.pressedKeys[event.keyCode]   = false;
     $.modal.allowPress                  = true;
+    $.player.allowPress                 = true;
 });
 
 /** GAME START! ***********************************************************************************/
