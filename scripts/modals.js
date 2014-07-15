@@ -2,26 +2,140 @@
 /** MODAL WINDOWS **/
 
 function Modal () {
-    this.id     = 0;
-    this.npc    = '';
+    this.activeModal    = '';
+    this.allowPress     = true;
+    this.id             = 0;
+    this.npc            = '';
 
     /**
      *
      */
-    this.create = function (id, size, position, content, npc) {
-        var modal = $('#' + id);
+    this.checkButtons = function () {
+        var activeElement   = $(document.activeElement),
+            allowPress      = $.modal.allowPress,
+            modal           = $.modal.activeModal,
+            dialogue        = modal.data('modal')['dialogue'];
 
-        if (modal.length > 0) {
+        if (modal.html() == '' || !allowPress) {
             return;
         }
+
+        // Shift
+
+        if ($.game.pressedKeys[16]) {
+
+        }
+
+        // Spacebar, Enter
+
+        if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
+            $.modal.allowPress = false;
+
+            switch (true) {
+                case (activeElement.is('li')) :
+                    var choice = Dialogues[dialogue].choices[activeElement.index()];
+
+                    if (choice.action) {
+                        choice.action();
+                    }
+
+                    if (choice.goTo) {
+                        return modal.modal('populate', choice.goTo, Dialogues[choice.goTo]);
+                    }
+
+                    break;
+
+                default :
+                    if (Dialogues[dialogue].goTo) {
+                        modal.modal('populate', Dialogues[dialogue].goTo, Dialogues[Dialogues[dialogue].goTo]);
+
+                        break;
+                    } else if (Dialogues[dialogue].end) {
+                        modal.modal('destroy', $('#player'));
+
+                        if (modal.data('modal')['npc']) {
+                            modal.data('modal')['npc'].data('npc')['wanderPause'] = false;
+                        }
+
+                        break;
+                    }
+
+                    break;
+            }
+        }
+
+        switch (true) {
+
+            // W, Up Arrow
+
+            case (($.game.pressedKeys[87] || $.game.pressedKeys[38])) :
+                $.modal.allowPress = false;
+
+                switch (true) {
+                    case (activeElement.is('li')) :
+                        activeElement.prev('li').trigger('focus');
+
+                        break;
+                }
+
+                break;
+
+            // S, Down Arrow
+
+            case (($.game.pressedKeys[83] || $.game.pressedKeys[40])) :
+                $.modal.allowPress = false;
+
+                switch (true) {
+                    case (activeElement.is('li')) :
+                        activeElement.next('li').trigger('focus');
+
+                        break;
+                }
+
+                break;
+
+            // A, Left Arrow
+
+            case (($.game.pressedKeys[65] || $.game.pressedKeys[37])) :
+                $.modal.allowPress = false;
+
+                break;
+
+            // D, Right Arrow
+
+            case (($.game.pressedKeys[68] || $.game.pressedKeys[39])) :
+                $.modal.allowPress = false;
+
+                break;
+
+            default:
+
+                break;
+        }
+    }
+
+    /**
+     *
+     */
+    this.create = function (size, position, dialogue, npc) {
+        var
+            modalCounter    = $('.modal').length,
+            modal           = '',
+            id              = modalCounter + '';
+
+        while (id.length < (3 - ((modalCounter + '')).length + 1)) {
+            id = '0' + id;
+        }
+
+        id = 'm' + id;
 
         $('#modals').append('<div id="' + id + '" class="modal" tabindex="0"></div>');
 
         modal = $('#' + id);
 
         modal.data('modal', new Modal());
-        modal.data('modal')['id']          = id;
-        modal.data('modal')['npc']   = npc ? npc : '';
+        modal.data('modal')['id']   = id;
+        modal.data('modal')['npc']  = npc ? npc : '';
 
         modal.css({
             left    : position.left + 'px',
@@ -30,11 +144,12 @@ function Modal () {
 
         modal.animate({
             height  : size.height + 'px',
-            width   : size.width + 'px',
-            zIndex  : position.zIndex
-        }, 200, function () {
-            $(this).modal('populate', id, content);
+            width   : size.width + 'px'
+        }, 180, function () {
+            $(this).modal('populate', dialogue);
         });
+
+        $.modal.activeModal = modal;
     },
 
     /**
@@ -51,19 +166,19 @@ function Modal () {
             height  : 0,
             width   : 0,
             zIndex  : 0
-        }, 200, function () {
+        }, 180, function () {
             $(this).remove();
+
+            if (npc) {
+                npc.npc('destroyEmote');
+
+                npc.data('npc')['talking'] = false;
+            }
+
+            if (focus) {
+                focus.trigger('focus');
+            }
         });
-
-        if (npc) {
-            npc.npc('destroyEmote');
-
-            npc.data('npc')['talking'] = false;
-        }
-
-        if (focus) {
-            focus.trigger('focus');
-        }
     },
 
     /**
@@ -88,25 +203,24 @@ function Modal () {
     /**
      *
      */
-    this.populate = function (id, content) {
+    this.populate = function (dialogue) {
         var
-            emote   = content.emote,
+            emote   = Dialogues[dialogue].emote,
             modal   = $(this),
-            npc     = Game.activeNPC,
-            type    = content.type;
+            npc     = $.game.activeNPC,
+            type    = Dialogues[dialogue].type;
 
         if (npc && emote) {
             npc.npc('emote', emote);
         }
 
-        modal.attr('id', id);
-        modal.data('modal')['id'] = id;
+        modal.data('modal')['dialogue'] = dialogue;
 
         switch (type) {
             case 'choice':
                 var choices = '<ul class="choice">';
 
-                $.each(content.choices, function (index, value) {
+                $.each(Dialogues[dialogue].choices, function (index, value) {
                     choices += '<li tabindex="0">' + value.label + '</li>'
                 });
 
@@ -114,73 +228,14 @@ function Modal () {
 
                 modal.html(choices).find('li:first').trigger('focus');
 
-                //
-                modal.off().on('keyup', function (event) {
-                    var choice  = $(document.activeElement),
-                        key     = event.keyCode || event.which;
-
-                    switch (key) {
-                        case 13:
-                        case 32: // Enter, Spacebar
-                            var choice = content.choices[choice.index()];
-
-                            if (choice.action) {
-                                choice.action();
-                            }
-
-                            if (choice.goTo) {
-                                return modal.modal('populate', choice.goTo, Dialogues[choice.goTo]);
-                            }
-
-                            break;
-
-                        case 38:
-                        case 87: // Up Arrow
-                            choice.prev('li').trigger('focus');
-
-                            break;
-
-                        case 40:
-                        case 83: // Down Arrow
-                            choice.next('li').trigger('focus');
-
-                            break;
-                    }
-                });
-
                 break;
 
             case 'dialogue':
-                modal.html(content.text).trigger('focus');
+                modal.html(Dialogues[dialogue].text).trigger('focus');
 
-                if (content.action) {
-                    content.action();
+                if (Dialogues[dialogue].action) {
+                    Dialogues[dialogue].action();
                 }
-
-                //
-                modal.off().on('keyup', function (event) {
-                    var key = event.keyCode || event.which;
-
-                    switch (key) {
-                        case 13:
-                        case 32: // Enter, Spacebar
-                            if (content.goTo) {
-                                modal.modal('populate', content.goTo, Dialogues[content.goTo]);
-
-                                return;
-                            } else if (content.end) {
-                                modal.modal('destroy', $('#player'));
-
-                                if (modal.data('modal')['npc']) {
-                                    modal.data('modal')['npc'].data('npc')['wanderPause'] = false;
-                                }
-
-                                return;
-                            }
-
-                            break;
-                    }
-                });
 
                 break;
         }

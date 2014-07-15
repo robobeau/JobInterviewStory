@@ -2,7 +2,7 @@
 /** NPCS **/
 
 function NPC () {
-    this.dialogue       = 'd0';
+    this.dialogue       = 'd000';
     this.id             = 0;
     this.talking        = false;
     this.wanderInterval = '';
@@ -24,18 +24,18 @@ function NPC () {
 
         npc.css({
             left    : data.x + 'px',
-            top     : (data.y - Game.gridCellSize) + 'px'
+            top     : (data.y - $.game.gridCellSize) + 'px'
         });
 
-        if (!Stage.npcsMap[(data.y / Game.gridCellSize) - 1]) {
-            Stage.npcsMap[(data.y / Game.gridCellSize) - 1] = {};
+        if (!$.stage.npcsMap[(data.y / $.game.gridCellSize) - 1]) {
+            $.stage.npcsMap[(data.y / $.game.gridCellSize) - 1] = {};
         }
 
-        Stage.npcsMap[(data.y / Game.gridCellSize) - 1][(data.x / Game.gridCellSize)] = npc;
+        $.stage.npcsMap[(data.y / $.game.gridCellSize) - 1][(data.x / $.game.gridCellSize)] = npc;
 
-        // if (data.properties.wander) {
-        //     npc.npc('wander');
-        // }
+        if (data.properties.wander) {
+            npc.npc('wander');
+        }
     },
 
     /**
@@ -88,7 +88,7 @@ function NPC () {
     this.move = function (direction) {
         var npc = $(this);
 
-        Game.moveObject(npc, direction);
+        $.game.moveObject(npc, direction);
     },
 
     /**
@@ -104,19 +104,18 @@ function NPC () {
         npc.data('npc')['talking']      = true;
         npc.data('npc')['wanderPause']  = true;
 
-        Game.activeNPC = npc;
+        $.game.activeNPC = npc;
 
         $.modal.create(
-            dialogue,
             {
                 height  : 80,
                 width   : 720
             },
             {
-                left    : ($(window).width() - (720 + Game.gridCellSize)) / 2,
+                left    : ($(window).width() - (720 + $.game.gridCellSize)) / 2,
                 top     : 20
             },
-            Dialogues[dialogue],
+            dialogue,
             npc
         );
     },
@@ -130,29 +129,29 @@ function NPC () {
         clearInterval(npc.data('npc')['wanderInterval']);
 
         npc.data('npc')['wanderInterval'] = setInterval(function () {
-            var direction   = Game.directions[Object.keys(Game.directions)[Math.floor(Math.random() * Object.keys(Game.directions).length)]],
-                npcPos      = Game.getCoordinates(npc);
+            var direction   = $.game.directions[Object.keys($.game.directions)[Math.floor(Math.random() * Object.keys($.game.directions).length)]],
+                npcPos      = $.game.getCoordinates(npc);
 
             if (Math.random() < 0.5 || npc.data('npc')['wanderPause'] === true) {
                 return;
             }
 
-            var collision = Game.checkCollisions(npc, direction);
+            var collision = $.game.checkCollisions(npc, direction);
 
             if (collision == false && !npc.is(':animated')) {
-                delete Stage.npcsMap[npcPos.y][npcPos.x];
+                delete $.stage.npcsMap[npcPos.y][npcPos.x];
 
-                Game.moveObject(npc, direction, function () {
-                    var newPos = Game.getCoordinates(npc);
+                $.game.moveObject(npc, direction, function () {
+                    var newPos = $.game.getCoordinates(npc);
 
-                    if (!Stage.npcsMap[newPos.y]) {
-                        Stage.npcsMap[newPos.y] = {};
+                    if (!$.stage.npcsMap[newPos.y]) {
+                        $.stage.npcsMap[newPos.y] = {};
                     }
 
-                    Stage.npcsMap[newPos.y][newPos.x] = npc;
+                    $.stage.npcsMap[newPos.y][newPos.x] = npc;
                 });
             }
-        }, 1000);
+        }, 1800);
     }
 }
 
