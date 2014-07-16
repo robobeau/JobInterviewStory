@@ -106,7 +106,7 @@ function NPC () {
 
         $.game.activeNPC = npc;
 
-        $.modal.create(
+        $.modals.create(
             {
                 height  : 80,
                 width   : 720

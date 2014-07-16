@@ -147,12 +147,18 @@ function Player () {
                     case (collision) :
                         playerSprite.removeClass('walking');
 
+                        // $.sounds.fx.bump.play();
+
                         break;
 
                     case (collision.is('.doorway')) :
                         player.data('player')['allowMove'] = false;
 
+                        $.sounds.fx.door.play();
+
                         $.game.moveObject(player, direction, function () {
+                            $.sounds.fx.enter.play();
+
                             $.stage.init(collision.attr('data-area'));
                         });
 
@@ -160,6 +166,8 @@ function Player () {
 
                     case (collision.is('.stairs')) :
                         player.data('player')['allowMove'] = false;
+
+                        $.sounds.fx.enter.play();
 
                         player.player('useStairs', collision.attr('data-direction'), function () {
                             $.stage.init(collision.attr('data-area'));

@@ -75,7 +75,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-
+     "music":"fieldTheme"
     },
  "tileheight":32,
  "tilesets":[

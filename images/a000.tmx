@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="music" value="townTheme"/>
+ </properties>
  <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
   <image source="../pub/img/tile-map.gif" width="1600" height="1600"/>
  </tileset>

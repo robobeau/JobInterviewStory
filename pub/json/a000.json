@@ -120,7 +120,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-
+     "music":"townTheme"
     },
  "tileheight":32,
  "tilesets":[

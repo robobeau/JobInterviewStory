@@ -1,7 +1,7 @@
 
 /** MODAL WINDOWS **/
 
-function Modal () {
+function Modals () {
     this.activeModal    = '';
     this.allowPress     = true;
     this.id             = 0;
@@ -11,7 +11,7 @@ function Modal () {
      *
      */
     this.checkButtons = function () {
-        var modal = $.modal.activeModal;
+        var modal = $.modals.activeModal;
 
         if (modal.length == 0 || modal.html() == '') {
             return;
@@ -19,7 +19,7 @@ function Modal () {
 
         var
             activeElement   = $(document.activeElement),
-            allowPress      = $.modal.allowPress,
+            allowPress      = $.modals.allowPress,
             dialogue        = modal.data('modal')['dialogue'];
 
         if (!allowPress) {
@@ -35,7 +35,7 @@ function Modal () {
         // Spacebar, Enter
 
         if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
-            $.modal.allowPress = false;
+            $.modals.allowPress = false;
 
             switch (true) {
                 case (activeElement.is('li')) :
@@ -75,7 +75,7 @@ function Modal () {
             // W, Up Arrow
 
             case (($.game.pressedKeys[87] || $.game.pressedKeys[38])) :
-                $.modal.allowPress = false;
+                $.modals.allowPress = false;
 
                 switch (true) {
                     case (activeElement.is('li')) :
@@ -89,7 +89,7 @@ function Modal () {
             // S, Down Arrow
 
             case (($.game.pressedKeys[83] || $.game.pressedKeys[40])) :
-                $.modal.allowPress = false;
+                $.modals.allowPress = false;
 
                 switch (true) {
                     case (activeElement.is('li')) :
@@ -103,14 +103,14 @@ function Modal () {
             // A, Left Arrow
 
             case (($.game.pressedKeys[65] || $.game.pressedKeys[37])) :
-                $.modal.allowPress = false;
+                $.modals.allowPress = false;
 
                 break;
 
             // D, Right Arrow
 
             case (($.game.pressedKeys[68] || $.game.pressedKeys[39])) :
-                $.modal.allowPress = false;
+                $.modals.allowPress = false;
 
                 break;
 
@@ -139,7 +139,7 @@ function Modal () {
 
         modal = $('#' + id);
 
-        modal.data('modal', new Modal());
+        modal.data('modal', new Modals());
         modal.data('modal')['id']   = id;
         modal.data('modal')['npc']  = npc ? npc : '';
 
@@ -154,7 +154,7 @@ function Modal () {
         }, 180, function () {
             modal.modal('populate', dialogue);
 
-            $.modal.activeModal = modal;
+            $.modals.activeModal = modal;
         });
     },
 
@@ -246,7 +246,7 @@ function Modal () {
                 break;
         }
 
-        $.modal.allowPress = false;
+        $.modals.allowPress = false;
     }
 }
 
@@ -262,4 +262,4 @@ $.fn.modal = function (option) {
     return element.data('modal');
 }
 
-$.modal = new Modal();
+$.modals = new Modals();

@@ -102,6 +102,8 @@ function Stage () {
         $.stage.npcsMap = [];
         $.stage.portalsMap = [];
 
+        // $.sounds.fade($.sounds.currentMusic, 0);
+
         $('.npc').each(function (index, element) {
             $(element).npc('destroy');
         });
@@ -223,10 +225,10 @@ function Stage () {
                 type        : 'GET',
                 url         : '../json/'+ stage +'.json',
             }).done(function (data, textStatus, jqXHR) {
-                $.game.prevArea       = $.game.currentArea;
-                $.game.currentArea    = stage;
-                $.stage.height    = data.height * $.game.gridCellSize;
-                $.stage.width     = data.width * $.game.gridCellSize;
+                $.game.prevArea     = $.game.currentArea;
+                $.game.currentArea  = stage;
+                $.stage.height      = data.height * $.game.gridCellSize;
+                $.stage.width       = data.width * $.game.gridCellSize;
 
                 $.each(data.layers, function (index, value) {
                     var layer = value;
@@ -254,6 +256,10 @@ function Stage () {
                 });
 
                 $.stage.center();
+
+                if (data.properties.music && $.sounds.currentMusic != $.sounds.music[data.properties.music]) {
+                    $.sounds.changeMusic($.sounds.music[data.properties.music], 0);
+                }
 
                 transition.animate({
                     opacity: 0

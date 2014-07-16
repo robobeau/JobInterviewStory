@@ -164,7 +164,7 @@ function Game () {
      */
     this.update = function () {
         if ($('.modal').length > 0) {
-            $.modal.checkButtons();
+            $.modals.checkButtons();
         }
 
         if ($('#player').length > 0) {
@@ -205,7 +205,7 @@ $(document).on('keyup', function (event) {
     var key = event.keyCode || event.which;
 
     $.game.pressedKeys[event.keyCode]   = false;
-    $.modal.allowPress                  = true;
+    $.modals.allowPress                 = true;
     $.player.allowPress                 = true;
 });
 
