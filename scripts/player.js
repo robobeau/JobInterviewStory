@@ -147,7 +147,7 @@ function Player () {
                     case (collision) :
                         playerSprite.removeClass('walking');
 
-                        // $.sounds.fx.bump.play();
+                        $.sounds.fx.bump.play();
 
                         break;
 

@@ -6,14 +6,19 @@
  <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
   <image source="../pub/img/tile-map.gif" width="1600" height="1600"/>
  </tileset>
- <layer name="tiles 1" width="70" height="50">
+ <layer name="tiles1" width="70" height="50">
   <data encoding="base64" compression="zlib">
    eJzt200SATEQhuGeyWGw9nMjboIjKWusGPcw9naUTpGiVJjZqDR5F191dXb58mxTiches9XsNBX7x/2suWS0t+2jrxlktDf1M9ZMMpxNXnyPUycyc7c+Q69++rN55PwfZhsvC737KNKrP1s6G++bwovvZRjpNPRi4X1TeVkVImvN6T59NgVeOqVI9yW9Ei/ves3Zy0HvXj+5qN0jx4y9WHg/i14svB9ebEy84AUveMELXixMvOAFL3jBC14sTLzgBS94wQteLEy84AUveMELXixMvOAFL3jBC14sTLzgBS/f9xL20GMue+r/O7++p/4PlPr/0RWunJcb
   </data>
  </layer>
- <layer name="tiles 2" width="70" height="50">
+ <layer name="tiles2" width="70" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt0LsNgwAMRVEWAGUbSiDbUPLZhgwbF9RJh404R7qFuyc3DcD12qg7eyVvqWSIxmiK3rlTSlmiNdqiPXkL3FWfPaCoOXsAAAAAAAAAAAAAFHFEnwff/2Tvq/YP+OUL0xopTw==
+   eJztzskJgEAUBcFJQDEjl2w8uuSP72AMfhmqoO/dGsD3hjS+TcUvfzKnJa1pq135lSOd6Up38QvQl716AAAAAAAAAAAAAAA68wCnLANv
+  </data>
+ </layer>
+ <layer name="tiles3" width="70" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAMA7B+xbFwLFxAx1ZgSxmyRYkAAOB1o3oAAAAAAAAAAAAA0No8WR/3TPW+bn/AzQZiniXh
   </data>
  </layer>
  <layer name="collisions" width="70" height="50" opacity="0.5">

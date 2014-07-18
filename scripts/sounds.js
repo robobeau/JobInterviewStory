@@ -25,6 +25,7 @@ function Sounds () {
         $.sounds.currentMusic = newMusic;
 
         $.sounds.currentMusic.currentTime = 0;
+        $.sounds.currentMusic.loop = true;
         $.sounds.currentMusic.play();
 
         $.sounds.fade($.sounds.currentMusic, 1);

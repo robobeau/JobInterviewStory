@@ -6,7 +6,7 @@
  <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
   <image source="../pub/img/tile-map.gif" width="1600" height="1600"/>
  </tileset>
- <layer name="tiles" width="14" height="10">
+ <layer name="tiles1" width="14" height="10">
   <data encoding="base64" compression="zlib">
    eJxjYCAflDGRhmFgBRNpGAZuA9l38OBbUAxTBwO8zAwMfHgwTB9MHbH6YPbykagPHQ+UPnIAAOtMHyE=
   </data>

@@ -22,7 +22,7 @@ function Game () {
      */
     this.calculateZindex = function (object) {
         object.css({
-            zIndex: object.offset().top
+            zIndex: object.position().top
         });
     }
 
@@ -153,10 +153,6 @@ function Game () {
         }, 1000 / $.game.fps);
 
         $.stage.init('a000');
-
-        for (i = 0; i < $('#player, .npc, .object').length; i++) {
-            $.game.calculateZindex($('#player, .npc, .object').eq(i));
-        }
     }
 
     /**

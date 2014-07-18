@@ -200,7 +200,7 @@ function Stage () {
                 x   = (value - ((y - 1) * $.stage.tileMap.width));
 
             if (value !== 0) { // 0 is empty, therefore don't draw it
-                $('#tiles').append('<div class="tile t' + value + '" style="background-position: -' + ((x * $.game.gridCellSize) - $.game.gridCellSize) + 'px -' + ((y * $.game.gridCellSize) - $.game.gridCellSize) + 'px; left: ' + (counter * $.game.gridCellSize) + 'px; top: ' + (row * $.game.gridCellSize) + 'px"></div>');
+                $('#tiles').append('<div class="tile t' + value + ' ' + tiles.name + '" style="background-position: -' + ((x * $.game.gridCellSize) - $.game.gridCellSize) + 'px -' + ((y * $.game.gridCellSize) - $.game.gridCellSize) + 'px; left: ' + (counter * $.game.gridCellSize) + 'px; top: ' + (row * $.game.gridCellSize) + 'px"></div>');
             }
 
             counter += (index + 1) % width === 0 ? -counter : 1;
@@ -254,6 +254,10 @@ function Stage () {
                             break;
                     }
                 });
+
+                for (i = 0; i < $('#player, .npc, .object, .tiles3').length; i++) {
+                    $.game.calculateZindex($('#player, .npc, .object, .tiles3').eq(i));
+                }
 
                 $.stage.center();
 
