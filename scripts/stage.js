@@ -262,7 +262,7 @@ function Stage () {
                 $.stage.center();
 
                 if (data.properties.music && $.sounds.currentMusic != $.sounds.music[data.properties.music]) {
-                    $.sounds.changeMusic($.sounds.music[data.properties.music], 0);
+                    // $.sounds.changeMusic($.sounds.music[data.properties.music], 0);
                 }
 
                 transition.animate({

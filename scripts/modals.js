@@ -4,8 +4,10 @@
 function Modals () {
     this.activeModal    = '';
     this.allowPress     = true;
+    this.cancelTyping   = false;
     this.id             = 0;
     this.npc            = '';
+    this.typing         = false;
 
     /**
      *
@@ -52,6 +54,12 @@ function Modals () {
                     break;
 
                 default :
+                    if ($.modals.typing) {
+                        $.modals.cancelTyping = true;
+
+                        return;
+                    }
+
                     if (Dialogues[dialogue].goTo) {
                         modal.modal('populate', Dialogues[dialogue].goTo, Dialogues[Dialogues[dialogue].goTo]);
 
@@ -237,7 +245,36 @@ function Modals () {
                 break;
 
             case 'dialogue':
-                modal.html(Dialogues[dialogue].text).trigger('focus');
+                modal.html('');
+
+                $.modals.allowPress = true;
+                $.modals.typing     = true;
+
+                var counter     = 0,
+                    interval    = setInterval(function () {
+                        if ($.modals.cancelTyping) {
+                            modal.append(Dialogues[dialogue].text.substr(counter, Dialogues[dialogue].text.length));
+
+                            $.modals.cancelTyping   = false;
+                            $.modals.typing         = false;
+
+                            clearInterval(interval);
+
+                            return;
+                        }
+
+                        modal.append(Dialogues[dialogue].text.charAt(counter));
+
+                        counter++;
+
+                        if (counter >= Dialogues[dialogue].text.length) {
+                            $.modals.typing = false;
+
+                            clearInterval(interval);
+                        }
+                    }, 50);
+
+                modal.trigger('focus');
 
                 if (Dialogues[dialogue].action) {
                     Dialogues[dialogue].action();
@@ -245,8 +282,6 @@ function Modals () {
 
                 break;
         }
-
-        $.modals.allowPress = false;
     }
 }
 
