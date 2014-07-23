@@ -5,6 +5,7 @@ function Stage () {
     this.collisionsMap  = [];
     this.height         = 0;
     this.npcsMap        = [];
+    this.playersMap     = [];
     this.portalsMap     = [];
     this.tileMap        = {
         height  : 50,
@@ -98,9 +99,10 @@ function Stage () {
      *
      */
     this.cleanup = function () {
-        $.stage.collisionsMap = [];
-        $.stage.npcsMap = [];
-        $.stage.portalsMap = [];
+        $.stage.collisionsMap   = [];
+        $.stage.npcsMap         = [];
+        $.stage.playersMap      = [];
+        $.stage.portalsMap      = [];
 
         // $.sounds.fade($.sounds.currentMusic, 0);
 

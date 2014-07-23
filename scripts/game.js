@@ -74,6 +74,12 @@ function Game () {
             }
         }
 
+        if ($.stage.playersMap[objectCoord.y + offsetT]) {
+            if ($.stage.playersMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
+                return $.stage.playersMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
+            }
+        }
+
         return false;
     }
 

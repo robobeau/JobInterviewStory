@@ -97,11 +97,11 @@ function NPC () {
     this.talk = function (dialogue) {
         var npc = $(this);
 
-        if (npc.data('npc')['talking']) {
+        if ($.npc.talking) {
             return;
         }
 
-        npc.data('npc')['talking']      = true;
+        $.npc.talking                    = true;
         npc.data('npc')['wanderPause']  = true;
 
         $.game.activeNPC = npc;
@@ -139,8 +139,6 @@ function NPC () {
             var collision = $.game.checkCollisions(npc, direction);
 
             if (collision == false && !npc.is(':animated')) {
-                delete $.stage.npcsMap[npcPos.y][npcPos.x];
-
                 $.game.moveObject(npc, direction, function () {
                     var newPos = $.game.getCoordinates(npc);
 
@@ -149,6 +147,8 @@ function NPC () {
                     }
 
                     $.stage.npcsMap[newPos.y][newPos.x] = npc;
+
+                    delete $.stage.npcsMap[npcPos.y][npcPos.x];
                 });
             }
         }, 1800);

@@ -114,7 +114,11 @@ function Player () {
 
             player.data('player', new Player());
 
-            player.trigger('focus');
+            if (!$.stage.playersMap[(data.y / $.game.gridCellSize) - 1]) {
+                $.stage.playersMap[(data.y / $.game.gridCellSize) - 1] = {};
+            }
+
+            $.stage.playersMap[(data.y / $.game.gridCellSize) - 1][(data.x / $.game.gridCellSize)] = player;
         }
     }
 
@@ -133,6 +137,7 @@ function Player () {
     this.move = function (direction, callback) {
         var
             player          = $(this),
+            playerPos       = $.game.getCoordinates(player);
             playerSprite    = $('#player-sprite');
 
         if (player.data('player')['allowMove']) {
@@ -157,7 +162,17 @@ function Player () {
                         $.sounds.fx.door.play();
 
                         $.game.moveObject(player, direction, function () {
+                            var newPos = $.game.getCoordinates(player);
+
+                            if (!$.stage.playersMap[newPos.y]) {
+                                $.stage.playersMap[newPos.y] = {};
+                            }
+
+                            $.stage.playersMap[newPos.y][newPos.x] = player;
+
                             $.sounds.fx.enter.play();
+
+                            delete $.stage.playersMap[playerPos.y][playerPos.x];
 
                             $.stage.init(collision.attr('data-area'));
                         });
@@ -179,7 +194,17 @@ function Player () {
                 player.data('player')['allowMove'] = false;
 
                 $.game.moveObject(player, direction, function () {
+                    var newPos = $.game.getCoordinates(player);
+
                     player.data('player')['allowMove'] = true;
+
+                    if (!$.stage.playersMap[newPos.y]) {
+                        $.stage.playersMap[newPos.y] = {};
+                    }
+
+                    $.stage.playersMap[newPos.y][newPos.x] = player;
+
+                    delete $.stage.playersMap[playerPos.y][playerPos.x];
                 });
 
                 $.stage.scrollStage(direction);
