@@ -5,6 +5,7 @@ function Modals () {
     this.activeModal    = '';
     this.allowPress     = true;
     this.cancelTyping   = false;
+    this.continueIcon   = '<div class="icon continue"></div>'
     this.id             = 0;
     this.npc            = '';
     this.typing         = false;
@@ -21,10 +22,9 @@ function Modals () {
 
         var
             activeElement   = $(document.activeElement),
-            allowPress      = $.modals.allowPress,
             dialogue        = modal.data('modal')['dialogue'];
 
-        if (!allowPress) {
+        if (!$.modals.allowPress) {
             return;
         }
 
@@ -137,6 +137,8 @@ function Modals () {
             modal           = '',
             id              = modalCounter + '';
 
+        $.modals.allowPress = false;
+
         while (id.length < (3 - ((modalCounter + '')).length + 1)) {
             id = '0' + id;
         }
@@ -186,7 +188,7 @@ function Modals () {
             if (npc) {
                 npc.npc('destroyEmote');
 
-                npc.data('npc')['talking'] = false;
+                $.npc.talking = false;
             }
 
             if (focus) {
@@ -245,12 +247,8 @@ function Modals () {
                 break;
 
             case 'dialogue':
-                modal.html('');
-
-                $.modals.allowPress = true;
-                $.modals.typing     = true;
-
-                var counter     = 0,
+                var
+                    counter     = 0,
                     interval    = setInterval(function () {
                         if ($.modals.cancelTyping) {
                             modal.append(Dialogues[dialogue].text.substr(counter, Dialogues[dialogue].text.length));
@@ -258,21 +256,33 @@ function Modals () {
                             $.modals.cancelTyping   = false;
                             $.modals.typing         = false;
 
+                            modal.append($.modals.continueIcon);
+
                             clearInterval(interval);
 
                             return;
-                        }
+                        };
 
                         modal.append(Dialogues[dialogue].text.charAt(counter));
+
+                        $.sounds.fx.bip.play();
 
                         counter++;
 
                         if (counter >= Dialogues[dialogue].text.length) {
                             $.modals.typing = false;
 
+                            modal.append($.modals.continueIcon);
+
                             clearInterval(interval);
+
+                            return;
                         }
                     }, 50);
+
+                $.modals.typing = true;
+
+                modal.html('');
 
                 modal.trigger('focus');
 
