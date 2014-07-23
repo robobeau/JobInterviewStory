@@ -10,7 +10,7 @@
 
 /** DEBUG **/
 /** MIXINS **/
-/** BASE **/
+/** BASE ******************************************************************************************/
 /* line 6, ../../sass/screen.scss */
 * {
   outline: 0;
@@ -35,7 +35,7 @@ body {
   position: relative;
 }
 
-/** DEBUG **/
+/** DEBUG *****************************************************************************************/
 /* line 29, ../../sass/screen.scss */
 #debug #x-axis {
   background-color: red;
@@ -59,7 +59,7 @@ body {
   z-index: 1000;
 }
 
-/** TRANSITION **/
+/** TRANSITION ************************************************************************************/
 /* line 54, ../../sass/screen.scss */
 #transition {
   background-color: black;
@@ -69,7 +69,7 @@ body {
   z-index: 100;
 }
 
-/** STAGE **/
+/** STAGE *****************************************************************************************/
 /* line 64, ../../sass/screen.scss */
 #stage {
   overflow: hidden;
@@ -226,7 +226,7 @@ body {
   width: 32px;
 }
 
-/** MODALS **/
+/** MODALS ****************************************************************************************/
 /* line 229, ../../sass/screen.scss */
 #modals {
   position: relative;
@@ -269,4 +269,23 @@ body {
   border-radius: 2px;
   background-color: #706880;
   color: white;
+}
+/* line 266, ../../sass/screen.scss */
+#modals .modal .icon {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+}
+
+/** ICONS *****************************************************************************************/
+/* line 280, ../../sass/screen.scss */
+.icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+/* line 284, ../../sass/screen.scss */
+.icon.continue {
+  background-image: url(../img/icon-continue.gif);
+  height: 16px;
+  width: 16px;
 }

@@ -1,7 +1,7 @@
 
 @import "_base";
 
-/** BASE **/
+/** BASE ******************************************************************************************/
 
 * {
     outline: 0;
@@ -23,7 +23,7 @@ body {
     position: relative;
 }
 
-/** DEBUG **/
+/** DEBUG *****************************************************************************************/
 
 #debug { // div
     #x-axis { // div
@@ -49,7 +49,7 @@ body {
     }
 }
 
-/** TRANSITION **/
+/** TRANSITION ************************************************************************************/
 
 #transition { // div
     background-color: $color-black;
@@ -59,7 +59,7 @@ body {
     z-index: 100;
 }
 
-/** STAGE **/
+/** STAGE *****************************************************************************************/
 
 #stage { // div
     overflow: hidden;
@@ -224,7 +224,7 @@ body {
     }
 }
 
-/** MODALS **/
+/** MODALS ****************************************************************************************/
 
 #modals { // div
     position: relative;
@@ -263,8 +263,27 @@ body {
             }
         }
 
+        .icon {
+            bottom: 0;
+            position: absolute;
+            right: 0;
+        }
+
         &.dialogue {
 
         }
+    }
+}
+
+/** ICONS *****************************************************************************************/
+
+.icon { // div
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    &.continue {
+        background-image: url(../img/icon-continue.gif);
+        height: 16px;
+        width: 16px;
     }
 }
