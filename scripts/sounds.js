@@ -3,9 +3,11 @@
 
 function Sounds () {
     this.fx = {
+        bip         : new Audio('../sounds/bip.wav'),
         bump        : new Audio('../sounds/bump.wav'),
         door        : new Audio('../sounds/door.wav'),
-        enter       : new Audio('../sounds/enter.wav')
+        enter       : new Audio('../sounds/enter.wav'),
+        error       : new Audio('../sounds/error.wav')
     }
 
     this.music = {
