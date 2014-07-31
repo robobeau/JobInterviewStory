@@ -104,7 +104,8 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "music":"townTheme"
+     "music":"shadesOfRed",
+     "musicVol":"0.25"
     },
  "tileheight":32,
  "tilesets":[

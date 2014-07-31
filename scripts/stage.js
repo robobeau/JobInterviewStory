@@ -104,8 +104,6 @@ function Stage () {
         $.stage.playersMap      = [];
         $.stage.portalsMap      = [];
 
-        // $.sounds.fade($.sounds.currentMusic, 0);
-
         $('.npc').each(function (index, element) {
             $(element).npc('destroy');
         });
@@ -264,8 +262,10 @@ function Stage () {
                 $.stage.center();
 
                 if (data.properties.music && $.sounds.currentMusic != $.sounds.music[data.properties.music]) {
-                    // $.sounds.changeMusic($.sounds.music[data.properties.music], 0);
+                    $.sounds.changeMusic($.sounds.music[data.properties.music], 0);
                 }
+
+                $.sounds.fade($.sounds.currentMusic, data.properties.musicVol);
 
                 transition.animate({
                     opacity: 0

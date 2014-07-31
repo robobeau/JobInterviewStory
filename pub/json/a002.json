@@ -86,7 +86,8 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "music":"fieldTheme"
+     "music":"shadesOfRed",
+     "musicVol":"1"
     },
  "tileheight":32,
  "tilesets":[

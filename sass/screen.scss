@@ -34,7 +34,7 @@ body {
         position: fixed;
         top: 50%;
         width: 100%;
-        z-index: 1000;
+        z-index: 9999;
     }
 
     #y-axis { // div
@@ -45,7 +45,7 @@ body {
         position: fixed;
         top: 0px;
         width: 1px;
-        z-index: 1000;
+        z-index: 9999;
     }
 }
 
@@ -56,7 +56,7 @@ body {
     height: 100%;
     position: absolute;
     width: 100%;
-    z-index: 100;
+    z-index: 9999;
 }
 
 /** STAGE *****************************************************************************************/

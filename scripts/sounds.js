@@ -11,8 +11,7 @@ function Sounds () {
     }
 
     this.music = {
-        fieldTheme  : new Audio('../sounds/field-theme.mp3'),
-        townTheme   : new Audio('../sounds/town-theme.mp3')
+        shadesOfRed : new Audio('../sounds/Pokemon_Red_Version_Shades_of_Red_OC_ReMix.mp3')
     }
 
     this.currentMusic = '';
