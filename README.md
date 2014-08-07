@@ -35,7 +35,7 @@ cd your-project-folder-here
 npm install
 ```
 
-Run Grunt:
+Run Grunt in order to compile the newly installed third party vendor scripts:
 
 ```
 grunt
