@@ -30,26 +30,32 @@ function Game () {
      *
      */
     this.checkCollisions = function (object, direction) {
-        var objectCoord = $.game.getCoordinates(object),
+        var
+            objectCoord = $.game.getCoordinates(object),
             offsetL     = 0,
             offsetT     = 0;
 
         switch (direction) {
+
+            // Up
             case $.game.directions.up:
                 offsetT = -1;
 
                 break;
 
+            // Down
             case $.game.directions.down:
                 offsetT = 1;
 
                 break;
 
+            // Left
             case $.game.directions.left:
                 offsetL = -1;
 
                 break;
 
+            // Right
             case $.game.directions.right:
                 offsetL = 1;
 
@@ -106,6 +112,8 @@ function Game () {
             top             = objectPos.top;
 
         switch (direction) {
+
+            // Up
             case $.game.directions.up:
                 animateOptions = {
                     top: top - $.game.gridCellSize
@@ -113,6 +121,7 @@ function Game () {
 
                 break;
 
+            // Down
             case $.game.directions.down:
                 animateOptions = {
                     top: top + $.game.gridCellSize
@@ -120,6 +129,7 @@ function Game () {
 
                 break;
 
+            // Left
             case $.game.directions.left:
                 animateOptions = {
                     left: left - $.game.gridCellSize
@@ -127,6 +137,7 @@ function Game () {
 
                 break;
 
+            // Right
             case $.game.directions.right:
                 animateOptions = {
                     left: left + $.game.gridCellSize

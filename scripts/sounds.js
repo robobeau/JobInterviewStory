@@ -33,7 +33,8 @@ function Sounds () {
     }
 
     this.fade = function (sound, volume, callback) {
-        var offset  = 0.0001,
+        var
+            offset  = 0.0001,
             steps   = Math.abs(sound.volume - volume) / 0.0001;
 
         if (sound.volume > volume) {

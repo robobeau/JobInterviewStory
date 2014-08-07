@@ -1,5 +1,5 @@
 
-/** MODAL WINDOWS **/
+/** MODAL WINDOWS *********************************************************************************/
 
 function Modals () {
     this.activeModal    = '';
@@ -29,26 +29,24 @@ function Modals () {
         }
 
         // Shift
-
         if ($.game.pressedKeys[16]) {
 
         }
 
         // Spacebar, Enter
-
         if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
             $.modals.allowPress = false;
 
             switch (true) {
                 case (activeElement.is('li')) :
-                    var choice = Dialogues[dialogue].choices[activeElement.index()];
+                    var choice = Dialogue[dialogue].choices[activeElement.index()];
 
                     if (choice.action) {
                         choice.action();
                     }
 
                     if (choice.goTo) {
-                        return modal.modal('populate', choice.goTo, Dialogues[choice.goTo]);
+                        return modal.modal('populate', choice.goTo, Dialogue[choice.goTo]);
                     }
 
                     break;
@@ -60,11 +58,11 @@ function Modals () {
                         return;
                     }
 
-                    if (Dialogues[dialogue].goTo) {
-                        modal.modal('populate', Dialogues[dialogue].goTo, Dialogues[Dialogues[dialogue].goTo]);
+                    if (Dialogue[dialogue].goTo) {
+                        modal.modal('populate', Dialogue[dialogue].goTo, Dialogue[Dialogue[dialogue].goTo]);
 
                         break;
-                    } else if (Dialogues[dialogue].end) {
+                    } else if (Dialogue[dialogue].end) {
                         modal.modal('destroy', $('#player'));
 
                         if (modal.data('modal')['npc']) {
@@ -81,7 +79,6 @@ function Modals () {
         switch (true) {
 
             // W, Up Arrow
-
             case (($.game.pressedKeys[87] || $.game.pressedKeys[38])) :
                 $.modals.allowPress = false;
 
@@ -95,7 +92,6 @@ function Modals () {
                 break;
 
             // S, Down Arrow
-
             case (($.game.pressedKeys[83] || $.game.pressedKeys[40])) :
                 $.modals.allowPress = false;
 
@@ -109,14 +105,12 @@ function Modals () {
                 break;
 
             // A, Left Arrow
-
             case (($.game.pressedKeys[65] || $.game.pressedKeys[37])) :
                 $.modals.allowPress = false;
 
                 break;
 
             // D, Right Arrow
-
             case (($.game.pressedKeys[68] || $.game.pressedKeys[39])) :
                 $.modals.allowPress = false;
 
@@ -221,10 +215,10 @@ function Modals () {
      */
     this.populate = function (dialogue) {
         var
-            emote   = Dialogues[dialogue].emote,
+            emote   = Dialogue[dialogue].emote,
             modal   = $(this),
             npc     = $.game.activeNPC,
-            type    = Dialogues[dialogue].type;
+            type    = Dialogue[dialogue].type;
 
         if (npc && emote) {
             npc.npc('emote', emote);
@@ -233,10 +227,12 @@ function Modals () {
         modal.data('modal')['dialogue'] = dialogue;
 
         switch (type) {
+
+            // Choice
             case 'choice':
                 var choices = '<ul class="choice">';
 
-                $.each(Dialogues[dialogue].choices, function (index, value) {
+                $.each(Dialogue[dialogue].choices, function (index, value) {
                     choices += '<li tabindex="0">' + value.label + '</li>'
                 });
 
@@ -246,12 +242,13 @@ function Modals () {
 
                 break;
 
+            // Dialogue
             case 'dialogue':
                 var
                     counter     = 0,
                     interval    = setInterval(function () {
                         if ($.modals.cancelTyping) {
-                            modal.append(Dialogues[dialogue].text.substr(counter, Dialogues[dialogue].text.length));
+                            modal.append(Dialogue[dialogue].text.substr(counter, Dialogue[dialogue].text.length));
 
                             $.modals.cancelTyping   = false;
                             $.modals.typing         = false;
@@ -263,13 +260,13 @@ function Modals () {
                             return;
                         };
 
-                        modal.append(Dialogues[dialogue].text.charAt(counter));
+                        modal.append(Dialogue[dialogue].text.charAt(counter));
 
                         $.sounds.fx.bip.play();
 
                         counter++;
 
-                        if (counter >= Dialogues[dialogue].text.length) {
+                        if (counter >= Dialogue[dialogue].text.length) {
                             $.modals.typing = false;
 
                             modal.append($.modals.continueIcon);
@@ -286,8 +283,8 @@ function Modals () {
 
                 modal.trigger('focus');
 
-                if (Dialogues[dialogue].action) {
-                    Dialogues[dialogue].action();
+                if (Dialogue[dialogue].action) {
+                    Dialogue[dialogue].action();
                 }
 
                 break;

@@ -1,5 +1,5 @@
 
-/** PLAYER **/
+/** PLAYER ****************************************************************************************/
 
 function Player () {
     this.allowMove          = true;
@@ -29,13 +29,11 @@ function Player () {
         player.data('player')['speedMultiplier'] = 1;
 
         // Shift
-
         if ($.game.pressedKeys[16]) {
             player.data('player')['speedMultiplier'] = 2;
         }
 
         // Spacebar, Enter
-
         if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
             var collision = $.game.checkCollisions(player, player.data('player')['direction']);
 
@@ -59,7 +57,6 @@ function Player () {
         switch (true) {
 
             // W, Up Arrow
-
             case (($.game.pressedKeys[87] || $.game.pressedKeys[38])) :
                 var direction = player.data('player')['direction'] = $.game.directions.up;
 
@@ -68,7 +65,6 @@ function Player () {
                 break;
 
             // S, Down Arrow
-
             case (($.game.pressedKeys[83] || $.game.pressedKeys[40])) :
                 var direction = player.data('player')['direction'] = $.game.directions.down;
 
@@ -77,7 +73,6 @@ function Player () {
                 break;
 
             // A, Left Arrow
-
             case (($.game.pressedKeys[65] || $.game.pressedKeys[37])) :
                 var direction = player.data('player')['direction'] = $.game.directions.left;
 
@@ -86,7 +81,6 @@ function Player () {
                 break;
 
             // D, Right Arrow
-
             case (($.game.pressedKeys[68] || $.game.pressedKeys[39])) :
                 var direction = player.data('player')['direction'] = $.game.directions.right;
 
@@ -149,6 +143,8 @@ function Player () {
 
             if (collision) {
                 switch (true) {
+
+                    // Not Doorway or Stairs
                     case (collision) :
                         playerSprite.removeClass('walking');
 
@@ -156,6 +152,7 @@ function Player () {
 
                         break;
 
+                    // Doorway
                     case (collision.is('.doorway')) :
                         player.data('player')['allowMove'] = false;
 
@@ -179,6 +176,7 @@ function Player () {
 
                         break;
 
+                    // Stairs
                     case (collision.is('.stairs')) :
                         player.data('player')['allowMove'] = false;
 
@@ -216,30 +214,36 @@ function Player () {
      *
      */
     this.useStairs = function (direction, callback) {
-        var player      = $(this),
+        var
+            player      = $(this),
             playerPos   = player.position(),
             offsetL     = 0,
             offsetT     = 0;
 
         switch (direction) {
+
+            // Down & Left
             case 'dl':
                 offsetL = -32;
-                offsetT = 0;
+                offsetT = 0; // Player clips through the stairs if set to 32
 
                 break;
 
+            // Down & Right
             case 'dr':
                 offsetL = 32;
                 offsetT = 32;
 
                 break;
 
+            // Up & Left
             case 'ul':
                 offsetL = -32;
                 offsetT = -32;
 
                 break;
 
+            // Up & Right
             case 'ur':
                 offsetL = 32;
                 offsetT = -32;

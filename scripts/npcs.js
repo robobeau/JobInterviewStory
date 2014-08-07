@@ -1,5 +1,5 @@
 
-/** NPCS **/
+/** NPCS ******************************************************************************************/
 
 function NPC () {
     this.dialogue       = 'd000';
@@ -67,7 +67,8 @@ function NPC () {
      *
      */
     this.emote = function (emotion) {
-        var npc     = $(this),
+        var
+            npc     = $(this),
             emote   = npc.find('.emote');
 
         if (emote.length === 0) {

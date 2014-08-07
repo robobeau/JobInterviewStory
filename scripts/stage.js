@@ -1,5 +1,5 @@
 
-/** STAGE **/
+/** STAGE *****************************************************************************************/
 
 function Stage () {
     this.collisionsMap  = [];
@@ -17,7 +17,8 @@ function Stage () {
      *
      */
     this.center = function () {
-        var left        = 0,
+        var
+            left        = 0,
             player      = $('#player'),
             playerPos   = player.position(),
             stage       = $('#stage'),
@@ -52,13 +53,11 @@ function Stage () {
      */
     this.checkButtons = function () {
         // Shift
-
         if ($.game.pressedKeys[16]) {
 
         }
 
         // Spacebar, Enter
-
         if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
 
         }
@@ -66,25 +65,21 @@ function Stage () {
         switch (true) {
 
             // W, Up Arrow
-
             case (($.game.pressedKeys[87] || $.game.pressedKeys[38])) :
 
                 break;
 
             // S, Down Arrow
-
             case (($.game.pressedKeys[83] || $.game.pressedKeys[40])) :
 
                 break;
 
             // A, Left Arrow
-
             case (($.game.pressedKeys[65] || $.game.pressedKeys[37])) :
 
                 break;
 
             // D, Right Arrow
-
             case (($.game.pressedKeys[68] || $.game.pressedKeys[39])) :
 
                 break;
@@ -124,7 +119,8 @@ function Stage () {
      *
      */
     this.drawCollisions = function (collisions) {
-        var counter = 0,
+        var
+            counter = 0,
             height  = collisions.height,
             row     = 0,
             width   = collisions.width;
@@ -137,11 +133,15 @@ function Stage () {
             $.stage.collisionsMap[row][counter] = value === 2;
 
             if (value !== 0) { // 0 is empty, 2 is a collision
-                $('#collisions').append('<div class="collision" style="left: ' + counter * $.game.gridCellSize + 'px; top: ' + row * $.game.gridCellSize + 'px"></div>');
+                $('#collisions').append(
+                    '<div class="collision" '
+                    + 'style="left: ' + (counter * $.game.gridCellSize) + 'px; top: ' + (row * $.game.gridCellSize) + 'px">'
+                    + '</div>'
+                );
             }
 
             counter += (index + 1) % width === 0 ? -counter : 1;
-            row += (index + 1) % width === 0 ? 1 : 0;
+            row     += (index + 1) % width === 0 ? 1 : 0;
         });
     }
 
@@ -162,7 +162,13 @@ function Stage () {
                     break;
 
                 case 'doorway':
-                    $('#objects').append('<div id="' + value.name + '" class="object doorway" data-area="' + value.properties.area + '" style="left: ' + value.x + 'px; top: ' + (value.y - $.game.gridCellSize) + 'px"></div>');
+                    $('#objects').append(
+                        '<div id="' + value.name + '" '
+                        + 'class="object doorway" '
+                        + 'data-area="' + value.properties.area + '" '
+                        + 'style="left: ' + value.x + 'px; top: ' + (value.y - $.game.gridCellSize) + 'px">'
+                        + '</div>'
+                    );
 
                     if (!$.stage.portalsMap[(value.y / $.game.gridCellSize) - 1]) {
                         $.stage.portalsMap[(value.y / $.game.gridCellSize) - 1] = {};
@@ -173,7 +179,13 @@ function Stage () {
                     break;
 
                 case 'stairs':
-                    $('#objects').append('<div id="' + value.name + '" class="object stairs" data-area="' + value.properties.area + '" data-direction="' + value.properties.direction + '" style="left: ' + value.x + 'px; top: ' + (value.y - $.game.gridCellSize) + 'px"></div>');
+                    $('#objects').append(
+                        '<div id="' + value.name + '" '
+                        + 'class="object stairs" data-area="' + value.properties.area + '" '
+                        + 'data-direction="' + value.properties.direction + '" '
+                        + 'style="left: ' + value.x + 'px; top: ' + (value.y - $.game.gridCellSize) + 'px">'
+                        + '</div>'
+                    );
 
                     if (!$.stage.portalsMap[(value.y / $.game.gridCellSize) - 1]) {
                         $.stage.portalsMap[(value.y / $.game.gridCellSize) - 1] = {};
@@ -190,21 +202,28 @@ function Stage () {
      *
      */
     this.drawTiles = function (tiles) {
-        var counter = 0,
+        var
+            counter = 0,
             height  = tiles.height,
             row     = 0,
             width   = tiles.width;
 
         $.each(tiles.data, function (index, value) {
-            var y   = Math.ceil(value / $.stage.tileMap.width),
+            var
+                y   = Math.ceil(value / $.stage.tileMap.width),
                 x   = (value - ((y - 1) * $.stage.tileMap.width));
 
             if (value !== 0) { // 0 is empty, therefore don't draw it
-                $('#tiles').append('<div class="tile t' + value + ' ' + tiles.name + '" style="background-position: -' + ((x * $.game.gridCellSize) - $.game.gridCellSize) + 'px -' + ((y * $.game.gridCellSize) - $.game.gridCellSize) + 'px; left: ' + (counter * $.game.gridCellSize) + 'px; top: ' + (row * $.game.gridCellSize) + 'px"></div>');
+                $('#tiles').append(
+                    '<div class="tile t' + value + ' ' + tiles.name + '" '
+                    + 'style="background-position: -' + ((x * $.game.gridCellSize) - $.game.gridCellSize) + 'px -' + ((y * $.game.gridCellSize) - $.game.gridCellSize) + 'px; '
+                    + 'left: ' + (counter * $.game.gridCellSize) + 'px; top: ' + (row * $.game.gridCellSize) + 'px">'
+                    + '</div>'
+                );
             }
 
             counter += (index + 1) % width === 0 ? -counter : 1;
-            row += (index + 1) % width === 0 ? 1 : 0;
+            row     += (index + 1) % width === 0 ? 1 : 0;
         });
     }
 
@@ -271,15 +290,16 @@ function Stage () {
                     opacity: 0
                 }, 180);
             }).fail(function (jqXHR, textStatus, errorThrown) {
-
+                // Do nothing
             }).always(function (data, textStatus, jqXHR) {
-
+                // Do nothing
             });
         });
     }
 
     this.scrollStage = function (direction) {
-        var player      = $('#player'),
+        var
+            player      = $('#player'),
             playerOff   = player.offset(),
             offset      = 0,
             scrollArea  = $('#scroll-area'),
@@ -292,6 +312,8 @@ function Stage () {
 
         if (($.stage.width > windowW || $.stage.height > windowH)) {
             switch (direction) {
+
+                // Up
                 case $.game.directions.up:
                     if ((playerOff.top + ($.game.gridCellSize / 2)) < (windowH / 2) && stageT < 0) {
                         stage.stop().animate({
@@ -301,6 +323,7 @@ function Stage () {
 
                     break;
 
+                // Down
                 case $.game.directions.down:
                     if ((playerOff.top + ($.game.gridCellSize / 2)) > (windowH / 2)
                         && Math.abs(stageT - windowH) < $.stage.height) {
@@ -311,6 +334,7 @@ function Stage () {
 
                     break;
 
+                // Left
                 case $.game.directions.left:
                     if ((playerOff.left + ($.game.gridCellSize / 2)) < (windowW / 2) && stageL < 0) {
                         stage.stop().animate({
@@ -320,6 +344,7 @@ function Stage () {
 
                     break;
 
+                // Right
                 case $.game.directions.right:
                     if ((playerOff.left + ($.game.gridCellSize / 2)) > (windowW / 2)
                         && Math.abs(stageL - windowW) < $.stage.width) {
