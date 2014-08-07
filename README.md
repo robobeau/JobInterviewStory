@@ -1,8 +1,8 @@
-#Shūshoku Mensetsu Monogatari
+#Shushoku Mensetsu Monogatari
 
 ## Job Interview Story
 
-Our protagonist, René, is on a perilous journey to save himself from the evil clutches of unemployment! It's up to you to guide him towards the sprawling downtown metropolis while avoiding the marketing dept., IT services people, and other various nerds and neckbeards out to ruin your day! Use your vast knowledge of Front End Development to take them down a notch and lead our hero to a successful job interview! Excelsior!
+Our protagonist, René, is on a perilous journey to save himself from the evil clutches of unemployment! It's up to you to guide him towards the sprawling downtown metropolis while avoiding the marketing dept., IT services people, and other various nerds and neckbeards out to ruin your day! Use your vast knowledge of Front End Development to take them down a notch and lead our hero to a successful job interview!
 
 ## Project Dependencies
 
@@ -28,9 +28,19 @@ Checkout the project:
 git clone git@github.com:robobeau/JobInterviewStory.git your-project-folder-here
 ```
 
-CD into the project folder and run **npm install** to install all the project dependencies.
+CD into the project folder and run **npm install** to install all the project dependencies:
 
 ```
 cd your-project-folder-here
 npm install
 ```
+
+Run Grunt:
+
+```
+grunt
+```
+
+The following assumes you're running some version of Apache:
+
+Opening the *index.html* file directly will result in all sorts of 404 errors, so you'll need to [create a Virtual Hosts entry](http://httpd.apache.org/docs/2.2/vhosts/examples.html), and [modify your OS's Hosts file](http://www.rackspace.com/knowledge_center/article/how-do-i-modify-my-hosts-file), accordingly.
