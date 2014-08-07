@@ -49,6 +49,19 @@ body {
     }
 }
 
+/** LOADING ***************************************************************************************/
+
+#loading { // div
+    bottom: 20px;
+    color: $color-white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    position: absolute;
+    right: 20px;
+    z-index: 10000;
+}
+
 /** TRANSITION ************************************************************************************/
 
 #transition { // div

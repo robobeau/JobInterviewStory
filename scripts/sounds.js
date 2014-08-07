@@ -2,19 +2,17 @@
 /** SOUNDS ****************************************************************************************/
 
 function Sounds () {
-    this.fx = {
-        bip         : new Audio('../sounds/bip.wav'),
-        bump        : new Audio('../sounds/bump.wav'),
-        door        : new Audio('../sounds/door.wav'),
-        enter       : new Audio('../sounds/enter.wav'),
-        error       : new Audio('../sounds/error.wav')
+    this.currentMusic   = '';
+    this.fx             = {
+        bip     : new Audio($.game.domain + '/sounds/bip.wav'),
+        bump    : new Audio($.game.domain + '/sounds/bump.wav'),
+        door    : new Audio($.game.domain + '/sounds/door.wav'),
+        enter   : new Audio($.game.domain + '/sounds/enter.wav'),
+        error   : new Audio($.game.domain + '/sounds/error.wav')
     }
-
-    this.music = {
-        shadesOfRed : new Audio('../sounds/Pokemon_Red_Version_Shades_of_Red_OC_ReMix.mp3')
+    this.music          = {
+        shadesOfRed : $.game.domain + '/sounds/Pokemon_Red_Version_Shades_of_Red_OC_ReMix.mp3'
     }
-
-    this.currentMusic = '';
 
     this.changeMusic = function (newMusic) {
         if ($.sounds.currentMusic) {
@@ -23,13 +21,11 @@ function Sounds () {
             });
         }
 
-        $.sounds.currentMusic = newMusic;
+        $.game.loading = true;
 
-        $.sounds.currentMusic.currentTime = 0;
-        $.sounds.currentMusic.loop = true;
-        $.sounds.currentMusic.play();
+        $.sounds.currentMusic = new Audio(newMusic);
 
-        $.sounds.fade($.sounds.currentMusic, 1);
+        $.sounds.currentMusic.canplaythrough = $.sounds.playMusic();
     }
 
     this.fade = function (sound, volume, callback) {
@@ -48,6 +44,26 @@ function Sounds () {
         if (callback) {
             callback();
         }
+    }
+
+    this.playMusic = function () {
+        $.game.loading = false;
+
+        $.sounds.currentMusic.loop = true;
+
+        $.sounds.currentMusic.play();
+
+        $.modals.create(
+            {
+                height  : 20,
+                width   : 320
+            },
+            {
+                left    : 20,
+                top     : $(window).outerHeight() - 72
+            },
+            'm000'
+        );
     }
 }
 

@@ -102,7 +102,7 @@ function NPC () {
             return;
         }
 
-        $.npc.talking                    = true;
+        $.npc.talking                   = true;
         npc.data('npc')['wanderPause']  = true;
 
         $.game.activeNPC = npc;

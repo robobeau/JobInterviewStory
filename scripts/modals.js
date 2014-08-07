@@ -145,7 +145,10 @@ function Modals () {
 
         modal.data('modal', new Modals());
         modal.data('modal')['id']   = id;
-        modal.data('modal')['npc']  = npc ? npc : '';
+
+        if (npc) {
+            modal.data('modal')['npc']  = npc ? npc : '';
+        }
 
         modal.css({
             left    : position.left + 'px',
@@ -288,6 +291,17 @@ function Modals () {
                 }
 
                 break;
+
+            // Notification
+            case 'notification':
+                modal.append(Dialogue[dialogue].text);
+
+                setTimeout(function () {
+                    modal.modal('destroy', null);
+                }, 5000);
+
+                break;
+
         }
     }
 }

@@ -59,8 +59,21 @@ body {
   z-index: 9999;
 }
 
-/** TRANSITION ************************************************************************************/
+/** LOADING ***************************************************************************************/
 /* line 54, ../../sass/screen.scss */
+#loading {
+  bottom: 20px;
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  position: absolute;
+  right: 20px;
+  z-index: 10000;
+}
+
+/** TRANSITION ************************************************************************************/
+/* line 67, ../../sass/screen.scss */
 #transition {
   background-color: black;
   height: 100%;
@@ -70,17 +83,17 @@ body {
 }
 
 /** STAGE *****************************************************************************************/
-/* line 64, ../../sass/screen.scss */
+/* line 77, ../../sass/screen.scss */
 #stage {
   overflow: hidden;
   position: absolute;
 }
-/* line 70, ../../sass/screen.scss */
+/* line 83, ../../sass/screen.scss */
 #stage #collisions {
   position: relative;
   z-index: 2;
 }
-/* line 74, ../../sass/screen.scss */
+/* line 87, ../../sass/screen.scss */
 #stage #collisions .collision {
   background-color: red;
   height: 32px;
@@ -88,19 +101,19 @@ body {
   position: absolute;
   width: 32px;
 }
-/* line 85, ../../sass/screen.scss */
+/* line 98, ../../sass/screen.scss */
 #stage #objects {
   position: relative;
   z-index: 1;
 }
-/* line 89, ../../sass/screen.scss */
+/* line 102, ../../sass/screen.scss */
 #stage #objects #player {
   background-color: rgba(255, 0, 0, 0);
   height: 32px;
   position: absolute;
   width: 32px;
 }
-/* line 95, ../../sass/screen.scss */
+/* line 108, ../../sass/screen.scss */
 #stage #objects #player #player-sprite {
   background-image: url(../img/rene-down.gif);
   background-repeat: no-repeat;
@@ -110,23 +123,23 @@ body {
   top: -8px;
   width: 32px;
 }
-/* line 104, ../../sass/screen.scss */
+/* line 117, ../../sass/screen.scss */
 #stage #objects #player #player-sprite.down {
   background-image: url(../img/rene-down.gif);
 }
-/* line 107, ../../sass/screen.scss */
+/* line 120, ../../sass/screen.scss */
 #stage #objects #player #player-sprite.down.walking {
   background-image: url(../img/rene-down-walking.gif);
 }
-/* line 112, ../../sass/screen.scss */
+/* line 125, ../../sass/screen.scss */
 #stage #objects #player #player-sprite.left {
   background-image: url(../img/rene-left.gif);
 }
-/* line 115, ../../sass/screen.scss */
+/* line 128, ../../sass/screen.scss */
 #stage #objects #player #player-sprite.left.walking {
   background-image: url(../img/rene-left-walking.gif);
 }
-/* line 120, ../../sass/screen.scss */
+/* line 133, ../../sass/screen.scss */
 #stage #objects #player #player-sprite.right {
   -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
@@ -135,26 +148,26 @@ body {
   transform: scaleX(-1);
   background-image: url(../img/rene-left.gif);
 }
-/* line 129, ../../sass/screen.scss */
+/* line 142, ../../sass/screen.scss */
 #stage #objects #player #player-sprite.right.walking {
   background-image: url(../img/rene-left-walking.gif);
 }
-/* line 134, ../../sass/screen.scss */
+/* line 147, ../../sass/screen.scss */
 #stage #objects #player #player-sprite.up {
   background-image: url(../img/rene-up.gif);
 }
-/* line 137, ../../sass/screen.scss */
+/* line 150, ../../sass/screen.scss */
 #stage #objects #player #player-sprite.up.walking {
   background-image: url(../img/rene-up-walking.gif);
 }
-/* line 144, ../../sass/screen.scss */
+/* line 157, ../../sass/screen.scss */
 #stage #objects .npc {
   background-color: rgba(255, 0, 0, 0);
   height: 32px;
   position: absolute;
   width: 32px;
 }
-/* line 150, ../../sass/screen.scss */
+/* line 163, ../../sass/screen.scss */
 #stage #objects .npc .npc-sprite {
   background-image: url(../img/dude.gif);
   background-repeat: no-repeat;
@@ -164,7 +177,7 @@ body {
   top: -8px;
   width: 32px;
 }
-/* line 160, ../../sass/screen.scss */
+/* line 173, ../../sass/screen.scss */
 #stage #objects .npc .emote {
   background-position: left top;
   background-repeat: no-repeat;
@@ -173,50 +186,50 @@ body {
   top: -32px;
   width: 30px;
 }
-/* line 168, ../../sass/screen.scss */
+/* line 181, ../../sass/screen.scss */
 #stage #objects .npc .emote.happiness {
   background-image: url(../img/emote-happiness.gif);
 }
-/* line 172, ../../sass/screen.scss */
+/* line 185, ../../sass/screen.scss */
 #stage #objects .npc .emote.love {
   background-image: url(../img/emote-love.gif);
 }
-/* line 176, ../../sass/screen.scss */
+/* line 189, ../../sass/screen.scss */
 #stage #objects .npc .emote.question {
   background-image: url(../img/emote-question.gif);
 }
-/* line 180, ../../sass/screen.scss */
+/* line 193, ../../sass/screen.scss */
 #stage #objects .npc .emote.sadness {
   background-image: url(../img/emote-sadness.gif);
 }
-/* line 184, ../../sass/screen.scss */
+/* line 197, ../../sass/screen.scss */
 #stage #objects .npc .emote.talkAngry {
   background-image: url(../img/emote-talk-angry.gif);
 }
-/* line 188, ../../sass/screen.scss */
+/* line 201, ../../sass/screen.scss */
 #stage #objects .npc .emote.talkHappy {
   background-image: url(../img/emote-talk-happy.gif);
 }
-/* line 192, ../../sass/screen.scss */
+/* line 205, ../../sass/screen.scss */
 #stage #objects .npc .emote.think {
   background-image: url(../img/emote-think.gif);
 }
-/* line 198, ../../sass/screen.scss */
+/* line 211, ../../sass/screen.scss */
 #stage #objects .object {
   height: 32px;
   position: absolute;
   width: 32px;
 }
-/* line 204, ../../sass/screen.scss */
+/* line 217, ../../sass/screen.scss */
 #stage #objects .object.doorway, #stage #objects .object.stairs {
   background-color: lime;
   opacity: 0;
 }
-/* line 213, ../../sass/screen.scss */
+/* line 226, ../../sass/screen.scss */
 #stage #tiles {
   position: relative;
 }
-/* line 216, ../../sass/screen.scss */
+/* line 229, ../../sass/screen.scss */
 #stage #tiles .tile {
   background-image: url(../img/tile-map.gif);
   background-repeat: no-repeat;
@@ -227,12 +240,12 @@ body {
 }
 
 /** MODALS ****************************************************************************************/
-/* line 229, ../../sass/screen.scss */
+/* line 242, ../../sass/screen.scss */
 #modals {
   position: relative;
   z-index: 2;
 }
-/* line 233, ../../sass/screen.scss */
+/* line 246, ../../sass/screen.scss */
 #modals .modal {
   font-size: 16px;
   font-size: 1rem;
@@ -250,17 +263,17 @@ body {
   position: absolute;
   width: 0px;
 }
-/* line 249, ../../sass/screen.scss */
+/* line 262, ../../sass/screen.scss */
 #modals .modal .choice {
   list-style: none outside none;
   margin: 0px;
   padding: 0px;
 }
-/* line 254, ../../sass/screen.scss */
+/* line 267, ../../sass/screen.scss */
 #modals .modal .choice li {
   padding: 5px;
 }
-/* line 257, ../../sass/screen.scss */
+/* line 270, ../../sass/screen.scss */
 #modals .modal .choice li:focus {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -270,7 +283,7 @@ body {
   background-color: #706880;
   color: white;
 }
-/* line 266, ../../sass/screen.scss */
+/* line 279, ../../sass/screen.scss */
 #modals .modal .icon {
   bottom: 0;
   position: absolute;
@@ -278,12 +291,12 @@ body {
 }
 
 /** ICONS *****************************************************************************************/
-/* line 280, ../../sass/screen.scss */
+/* line 293, ../../sass/screen.scss */
 .icon {
   background-position: center center;
   background-repeat: no-repeat;
 }
-/* line 284, ../../sass/screen.scss */
+/* line 297, ../../sass/screen.scss */
 .icon.continue {
   background-image: url(../img/icon-continue.gif);
   height: 16px;

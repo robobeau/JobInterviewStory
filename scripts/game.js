@@ -2,20 +2,23 @@
 /** GAME ******************************************************************************************/
 
 function Game () {
-    this.activeNPC           = '';
-    this.currentArea         = 'a000';
-    this.currentDirection    = 'down';
-    this.currentFocus        = '';
-    this.directions          = {
+    this.activeNPC          = '';
+    this.currentArea        = 'a000';
+    this.currentDirection   = 'down';
+    this.currentFocus       = '';
+    this.domain             = location.protocol + '//' + location.host;
+    this.directions         = {
         up      : 'up',
         down    : 'down',
         left    : 'left',
         right   : 'right'
     }
-    this.fps                 = 60;
-    this.gridCellSize        = 32;
-    this.pressedKeys         = [];
-    this.prevArea            = 'a000';
+    this.fps                = 60;
+    this.gridCellSize       = 32;
+    this.loading            = 0;
+    this.preloading         = false;
+    this.pressedKeys        = [];
+    this.prevArea           = 'a000';
 
     /**
      *
@@ -164,6 +167,67 @@ function Game () {
     /**
      *
      */
+    this.preload = function () {
+        $.game.preloading = true;
+
+        if ($('#loading').length == 0) {
+            $('body').append('<div id="loading">Loading...</div>');
+        }
+
+        var preload = [
+            // Tile Map
+            '../img/tile-map.gif',
+
+            // Player
+            '../img/rene-down.gif',
+            '../img/rene-down-walking.gif',
+            '../img/rene-left.gif',
+            '../img/rene-left-walking.gif',
+            '../img/rene-up.gif',
+            '../img/rene-up-walking.gif',
+
+            // NPC
+            '../img/dude.gif',
+
+            // Modals
+            '../img/modal-border.gif',
+
+            // Emotes
+            '../img/emote-happiness.gif',
+            '../img/emote-love.gif',
+            '../img/emote-question.gif',
+            '../img/emote-sadness.gif',
+            '../img/emote-talk-angry.gif',
+            '../img/emote-talk-happy.gif',
+            '../img/emote-think.gif',
+
+            // Icons
+            '../img/icon-continue.gif'
+        ];
+
+        $.each(preload, function (index, value) {
+            $.game.loading = true;
+
+            $.ajax({
+                type    : 'GET',
+                url     : value
+            }).done(function () {
+                if (index == (preload.length - 1)) {
+                    $.game.loading = false;
+
+                    $.game.start();
+                }
+            }).fail(function () {
+                // Do nothing
+            }).always(function () {
+                // Do nothing
+            });
+        });
+    }
+
+    /**
+     *
+     */
     this.start = function () {
         setInterval(function () {
             $.game.update();
@@ -176,6 +240,14 @@ function Game () {
      *
      */
     this.update = function () {
+        if ($.game.loading) {
+            if ($('#loading').length == 0) {
+                $('body').append('<div id="loading">Loading...</div>');
+            }
+        } else {
+            $('#loading').remove();
+        }
+
         if ($('.modal').length > 0) {
             $.modals.checkButtons();
         }
@@ -226,5 +298,5 @@ $(document).on('keyup', function (event) {
 
 //
 $(document).on('ready', function () {
-    $.game.start();
+    $.game.preload();
 });

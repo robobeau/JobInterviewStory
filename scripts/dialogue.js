@@ -2,6 +2,14 @@
 /** DIALOGUE **************************************************************************************/
 
 Dialogue = {
+
+    // Music
+    'm000': {
+        type        : 'notification',
+        text        : 'Shades of Red'
+    },
+
+    // Dialogue
     'd000': {
         type        : 'dialogue',
         text        : 'Hello, world!',

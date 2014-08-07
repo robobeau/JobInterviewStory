@@ -238,8 +238,10 @@ function Stage () {
         }, 180, function () {
             $.stage.cleanup();
 
+            $.game.loading = true;
+
             $.ajax({
-                cache       : false,
+                // cache       : false, // For development purposes
                 dataType    : 'json',
                 type        : 'GET',
                 url         : '../json/'+ stage +'.json',
@@ -280,8 +282,10 @@ function Stage () {
 
                 $.stage.center();
 
-                if (data.properties.music && $.sounds.currentMusic != $.sounds.music[data.properties.music]) {
-                    $.sounds.changeMusic($.sounds.music[data.properties.music], 0);
+                $.game.loading = false;
+
+                if (data.properties.music && $.sounds.currentMusic.src != $.sounds.music[data.properties.music]) {
+                    $.sounds.changeMusic($.sounds.music[data.properties.music]);
                 }
 
                 $.sounds.fade($.sounds.currentMusic, data.properties.musicVol);
