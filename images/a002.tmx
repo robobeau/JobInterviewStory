@@ -9,22 +9,22 @@
  </tileset>
  <layer name="tiles1" width="70" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt200SATEQhuGeyWGw9nMjboIjKWusGPcw9naUTpGiVJjZqDR5F191dXb58mxTiches9XsNBX7x/2suWS0t+2jrxlktDf1M9ZMMpxNXnyPUycyc7c+Q69++rN55PwfZhsvC737KNKrP1s6G++bwovvZRjpNPRi4X1TeVkVImvN6T59NgVeOqVI9yW9Ei/ves3Zy0HvXj+5qN0jx4y9WHg/i14svB9ebEy84AUveMELXixMvOAFL3jBC14sTLzgBS94wQteLEy84AUveMELXixMvOAFL3jBC14sTLzgBS/f9xL20GMue+r/O7++p/4PlPr/0RWunJcb
+   eJzt280OwVAQhuGhF4O1ckfcCS5JrLHycx/Y2xHTMGnTnP4sSEf7LibTcU4k/c7T5TmJyFnroHXUOjGXzg+tZ4fmunmMteIOzVX5zLTmHexVXpIcF5HIsqBWJWv5fXHmXLz3Ol7W+k7TQK7Jb5voPU8Kcrf/s31NO/imF8sln6nlEn9yCeVu3+umpV62PZGd1v3Tk9r3Ugehddszb7GXQV9kmKtRP3UQWrc9cYu9FOVa10EbvVz0na6Z875Gad0yz6H17D4PDr7pxcP5efTi4fzw4qPjBS94wQte8OKh4wUveMELXvDioeMFL3jBC17w4qHjBS94wQte8OKh4wUveMELXvDioeMFL3j5vRebLceuzE3f3/n3uen7QE3fP3oBTDSobQ==
   </data>
  </layer>
  <layer name="tiles2" width="70" height="50">
   <data encoding="base64" compression="zlib">
-   eJztzskJgEAUBcFJQDEjl2w8uuSP72AMfhmqoO/dGsD3hjS+TcUvfzKnJa1pq135lSOd6Up38QvQl716AAAAAAAAAAAAAAA68wCnLANv
+   eJzt0DmKAmEUhdG/KrdxL6KGre7FKVR7O04rctpQ38BErEwoBc+BL3rJ45YC0L5O+rnXbbhvq1J2aZ8O6Vi1+9+7/KZRGqdJw/2UHc7pkq7p9iW7rNI6bdJfw71Xl1KnfhqkYd3uf59qmh1maZ4WaWkXeLJ88Q4AAAAAAAAAAAAAPPoHw3EOAA==
   </data>
  </layer>
  <layer name="tiles3" width="70" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt0LENACAMA7B+xbFwLFxAx1ZgSxmyRYkAAOB1o3oAAAAAAAAAAAAA0No8WR/3TPW+bn/AzQZiniXh
+   eJzt2rkNgEAMBEBfVRTFVxAUi2MCCAh8wIy0geVk5dgRQKWxRUyZObNk1lbdqF9bZq8uAfBSw8M9AAAAAAAAAAAA8G3nf+2/zXeq+/V2D7hyAJ1pKXU=
   </data>
  </layer>
  <layer name="collisions" width="70" height="50" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzt2ssKgzAUQEHx/z+6mxaKPaiBgq8ZCOEuAvFs3GSaGDG/11PmLUff7+i5jPS7m7Vvn7/2tXVHe7t89mUPXX77bJ2/spEuo+evTJemSxv9Hy3nJ3d5Il2aLk2XpkvTpenSdGm6NF2aLk2XpkvTpenSdGm6NF2aLk2XpkvTpenSdGm6NF2aLk2XpkvTpenSdGm6NF2aLm3PW/h/vre/2rzl6PudrQeseQHXdwHl
+   eJzt2kEKgCAUANHw/odukyAyakag9edBiFSgQ9Sm49CMdB1R5iOr17d6Tmb6/U1v76kY3zi+5G6XPNb7pGcwYpc8trqU56N0mb3/yXW7sAuzC5v9HtXz1rs4wvslIrswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLuw0d7rf+OizUdWr2+3HlLPCY2pAi8=
   </data>
  </layer>
  <objectgroup name="objects" width="70" height="50">
