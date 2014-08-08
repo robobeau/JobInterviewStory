@@ -84,6 +84,10 @@ a {
         position: absolute;
         width: 0px;
 
+        a {
+            text-decoration: none;
+        }
+
         .choice { // ul
             list-style: none outside none;
             margin: 0px;
@@ -163,7 +167,6 @@ a {
     position: absolute;
 
     // Collision
-
     #collisions { // div
         position: relative;
         z-index: 2;
@@ -178,7 +181,6 @@ a {
     }
 
     // Objects
-
     #objects {
         position: relative;
         z-index: 1;
@@ -306,7 +308,6 @@ a {
     }
 
     // Tiles
-
     #tiles {
         position: relative;
 

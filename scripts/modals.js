@@ -7,6 +7,7 @@ function Modals () {
     this.cancelTyping   = false;
     this.continueIcon   = '<div class="icon continue"></div>'
     this.id             = 0;
+    this.modalCounter   = 0;
     this.npc            = '';
     this.typing         = false;
 
@@ -127,42 +128,54 @@ function Modals () {
      */
     this.create = function (size, position, dialogue, npc) {
         var
-            modalCounter    = $('.modal').length,
-            modal           = '',
-            id              = modalCounter + '';
+            delay   = 0,
+            modal   = '',
+            id      = $.modals.modalCounter + '';
 
         $.modals.allowPress = false;
 
-        while (id.length < (3 - ((modalCounter + '')).length + 1)) {
+        while (id.length < (3 - (($.modals.modalCounter + '')).length + 1)) {
             id = '0' + id;
         }
 
         id = 'm' + id;
 
-        $('#modals').append('<div id="' + id + '" class="modal ' + dialogue.type + '" tabindex="0"></div>');
+        if (dialogue.type == 'notification') {
+            delay = 180;
 
-        modal = $('#' + id);
-
-        modal.data('modal', new Modals());
-        modal.data('modal')['id']   = id;
-
-        if (npc) {
-            modal.data('modal')['npc']  = npc ? npc : '';
+            $('.modal.notification').not(modal).each(function (index, element) {
+                $(element).modal('destroy', null);
+            });
         }
 
-        modal.css({
-            left    : position.left,
-            top     : position.top
-        });
+        setTimeout(function () {
+            $('#modals').append('<div id="' + id + '" class="modal ' + dialogue.type + '" tabindex="0"></div>');
 
-        modal.animate({
-            height  : size.height,
-            width   : size.width
-        }, 180, function () {
-            modal.modal('populate', dialogue);
+            $.modals.modalCounter++;
 
-            $.modals.activeModal = modal;
-        });
+            modal = $('#' + id);
+
+            modal.data('modal', new Modals());
+            modal.data('modal')['id']   = id;
+
+            if (npc) {
+                modal.data('modal')['npc']  = npc ? npc : '';
+            }
+
+            modal.css({
+                left    : position.left,
+                top     : position.top
+            });
+
+            modal.animate({
+                height  : size.height,
+                width   : size.width
+            }, 180, function () {
+                modal.modal('populate', dialogue);
+
+                $.modals.activeModal = modal;
+            });
+        }, delay);
     },
 
     /**

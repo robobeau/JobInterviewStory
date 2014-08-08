@@ -12,7 +12,8 @@ function Sounds () {
         error   : new Audio($.game.domain + '/sounds/error.wav')
     }
     this.music          = {
-        shadesOfRed : $.game.domain + '/sounds/Pokemon_Red_Version_Shades_of_Red_OC_ReMix.mp3'
+        shadesOfRed : $.game.domain + '/sounds/Pokemon_Red_Version_Shades_of_Red_OC_ReMix.mp3',
+        wetDreams   : $.game.domain + '/sounds/Pokemon_Blue_Version_Wet_Dreams_OC_ReMix.mp3'
     }
 
     this.changeMusic = function (newMusic) {
@@ -56,12 +57,12 @@ function Sounds () {
 
         $.modals.create(
             {
-                height  : 20,
+                height  : 16,
                 width   : '25%'
             },
             {
                 left    : 20 + 3, // The 3 is half the border-image-outset value
-                top     : $(window).height() - 72 - 3 // The 3 is half the border-image-outset value
+                top     : $(window).height() - 68 - 3 // The 3 is half the border-image-outset value
             },
             Dialogue[$.sounds.currentMusicId]
         );
