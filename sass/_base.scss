@@ -3,13 +3,28 @@
 
 /** COLORS **/
 
-$color-alabaster    : #F8F8F8;
+// Blacks
 $color-black        : #000000;
-$color-green        : #00FF00;
 $color-mine-shaft   : #303030;
-$color-red          : #FF0000;
+
+// Blues
+$color-azure        : #3060A0;
 $color-rum          : #706880;
+$color-steel-blue   : #4880C0;
+
+// Greens
+$color-green        : #00FF00;
+
+// Reds
+$color-red          : #FF0000;
+
+// Whites
+$color-alabaster    : #F8F8F8;
 $color-white        : #FFFFFF;
+
+// Link Colors
+$link-color         : $color-steel-blue;
+$link-hover-color   : $color-azure;
 
 /** FONTS **/
 

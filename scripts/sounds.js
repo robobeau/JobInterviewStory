@@ -3,6 +3,7 @@
 
 function Sounds () {
     this.currentMusic   = '';
+    this.currentMusicId = '';
     this.fx             = {
         bip     : new Audio($.game.domain + '/sounds/bip.wav'),
         bump    : new Audio($.game.domain + '/sounds/bump.wav'),
@@ -23,7 +24,7 @@ function Sounds () {
 
         $.game.loading = true;
 
-        $.sounds.currentMusic = new Audio(newMusic);
+        $.sounds.currentMusic   = new Audio(newMusic);
 
         $.sounds.currentMusic.canplaythrough = $.sounds.playMusic();
     }
@@ -56,13 +57,13 @@ function Sounds () {
         $.modals.create(
             {
                 height  : 20,
-                width   : 320
+                width   : '25%'
             },
             {
-                left    : 20,
-                top     : $(window).outerHeight() - 72
+                left    : 20 + 3, // The 3 is half the border-image-outset value
+                top     : $(window).height() - 72 - 3 // The 3 is half the border-image-outset value
             },
-            'm000'
+            Dialogue[$.sounds.currentMusicId]
         );
     }
 }

@@ -2,7 +2,7 @@
 /** NPCS ******************************************************************************************/
 
 function NPC () {
-    this.dialogue       = 'd000';
+    this.dialogueId     = 'd000';
     this.id             = 0;
     this.talking        = false;
     this.wanderInterval = '';
@@ -19,8 +19,9 @@ function NPC () {
         npc = $('#' + data.name);
 
         npc.data('npc', new NPC());
-        npc.data('npc')['id']       = data.name;
-        npc.data('npc')['dialogue'] = data.properties.dialogue;
+
+        npc.data('npc')['id']           = data.name;
+        npc.data('npc')['dialogueId']   = data.properties.dialogue;
 
         npc.css({
             left    : data.x + 'px',

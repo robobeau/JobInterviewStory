@@ -39,14 +39,14 @@ function Modals () {
 
             switch (true) {
                 case (activeElement.is('li')) :
-                    var choice = Dialogue[dialogue].choices[activeElement.index()];
+                    var choice = dialogue.choices[activeElement.index()];
 
                     if (choice.action) {
                         choice.action();
                     }
 
                     if (choice.goTo) {
-                        return modal.modal('populate', choice.goTo, Dialogue[choice.goTo]);
+                        return modal.modal('populate', Dialogue[choice.goTo]);
                     }
 
                     break;
@@ -58,11 +58,11 @@ function Modals () {
                         return;
                     }
 
-                    if (Dialogue[dialogue].goTo) {
-                        modal.modal('populate', Dialogue[dialogue].goTo, Dialogue[Dialogue[dialogue].goTo]);
+                    if (dialogue.goTo) {
+                        modal.modal('populate', Dialogue[dialogue.goTo]);
 
                         break;
-                    } else if (Dialogue[dialogue].end) {
+                    } else if (dialogue.end) {
                         modal.modal('destroy', $('#player'));
 
                         if (modal.data('modal')['npc']) {
@@ -139,7 +139,7 @@ function Modals () {
 
         id = 'm' + id;
 
-        $('#modals').append('<div id="' + id + '" class="modal" tabindex="0"></div>');
+        $('#modals').append('<div id="' + id + '" class="modal ' + dialogue.type + '" tabindex="0"></div>');
 
         modal = $('#' + id);
 
@@ -151,13 +151,13 @@ function Modals () {
         }
 
         modal.css({
-            left    : position.left + 'px',
-            top     : position.top + 'px'
+            left    : position.left,
+            top     : position.top
         });
 
         modal.animate({
-            height  : size.height + 'px',
-            width   : size.width + 'px'
+            height  : size.height,
+            width   : size.width
         }, 180, function () {
             modal.modal('populate', dialogue);
 
@@ -218,10 +218,10 @@ function Modals () {
      */
     this.populate = function (dialogue) {
         var
-            emote   = Dialogue[dialogue].emote,
+            emote   = dialogue.emote,
             modal   = $(this),
             npc     = $.game.activeNPC,
-            type    = Dialogue[dialogue].type;
+            type    = dialogue.type;
 
         if (npc && emote) {
             npc.npc('emote', emote);
@@ -235,7 +235,7 @@ function Modals () {
             case 'choice':
                 var choices = '<ul class="choice">';
 
-                $.each(Dialogue[dialogue].choices, function (index, value) {
+                $.each(dialogue.choices, function (index, value) {
                     choices += '<li tabindex="0">' + value.label + '</li>'
                 });
 
@@ -251,7 +251,7 @@ function Modals () {
                     counter     = 0,
                     interval    = setInterval(function () {
                         if ($.modals.cancelTyping) {
-                            modal.append(Dialogue[dialogue].text.substr(counter, Dialogue[dialogue].text.length));
+                            modal.append(dialogue.text.substr(counter, dialogue.text.length));
 
                             $.modals.cancelTyping   = false;
                             $.modals.typing         = false;
@@ -263,13 +263,13 @@ function Modals () {
                             return;
                         };
 
-                        modal.append(Dialogue[dialogue].text.charAt(counter));
+                        modal.append(dialogue.text.charAt(counter));
 
                         $.sounds.fx.bip.play();
 
                         counter++;
 
-                        if (counter >= Dialogue[dialogue].text.length) {
+                        if (counter >= dialogue.text.length) {
                             $.modals.typing = false;
 
                             modal.append($.modals.continueIcon);
@@ -286,19 +286,19 @@ function Modals () {
 
                 modal.trigger('focus');
 
-                if (Dialogue[dialogue].action) {
-                    Dialogue[dialogue].action();
+                if (dialogue.action) {
+                    dialogue.action();
                 }
 
                 break;
 
             // Notification
             case 'notification':
-                modal.append(Dialogue[dialogue].text);
+                modal.append(dialogue.text);
 
                 setTimeout(function () {
                     modal.modal('destroy', null);
-                }, 5000);
+                }, 10000);
 
                 break;
 

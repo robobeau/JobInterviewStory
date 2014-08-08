@@ -108,7 +108,7 @@ function Stage () {
         });
 
         $('#collisions').html('');
-        $('#modals').html('');
+        // $('#modals').html('');
         $('#objects').html('');
         $('#tiles').html('');
 
@@ -285,6 +285,8 @@ function Stage () {
                 $.game.loading = false;
 
                 if (data.properties.music && $.sounds.currentMusic.src != $.sounds.music[data.properties.music]) {
+                    $.sounds.currentMusicId = data.properties.music;
+
                     $.sounds.changeMusic($.sounds.music[data.properties.music]);
                 }
 

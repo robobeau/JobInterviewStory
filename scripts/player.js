@@ -47,7 +47,7 @@ function Player () {
                         break;
 
                     case (collision.is('.npc')) :
-                        collision.npc('talk', collision.data('npc')['dialogue']);
+                        collision.npc('talk', Dialogue[collision.data('npc')['dialogueId']]);
 
                         break;
                 }

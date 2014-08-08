@@ -4,9 +4,9 @@
 Dialogue = {
 
     // Music
-    'm000': {
+    'shadesOfRed': {
         type        : 'notification',
-        text        : 'Shades of Red'
+        text        : '<a href="http://ocremix.org/remix/OCR02216" target="_blank">Shades of Red, by halc</a>'
     },
 
     // Dialogue

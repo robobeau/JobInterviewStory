@@ -23,6 +23,14 @@ body {
     position: relative;
 }
 
+a {
+    color: $link-color;
+
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+
 /** DEBUG *****************************************************************************************/
 
 #debug { // div
@@ -52,14 +60,90 @@ body {
 /** LOADING ***************************************************************************************/
 
 #loading { // div
+    @include font-size($window-font-size);
+    @include line-height($window-line-height);
+
     bottom: 20px;
     color: $color-white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 20px;
-    line-height: 24px;
+    font-family: 'Minecraftia';
     position: absolute;
     right: 20px;
     z-index: 10000;
+}
+
+/** MODALS ****************************************************************************************/
+
+#modals { // div
+    position: relative;
+    z-index: 10000;
+
+    .modal { // div
+        color: $color-mine-shaft;
+        font-family: 'Minecraftia';
+        min-height: 0px;
+        position: absolute;
+        width: 0px;
+
+        .choice { // ul
+            list-style: none outside none;
+            margin: 0px;
+            padding: 0px;
+
+            li {
+                padding: 5px;
+
+                &:focus {
+                    @include border-radius(2px);
+
+                    background-color: $color-rum;
+                    color: $color-white;
+                }
+            }
+        }
+
+        .icon {
+            bottom: 0;
+            position: absolute;
+            right: 0;
+        }
+
+        &.dialogue {
+            @include font-size($window-font-size);
+            @include line-height($window-line-height);
+
+            -webkit-border-image: url(../img/modal-border.gif) 16 repeat;
+            -o-border-image: url(../img/modal-border.gif) 16 repeat;
+            background-color: $color-alabaster;
+            border-image: url(../img/modal-border.gif) 16 repeat;
+            border-image-outset: 10px;
+            border-width: 16px;
+        }
+
+        &.notification {
+            @include font-size($base-font-size);
+            @include line-height($base-line-height);
+
+            -webkit-border-image: url(../img/notification-border.gif) 16 repeat;
+            -o-border-image: url(../img/notification-border.gif) 16 repeat;
+            border-image: url(../img/notification-border.gif) 16 repeat;
+            background-color: $color-alabaster;
+            border-image-outset: 6px;
+            border-width: 16px;
+        }
+    }
+}
+
+/** ICONS *****************************************************************************************/
+
+.icon { // div
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    &.continue {
+        background-image: url(../img/icon-continue.gif);
+        height: 16px;
+        width: 16px;
+    }
 }
 
 /** TRANSITION ************************************************************************************/
@@ -234,69 +318,5 @@ body {
             position: absolute;
             width: 32px;
         }
-    }
-}
-
-/** MODALS ****************************************************************************************/
-
-#modals { // div
-    position: relative;
-    z-index: 2;
-
-    .modal { // div
-        @include font-size($window-font-size);
-        @include line-height($window-line-height);
-
-        -webkit-border-image: url(../img/modal-border.gif) 16 repeat;
-        -o-border-image: url(../img/modal-border.gif) 16 repeat;
-        background-color: $color-alabaster;
-        border-image: url(../img/modal-border.gif) 16 repeat;
-        border-image-outset: 10px;
-        border-width: 16px;
-        color: $color-mine-shaft;
-        font-family: 'Minecraftia';
-        min-height: 0px;
-        position: absolute;
-        width: 0px;
-
-        .choice { // ul
-            list-style: none outside none;
-            margin: 0px;
-            padding: 0px;
-
-            li {
-                padding: 5px;
-
-                &:focus {
-                    @include border-radius(2px);
-
-                    background-color: $color-rum;
-                    color: $color-white;
-                }
-            }
-        }
-
-        .icon {
-            bottom: 0;
-            position: absolute;
-            right: 0;
-        }
-
-        &.dialogue {
-
-        }
-    }
-}
-
-/** ICONS *****************************************************************************************/
-
-.icon { // div
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    &.continue {
-        background-image: url(../img/icon-continue.gif);
-        height: 16px;
-        width: 16px;
     }
 }
