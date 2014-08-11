@@ -293,13 +293,17 @@ a {
             }
 
             @for $i from 0 through $npc-limit {
-                $leading: "" + $i;
-                // $leadingLength: str-length($leading);
+                $leading: "00";
 
-                // @for $j from $leadingLength through 3 {
-                //     $leading: "0" + $leading;
-                //     $leadingLength: str-length($leading);
-                // }
+                @if $npc-limit > 10 {
+                    $leading: "0"
+                }
+
+                @if $npc-limit > 100 {
+                    $leading: ""
+                }
+
+                $leading: $leading + $i;
 
                 &#n-#{$leading} {
                     &.down {

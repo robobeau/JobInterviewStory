@@ -309,133 +309,133 @@ a:hover {
 #stage #objects .npc .emote.think {
   background-image: url(../img/emote-think.gif);
 }
-/* line 305, ../../sass/screen.scss */
-#stage #objects .npc#n-0.down {
-  background-image: url(../img/n0-down.gif);
+/* line 309, ../../sass/screen.scss */
+#stage #objects .npc#n-000.down {
+  background-image: url(../img/n000-down.gif);
 }
-/* line 308, ../../sass/screen.scss */
-#stage #objects .npc#n-0.down.walking {
-  background-image: url(../img/n0-down-walking.gif);
+/* line 312, ../../sass/screen.scss */
+#stage #objects .npc#n-000.down.walking {
+  background-image: url(../img/n000-down-walking.gif);
 }
-/* line 313, ../../sass/screen.scss */
-#stage #objects .npc#n-0.left {
-  background-image: url(../img/n0-left.gif);
+/* line 317, ../../sass/screen.scss */
+#stage #objects .npc#n-000.left {
+  background-image: url(../img/n000-left.gif);
 }
-/* line 316, ../../sass/screen.scss */
-#stage #objects .npc#n-0.left.walking {
-  background-image: url(../img/n0-left-walking.gif);
+/* line 320, ../../sass/screen.scss */
+#stage #objects .npc#n-000.left.walking {
+  background-image: url(../img/n000-left-walking.gif);
 }
-/* line 321, ../../sass/screen.scss */
-#stage #objects .npc#n-0.right {
+/* line 325, ../../sass/screen.scss */
+#stage #objects .npc#n-000.right {
   -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
   -ms-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   transform: scaleX(-1);
-  background-image: url(../img/n0-left.gif);
+  background-image: url(../img/n000-left.gif);
 }
-/* line 330, ../../sass/screen.scss */
-#stage #objects .npc#n-0.right.walking {
-  background-image: url(../img/n0-left-walking.gif);
+/* line 334, ../../sass/screen.scss */
+#stage #objects .npc#n-000.right.walking {
+  background-image: url(../img/n000-left-walking.gif);
 }
-/* line 335, ../../sass/screen.scss */
-#stage #objects .npc#n-0.up {
-  background-image: url(../img/n0-up.gif);
+/* line 339, ../../sass/screen.scss */
+#stage #objects .npc#n-000.up {
+  background-image: url(../img/n000-up.gif);
 }
-/* line 338, ../../sass/screen.scss */
-#stage #objects .npc#n-0.up.walking {
-  background-image: url(../img/n0-up-walking.gif);
+/* line 342, ../../sass/screen.scss */
+#stage #objects .npc#n-000.up.walking {
+  background-image: url(../img/n000-up-walking.gif);
 }
-/* line 305, ../../sass/screen.scss */
-#stage #objects .npc#n-1.down {
-  background-image: url(../img/n1-down.gif);
+/* line 309, ../../sass/screen.scss */
+#stage #objects .npc#n-001.down {
+  background-image: url(../img/n001-down.gif);
 }
-/* line 308, ../../sass/screen.scss */
-#stage #objects .npc#n-1.down.walking {
-  background-image: url(../img/n1-down-walking.gif);
+/* line 312, ../../sass/screen.scss */
+#stage #objects .npc#n-001.down.walking {
+  background-image: url(../img/n001-down-walking.gif);
 }
-/* line 313, ../../sass/screen.scss */
-#stage #objects .npc#n-1.left {
-  background-image: url(../img/n1-left.gif);
+/* line 317, ../../sass/screen.scss */
+#stage #objects .npc#n-001.left {
+  background-image: url(../img/n001-left.gif);
 }
-/* line 316, ../../sass/screen.scss */
-#stage #objects .npc#n-1.left.walking {
-  background-image: url(../img/n1-left-walking.gif);
+/* line 320, ../../sass/screen.scss */
+#stage #objects .npc#n-001.left.walking {
+  background-image: url(../img/n001-left-walking.gif);
 }
-/* line 321, ../../sass/screen.scss */
-#stage #objects .npc#n-1.right {
+/* line 325, ../../sass/screen.scss */
+#stage #objects .npc#n-001.right {
   -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
   -ms-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   transform: scaleX(-1);
-  background-image: url(../img/n1-left.gif);
+  background-image: url(../img/n001-left.gif);
 }
-/* line 330, ../../sass/screen.scss */
-#stage #objects .npc#n-1.right.walking {
-  background-image: url(../img/n1-left-walking.gif);
+/* line 334, ../../sass/screen.scss */
+#stage #objects .npc#n-001.right.walking {
+  background-image: url(../img/n001-left-walking.gif);
 }
-/* line 335, ../../sass/screen.scss */
-#stage #objects .npc#n-1.up {
-  background-image: url(../img/n1-up.gif);
+/* line 339, ../../sass/screen.scss */
+#stage #objects .npc#n-001.up {
+  background-image: url(../img/n001-up.gif);
 }
-/* line 338, ../../sass/screen.scss */
-#stage #objects .npc#n-1.up.walking {
-  background-image: url(../img/n1-up-walking.gif);
+/* line 342, ../../sass/screen.scss */
+#stage #objects .npc#n-001.up.walking {
+  background-image: url(../img/n001-up-walking.gif);
 }
-/* line 305, ../../sass/screen.scss */
-#stage #objects .npc#n-2.down {
-  background-image: url(../img/n2-down.gif);
+/* line 309, ../../sass/screen.scss */
+#stage #objects .npc#n-002.down {
+  background-image: url(../img/n002-down.gif);
 }
-/* line 308, ../../sass/screen.scss */
-#stage #objects .npc#n-2.down.walking {
-  background-image: url(../img/n2-down-walking.gif);
+/* line 312, ../../sass/screen.scss */
+#stage #objects .npc#n-002.down.walking {
+  background-image: url(../img/n002-down-walking.gif);
 }
-/* line 313, ../../sass/screen.scss */
-#stage #objects .npc#n-2.left {
-  background-image: url(../img/n2-left.gif);
+/* line 317, ../../sass/screen.scss */
+#stage #objects .npc#n-002.left {
+  background-image: url(../img/n002-left.gif);
 }
-/* line 316, ../../sass/screen.scss */
-#stage #objects .npc#n-2.left.walking {
-  background-image: url(../img/n2-left-walking.gif);
+/* line 320, ../../sass/screen.scss */
+#stage #objects .npc#n-002.left.walking {
+  background-image: url(../img/n002-left-walking.gif);
 }
-/* line 321, ../../sass/screen.scss */
-#stage #objects .npc#n-2.right {
+/* line 325, ../../sass/screen.scss */
+#stage #objects .npc#n-002.right {
   -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
   -ms-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   transform: scaleX(-1);
-  background-image: url(../img/n2-left.gif);
+  background-image: url(../img/n002-left.gif);
 }
-/* line 330, ../../sass/screen.scss */
-#stage #objects .npc#n-2.right.walking {
-  background-image: url(../img/n2-left-walking.gif);
+/* line 334, ../../sass/screen.scss */
+#stage #objects .npc#n-002.right.walking {
+  background-image: url(../img/n002-left-walking.gif);
 }
-/* line 335, ../../sass/screen.scss */
-#stage #objects .npc#n-2.up {
-  background-image: url(../img/n2-up.gif);
+/* line 339, ../../sass/screen.scss */
+#stage #objects .npc#n-002.up {
+  background-image: url(../img/n002-up.gif);
 }
-/* line 338, ../../sass/screen.scss */
-#stage #objects .npc#n-2.up.walking {
-  background-image: url(../img/n2-up-walking.gif);
+/* line 342, ../../sass/screen.scss */
+#stage #objects .npc#n-002.up.walking {
+  background-image: url(../img/n002-up-walking.gif);
 }
-/* line 346, ../../sass/screen.scss */
+/* line 350, ../../sass/screen.scss */
 #stage #objects .object {
   height: 32px;
   position: absolute;
   width: 32px;
 }
-/* line 352, ../../sass/screen.scss */
+/* line 356, ../../sass/screen.scss */
 #stage #objects .object.doorway, #stage #objects .object.stairs {
   background-color: lime;
   opacity: 0;
 }
-/* line 360, ../../sass/screen.scss */
+/* line 364, ../../sass/screen.scss */
 #stage #tiles {
   position: relative;
 }
-/* line 363, ../../sass/screen.scss */
+/* line 367, ../../sass/screen.scss */
 #stage #tiles .tile {
   background-image: url(../img/tile-map.gif);
   background-repeat: no-repeat;
