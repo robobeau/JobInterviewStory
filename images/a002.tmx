@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="70" height="50" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="54" height="30" tilewidth="32" tileheight="32">
  <properties>
   <property name="music" value="shadesOfRed"/>
   <property name="musicVol" value="1"/>
@@ -7,27 +7,27 @@
  <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
   <image source="../pub/img/tile-map.gif" width="1600" height="1600"/>
  </tileset>
- <layer name="tiles1" width="70" height="50">
+ <layer name="tiles1" width="54" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt280OwVAQhuGhF4O1ckfcCS5JrLHycx/Y2xHTMGnTnP4sSEf7LibTcU4k/c7T5TmJyFnroHXUOjGXzg+tZ4fmunmMteIOzVX5zLTmHexVXpIcF5HIsqBWJWv5fXHmXLz3Ol7W+k7TQK7Jb5voPU8Kcrf/s31NO/imF8sln6nlEn9yCeVu3+umpV62PZGd1v3Tk9r3Ugehddszb7GXQV9kmKtRP3UQWrc9cYu9FOVa10EbvVz0na6Z875Gad0yz6H17D4PDr7pxcP5efTi4fzw4qPjBS94wQte8OKh4wUveMELXvDioeMFL3jBC17w4qHjBS94wQte8OKh4wUveMELXvDioeMFL3j5vRebLceuzE3f3/n3uen7QE3fP3oBTDSobQ==
+   eJzVWc1SFDEQTnbgEdAHEAs4AIfZ5V3QA4IIvIirgh5gsSh4C/Swtf5xQE4K77GgHrlp2alJ17SppNMZdwMcvspm+ksm3d8knWTPlVIXgG+A74DzzPUlwE5LqdeAN62qvjTG9/0G/MlQNz58Bn++AE4Az+yz1P6k/pSAdoa6Kee1UguARf3v85T+Yv6ZeG1kLlfAnyeAVd28n5heJg7PC6W6AbxgbKk8wykdv2Lv9/XRFurVL6pv3I2LeTYoqnonEDfsD3m++FKOT69+IdcJ3yPRC/1yv3X0q239ans4+L0jz7WXDsenV7/wt/OVg0S9TuEdXwHXtjQ403V8fHbk0Dieevp4VVS4Cb1mYM2ddTDXquPjsyOHxtHlob2M6NVRNeat3ayX9HmngV6x+EjjyPGkenHrZYpeQ+BekvlxWdS4Ir99dsrrknnSDXB8eg0Jx2dHW9f2IdUL82QurNlxP21gX9RyvXaBu5cR+3bcbxu07Wm5XrG8vAxz/xHgcSvODc0vXA9KwKb1a8vWcX0Y9X6Dyx9mntL9d5/JUwOmHzPudeuPiw0dzo9Y0vGOaj10/YqtdyG9Yn5x+mBuT9WL5tMzzevF5XBuv7AS8GtV8+04/WJ6zTi5lNOLy+GmHcboWtf7kRS9aF6+TfPLjVHq/HLzV1O9hmRe+HIpPd9iDvXxryLzy+STA8ChHfeRrfccvSTnM4ledy0vS/XKnZf/Bz0t1+tlUZ8lEB/Jb/pdu7zc2E7YH34A7vGEUu8CeACYBjxkODnwHvApYT9v/JqaVOpeANSvECcH7k9Wfkn1+gHcnwzoOsTxcuBXgl4pef62lNL7Ufd+SbqvjrUfV30U9+n0nDLu+/Rc9/Oh/wly3edL638BLR5nug==
   </data>
  </layer>
- <layer name="tiles2" width="70" height="50">
+ <layer name="tiles2" width="54" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt0DmKAmEUhdG/KrdxL6KGre7FKVR7O04rctpQ38BErEwoBc+BL3rJ45YC0L5O+rnXbbhvq1J2aZ8O6Vi1+9+7/KZRGqdJw/2UHc7pkq7p9iW7rNI6bdJfw71Xl1KnfhqkYd3uf59qmh1maZ4WaWkXeLJ88Q4AAAAAAAAAAAAAPPoHw3EOAA==
+   eJzt2MlLG2EcxvGfccmMpWpd2r+ii0gVG8W1i2dL763U5Wj1YCL21gUqeFQQt6sLeOsCLj02bWmrWGjr/g/Y5Zi4fEMijuObZnQkBnkf+DDmfV8n8zDDzBARnWQk66wPQCflchE5MXmK+aE0kWGMYBRjaUfXLOG7xQ/bvM8rUuE9+Fxp+bvLEPEjYPPUcFVLqlCNGtQq5r/Q4yu+YQGLil5exgyYyMYFxRpVghjn+CcwaTNtROeDJ+zVjifoQKdivsQj4sFNlKLMc3RNOT1uwYcKVDrsFcYyx7+CVaxhHRvYNKLz4RP2SpTH9GhGC1rRhp5MrpNM5/vweQ9/3r8OQ8gxRXKRh0vIRwEKzeh86LSKJDnVZnRby7YO9biNO+bZHleqps3lvJM1/7sfqv7/GJe4zjlIIyf8fsyDBCc/8hx5lSHSa9GXkfg71uLs1z7ez312wGJQ8Txxmmfs+zle4CU+MvYpztrIc2SGHrOYwzzeO+jlNB/oEbT47KLXa7q8wVu8wzZjO3HWRp4jW/T4jT/4i3/H6FXES/xlXFG8zK/w3SF6hLGNHey66HWa+cnx/opZjh279Vq7y9g9NFh67c+vsr2aLnIN13EDxfAzHkB3Ct8g/fQJoNt2vuzvLg/p8whNmGB8ElMp3CuZcfLMdbM+Eqf3Q2v06dHR0dFJbvTvmDo68bMHxENqVQ==
   </data>
  </layer>
- <layer name="tiles3" width="70" height="50">
+ <layer name="tiles3" width="54" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt2rkNgEAMBEBfVRTFVxAUi2MCCAh8wIy0geVk5dgRQKWxRUyZObNk1lbdqF9bZq8uAfBSw8M9AAAAAAAAAAAA8G3nf+2/zXeq+/V2D7hyAJ1pKXU=
+   eJxjYBgFo4B4cJ2NgeEGG4TNxc7AcJNtYN0DAtmMDAw5QJwLxHlAnM+IqWYxEC9BwsvR5DnZUfncSHw3DgYGdyzYh4Oq3iAKzAbiOVRQM4MIeUJqBhIMxnRIDYAvHY6CwQcGIh2aUyhPjBpC6ZAYO0bB8AWKrAwMSlCswopfLageiWRhYIhCwrEsdHEmxYCYuhQXEAKWBcJQLEKlcoES91ALuAD94grFblj89RiYHp4A8VMC6WKwgTKgX8qhuGKYtCdAYAWSX1YNI38NJkBqfThaf46CUTAKRsEoGEiA3p4ktX1JSD+t+ZS6j1T1A+2fUTC4AQB8CTrV
   </data>
  </layer>
- <layer name="collisions" width="70" height="50" opacity="0.5">
+ <layer name="collisions" width="54" height="30" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzt2kEKgCAUANHw/odukyAyakag9edBiFSgQ9Sm49CMdB1R5iOr17d6Tmb6/U1v76kY3zi+5G6XPNb7pGcwYpc8trqU56N0mb3/yXW7sAuzC5v9HtXz1rs4wvslIrswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLswuzC7MLuw0d7rf+OizUdWr2+3HlLPCY2pAi8=
+   eJztlcsOxCAIRY3//9FdTdIYHgd0xKa9SRcVBE5B21qdetI2m7NvfL+vz+zXVMWzqh4txlNFZrpvfsYaMvspl5Rj3E/zUaYsW4brnkfisuqgPru5LB9L3lnOzCGxeTXPclE/q19UH1fs7Ht2GqMZfsS+ohcn6s1cZK5awlfKp8Xzcmi1a3m8OFJObQ/hIuvku0W4tJhaTsnfknVPEaYMl+eTjefVLvmRmajgitpJH57ORXXa+SL3oVQjXfdsp+vNXNadE/m37HoiXNRW3eOK+3CHolxe3xv0PWkOI6ru108e19gT8h+SYlS9z9YX9a/msbR6hv+pCxupBB0=
   </data>
  </layer>
- <objectgroup name="objects" width="70" height="50">
+ <objectgroup name="objects" width="54" height="30" visible="0">
   <object name="player" type="player" gid="3" x="256" y="256">
    <properties>
     <property name="prevArea" value="a001"/>
