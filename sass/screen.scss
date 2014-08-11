@@ -247,7 +247,6 @@ a {
             width: 32px;
 
             .npc-sprite {
-                background-image: url(../img/dude.gif);
                 background-repeat: no-repeat;
                 background-position: left top;
                 height: 40px;
@@ -290,6 +289,56 @@ a {
 
                 &.think {
                     background-image: url(../img/emote-think.gif);
+                }
+            }
+
+            @for $i from 0 through $npc-limit {
+                $leading: "" + $i;
+                // $leadingLength: str-length($leading);
+
+                // @for $j from $leadingLength through 3 {
+                //     $leading: "0" + $leading;
+                //     $leadingLength: str-length($leading);
+                // }
+
+                &#n-#{$leading} {
+                    &.down {
+                        background-image: url(../img/n#{$leading}-down.gif);
+
+                        &.walking {
+                            background-image: url(../img/n#{$leading}-down-walking.gif);
+                        }
+                    }
+
+                    &.left {
+                        background-image: url(../img/n#{$leading}-left.gif);
+
+                        &.walking {
+                            background-image: url(../img/n#{$leading}-left-walking.gif);
+                        }
+                    }
+
+                    &.right {
+                        -webkit-transform:scaleX(-1);
+                        -moz-transform:scaleX(-1);
+                        -ms-transform:scaleX(-1);
+                        -o-transform:scaleX(-1);
+                        transform:scaleX(-1);
+
+                        background-image: url(../img/n#{$leading}-left.gif);
+
+                        &.walking {
+                            background-image: url(../img/n#{$leading}-left-walking.gif);
+                        }
+                    }
+
+                    &.up {
+                        background-image: url(../img/n#{$leading}-up.gif);
+
+                        &.walking {
+                            background-image: url(../img/n#{$leading}-up-walking.gif);
+                        }
+                    }
                 }
             }
         }

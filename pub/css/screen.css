@@ -9,6 +9,7 @@
 }
 
 /** DEBUG **/
+/** VARIABLES **/
 /** MIXINS **/
 /** BASE ******************************************************************************************/
 /* line 6, ../../sass/screen.scss */
@@ -264,7 +265,6 @@ a:hover {
 }
 /* line 249, ../../sass/screen.scss */
 #stage #objects .npc .npc-sprite {
-  background-image: url(../img/dude.gif);
   background-repeat: no-repeat;
   background-position: left top;
   height: 40px;
@@ -272,7 +272,7 @@ a:hover {
   top: -8px;
   width: 32px;
 }
-/* line 259, ../../sass/screen.scss */
+/* line 258, ../../sass/screen.scss */
 #stage #objects .npc .emote {
   background-position: left top;
   background-repeat: no-repeat;
@@ -281,50 +281,161 @@ a:hover {
   top: -32px;
   width: 30px;
 }
-/* line 267, ../../sass/screen.scss */
+/* line 266, ../../sass/screen.scss */
 #stage #objects .npc .emote.happiness {
   background-image: url(../img/emote-happiness.gif);
 }
-/* line 271, ../../sass/screen.scss */
+/* line 270, ../../sass/screen.scss */
 #stage #objects .npc .emote.love {
   background-image: url(../img/emote-love.gif);
 }
-/* line 275, ../../sass/screen.scss */
+/* line 274, ../../sass/screen.scss */
 #stage #objects .npc .emote.question {
   background-image: url(../img/emote-question.gif);
 }
-/* line 279, ../../sass/screen.scss */
+/* line 278, ../../sass/screen.scss */
 #stage #objects .npc .emote.sadness {
   background-image: url(../img/emote-sadness.gif);
 }
-/* line 283, ../../sass/screen.scss */
+/* line 282, ../../sass/screen.scss */
 #stage #objects .npc .emote.talkAngry {
   background-image: url(../img/emote-talk-angry.gif);
 }
-/* line 287, ../../sass/screen.scss */
+/* line 286, ../../sass/screen.scss */
 #stage #objects .npc .emote.talkHappy {
   background-image: url(../img/emote-talk-happy.gif);
 }
-/* line 291, ../../sass/screen.scss */
+/* line 290, ../../sass/screen.scss */
 #stage #objects .npc .emote.think {
   background-image: url(../img/emote-think.gif);
 }
-/* line 297, ../../sass/screen.scss */
+/* line 305, ../../sass/screen.scss */
+#stage #objects .npc#n-0.down {
+  background-image: url(../img/n0-down.gif);
+}
+/* line 308, ../../sass/screen.scss */
+#stage #objects .npc#n-0.down.walking {
+  background-image: url(../img/n0-down-walking.gif);
+}
+/* line 313, ../../sass/screen.scss */
+#stage #objects .npc#n-0.left {
+  background-image: url(../img/n0-left.gif);
+}
+/* line 316, ../../sass/screen.scss */
+#stage #objects .npc#n-0.left.walking {
+  background-image: url(../img/n0-left-walking.gif);
+}
+/* line 321, ../../sass/screen.scss */
+#stage #objects .npc#n-0.right {
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  background-image: url(../img/n0-left.gif);
+}
+/* line 330, ../../sass/screen.scss */
+#stage #objects .npc#n-0.right.walking {
+  background-image: url(../img/n0-left-walking.gif);
+}
+/* line 335, ../../sass/screen.scss */
+#stage #objects .npc#n-0.up {
+  background-image: url(../img/n0-up.gif);
+}
+/* line 338, ../../sass/screen.scss */
+#stage #objects .npc#n-0.up.walking {
+  background-image: url(../img/n0-up-walking.gif);
+}
+/* line 305, ../../sass/screen.scss */
+#stage #objects .npc#n-1.down {
+  background-image: url(../img/n1-down.gif);
+}
+/* line 308, ../../sass/screen.scss */
+#stage #objects .npc#n-1.down.walking {
+  background-image: url(../img/n1-down-walking.gif);
+}
+/* line 313, ../../sass/screen.scss */
+#stage #objects .npc#n-1.left {
+  background-image: url(../img/n1-left.gif);
+}
+/* line 316, ../../sass/screen.scss */
+#stage #objects .npc#n-1.left.walking {
+  background-image: url(../img/n1-left-walking.gif);
+}
+/* line 321, ../../sass/screen.scss */
+#stage #objects .npc#n-1.right {
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  background-image: url(../img/n1-left.gif);
+}
+/* line 330, ../../sass/screen.scss */
+#stage #objects .npc#n-1.right.walking {
+  background-image: url(../img/n1-left-walking.gif);
+}
+/* line 335, ../../sass/screen.scss */
+#stage #objects .npc#n-1.up {
+  background-image: url(../img/n1-up.gif);
+}
+/* line 338, ../../sass/screen.scss */
+#stage #objects .npc#n-1.up.walking {
+  background-image: url(../img/n1-up-walking.gif);
+}
+/* line 305, ../../sass/screen.scss */
+#stage #objects .npc#n-2.down {
+  background-image: url(../img/n2-down.gif);
+}
+/* line 308, ../../sass/screen.scss */
+#stage #objects .npc#n-2.down.walking {
+  background-image: url(../img/n2-down-walking.gif);
+}
+/* line 313, ../../sass/screen.scss */
+#stage #objects .npc#n-2.left {
+  background-image: url(../img/n2-left.gif);
+}
+/* line 316, ../../sass/screen.scss */
+#stage #objects .npc#n-2.left.walking {
+  background-image: url(../img/n2-left-walking.gif);
+}
+/* line 321, ../../sass/screen.scss */
+#stage #objects .npc#n-2.right {
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  background-image: url(../img/n2-left.gif);
+}
+/* line 330, ../../sass/screen.scss */
+#stage #objects .npc#n-2.right.walking {
+  background-image: url(../img/n2-left-walking.gif);
+}
+/* line 335, ../../sass/screen.scss */
+#stage #objects .npc#n-2.up {
+  background-image: url(../img/n2-up.gif);
+}
+/* line 338, ../../sass/screen.scss */
+#stage #objects .npc#n-2.up.walking {
+  background-image: url(../img/n2-up-walking.gif);
+}
+/* line 346, ../../sass/screen.scss */
 #stage #objects .object {
   height: 32px;
   position: absolute;
   width: 32px;
 }
-/* line 303, ../../sass/screen.scss */
+/* line 352, ../../sass/screen.scss */
 #stage #objects .object.doorway, #stage #objects .object.stairs {
   background-color: lime;
   opacity: 0;
 }
-/* line 311, ../../sass/screen.scss */
+/* line 360, ../../sass/screen.scss */
 #stage #tiles {
   position: relative;
 }
-/* line 314, ../../sass/screen.scss */
+/* line 363, ../../sass/screen.scss */
 #stage #tiles .tile {
   background-image: url(../img/tile-map.gif);
   background-repeat: no-repeat;
