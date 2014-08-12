@@ -150,6 +150,176 @@ a {
     }
 }
 
+/** NPCS ******************************************************************************************/
+
+.npc {
+    background-color: rgba(255, 0, 0, $collisionOpacity);
+    height: 32px;
+    position: absolute;
+    width: 32px;
+
+    .npc-sprite {
+        background-repeat: no-repeat;
+        background-position: left top;
+        height: 40px;
+        position: absolute;
+        top: -8px;
+        width: 32px;
+    }
+
+    .emote {
+        background-position: left top;
+        background-repeat: no-repeat;
+        height: 32px;
+        position: relative;
+        top: -32px;
+        width: 30px;
+
+        &.happiness {
+            background-image: url(../img/emote-happiness.gif);
+        }
+
+        &.love {
+            background-image: url(../img/emote-love.gif);
+        }
+
+        &.question {
+            background-image: url(../img/emote-question.gif);
+        }
+
+        &.sadness {
+            background-image: url(../img/emote-sadness.gif);
+        }
+
+        &.talkAngry {
+            background-image: url(../img/emote-talk-angry.gif);
+        }
+
+        &.talkHappy {
+            background-image: url(../img/emote-talk-happy.gif);
+        }
+
+        &.think {
+            background-image: url(../img/emote-think.gif);
+        }
+    }
+}
+
+@for $i from 0 through $npc-limit {
+    $leading: "00";
+
+    @if $npc-limit > 10 {
+        $leading: "0"
+    }
+
+    @if $npc-limit > 100 {
+        $leading: ""
+    }
+
+    $leading: $leading + $i;
+
+    #n#{$leading} {
+        .npc-sprite {
+            background-image: url(../img/n#{$leading}-down.gif);
+
+            &.down {
+                background-image: url(../img/n#{$leading}-down.gif);
+
+                &.walking {
+                    background-image: url(../img/n#{$leading}-down-walking.gif);
+                }
+            }
+
+            &.left {
+                background-image: url(../img/n#{$leading}-left.gif);
+
+                &.walking {
+                    background-image: url(../img/n#{$leading}-left-walking.gif);
+                }
+            }
+
+            &.right {
+                -webkit-transform:scaleX(-1);
+                -moz-transform:scaleX(-1);
+                -ms-transform:scaleX(-1);
+                -o-transform:scaleX(-1);
+                transform:scaleX(-1);
+
+                background-image: url(../img/n#{$leading}-left.gif);
+
+                &.walking {
+                    background-image: url(../img/n#{$leading}-left-walking.gif);
+                }
+            }
+
+            &.up {
+                background-image: url(../img/n#{$leading}-up.gif);
+
+                &.walking {
+                    background-image: url(../img/n#{$leading}-up-walking.gif);
+                }
+            }
+        }
+    }
+}
+
+/** PLAYER ****************************************************************************************/
+
+#player { // div
+    background-color: rgba(255, 0, 0, $collisionOpacity);
+    height: 32px;
+    position: absolute;
+    width: 32px;
+
+    #player-sprite {
+        background-image: url(../img/rene-down.gif);
+        background-repeat: no-repeat;
+        background-position: left top;
+        height: 40px;
+        position: absolute;
+        top: -8px;
+        width: 32px;
+
+        &.down {
+            background-image: url(../img/rene-down.gif);
+
+            &.walking {
+                background-image: url(../img/rene-down-walking.gif);
+            }
+        }
+
+        &.left {
+            background-image: url(../img/rene-left.gif);
+
+            &.walking {
+                background-image: url(../img/rene-left-walking.gif);
+            }
+        }
+
+        &.right {
+            -webkit-transform:scaleX(-1);
+            -moz-transform:scaleX(-1);
+            -ms-transform:scaleX(-1);
+            -o-transform:scaleX(-1);
+            transform:scaleX(-1);
+
+            background-image: url(../img/rene-left.gif);
+
+            &.walking {
+                background-image: url(../img/rene-left-walking.gif);
+            }
+        }
+
+        &.up {
+            background-image: url(../img/rene-up.gif);
+
+            &.walking {
+                background-image: url(../img/rene-up-walking.gif);
+            }
+        }
+    }
+}
+
 /** TRANSITION ************************************************************************************/
 
 #transition { // div
@@ -184,168 +354,6 @@ a {
     #objects {
         position: relative;
         z-index: 1;
-
-        #player { // div
-            background-color: rgba(255, 0, 0, $collisionOpacity);
-            height: 32px;
-            position: absolute;
-            width: 32px;
-
-            #player-sprite {
-                background-image: url(../img/rene-down.gif);
-                background-repeat: no-repeat;
-                background-position: left top;
-                height: 40px;
-                position: absolute;
-                top: -8px;
-                width: 32px;
-
-                &.down {
-                    background-image: url(../img/rene-down.gif);
-
-                    &.walking {
-                        background-image: url(../img/rene-down-walking.gif);
-                    }
-                }
-
-                &.left {
-                    background-image: url(../img/rene-left.gif);
-
-                    &.walking {
-                        background-image: url(../img/rene-left-walking.gif);
-                    }
-                }
-
-                &.right {
-                    -webkit-transform:scaleX(-1);
-                    -moz-transform:scaleX(-1);
-                    -ms-transform:scaleX(-1);
-                    -o-transform:scaleX(-1);
-                    transform:scaleX(-1);
-
-                    background-image: url(../img/rene-left.gif);
-
-                    &.walking {
-                        background-image: url(../img/rene-left-walking.gif);
-                    }
-                }
-
-                &.up {
-                    background-image: url(../img/rene-up.gif);
-
-                    &.walking {
-                        background-image: url(../img/rene-up-walking.gif);
-                    }
-                }
-            }
-        }
-
-        .npc {
-            background-color: rgba(255, 0, 0, $collisionOpacity);
-            height: 32px;
-            position: absolute;
-            width: 32px;
-
-            .npc-sprite {
-                background-repeat: no-repeat;
-                background-position: left top;
-                height: 40px;
-                position: absolute;
-                top: -8px;
-                width: 32px;
-            }
-
-            .emote {
-                background-position: left top;
-                background-repeat: no-repeat;
-                height: 32px;
-                position: relative;
-                top: -32px;
-                width: 30px;
-
-                &.happiness {
-                    background-image: url(../img/emote-happiness.gif);
-                }
-
-                &.love {
-                    background-image: url(../img/emote-love.gif);
-                }
-
-                &.question {
-                    background-image: url(../img/emote-question.gif);
-                }
-
-                &.sadness {
-                    background-image: url(../img/emote-sadness.gif);
-                }
-
-                &.talkAngry {
-                    background-image: url(../img/emote-talk-angry.gif);
-                }
-
-                &.talkHappy {
-                    background-image: url(../img/emote-talk-happy.gif);
-                }
-
-                &.think {
-                    background-image: url(../img/emote-think.gif);
-                }
-            }
-
-            @for $i from 0 through $npc-limit {
-                $leading: "00";
-
-                @if $npc-limit > 10 {
-                    $leading: "0"
-                }
-
-                @if $npc-limit > 100 {
-                    $leading: ""
-                }
-
-                $leading: $leading + $i;
-
-                &#n-#{$leading} {
-                    &.down {
-                        background-image: url(../img/n#{$leading}-down.gif);
-
-                        &.walking {
-                            background-image: url(../img/n#{$leading}-down-walking.gif);
-                        }
-                    }
-
-                    &.left {
-                        background-image: url(../img/n#{$leading}-left.gif);
-
-                        &.walking {
-                            background-image: url(../img/n#{$leading}-left-walking.gif);
-                        }
-                    }
-
-                    &.right {
-                        -webkit-transform:scaleX(-1);
-                        -moz-transform:scaleX(-1);
-                        -ms-transform:scaleX(-1);
-                        -o-transform:scaleX(-1);
-                        transform:scaleX(-1);
-
-                        background-image: url(../img/n#{$leading}-left.gif);
-
-                        &.walking {
-                            background-image: url(../img/n#{$leading}-left-walking.gif);
-                        }
-                    }
-
-                    &.up {
-                        background-image: url(../img/n#{$leading}-up.gif);
-
-                        &.walking {
-                            background-image: url(../img/n#{$leading}-up-walking.gif);
-                        }
-                    }
-                }
-            }
-        }
 
         .object { // div
             height: 32px;
