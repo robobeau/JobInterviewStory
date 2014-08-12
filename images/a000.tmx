@@ -39,17 +39,5 @@
     <property name="prevArea" value="a000"/>
    </properties>
   </object>
-  <object name="n000" type="npc" gid="2" x="256" y="224">
-   <properties>
-    <property name="dialogue" value="d000"/>
-    <property name="wander" value="true"/>
-   </properties>
-  </object>
-  <object name="n001" type="npc" gid="2" x="320" y="224">
-   <properties>
-    <property name="dialogue" value="d001"/>
-    <property name="wander" value="true"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

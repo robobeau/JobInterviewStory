@@ -27,7 +27,7 @@
    eJztlcsOxCAIRY3//9FdTdIYHgd0xKa9SRcVBE5B21qdetI2m7NvfL+vz+zXVMWzqh4txlNFZrpvfsYaMvspl5Rj3E/zUaYsW4brnkfisuqgPru5LB9L3lnOzCGxeTXPclE/q19UH1fs7Ht2GqMZfsS+ohcn6s1cZK5awlfKp8Xzcmi1a3m8OFJObQ/hIuvku0W4tJhaTsnfknVPEaYMl+eTjefVLvmRmajgitpJH57ORXXa+SL3oVQjXfdsp+vNXNadE/m37HoiXNRW3eOK+3CHolxe3xv0PWkOI6ru108e19gT8h+SYlS9z9YX9a/msbR6hv+pCxupBB0=
   </data>
  </layer>
- <objectgroup name="objects" width="54" height="30" visible="0">
+ <objectgroup name="objects" width="54" height="30">
   <object name="player" type="player" gid="3" x="256" y="256">
    <properties>
     <property name="prevArea" value="a001"/>
@@ -36,6 +36,18 @@
   <object name="d001" type="doorway" gid="4" x="256" y="224">
    <properties>
     <property name="area" value="a001"/>
+   </properties>
+  </object>
+  <object name="n000" type="npc" gid="2" x="544" y="256">
+   <properties>
+    <property name="dialogue" value="d000"/>
+    <property name="wander" value="true"/>
+   </properties>
+  </object>
+  <object name="n001" type="npc" gid="2" x="832" y="256">
+   <properties>
+    <property name="dialogue" value="d001"/>
+    <property name="wander" value="true"/>
    </properties>
   </object>
  </objectgroup>
