@@ -53,6 +53,7 @@ module.exports = function (grunt) {
         // tasks: ['concat', 'uglify'],
         tasks: ['concat'],
         options: {
+          livereload: true,
           spawn: false,
         }
       },
@@ -61,6 +62,7 @@ module.exports = function (grunt) {
         files: ['sass/*.scss'],
         tasks: ['compass'],
         options: {
+          livereload: true
           spawn: false,
         }
       }
