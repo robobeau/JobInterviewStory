@@ -79,36 +79,6 @@
                  "width":0,
                  "x":128,
                  "y":160
-                }, 
-                {
-                 "gid":2,
-                 "height":0,
-                 "name":"n000",
-                 "properties":
-                    {
-                     "dialogue":"d000",
-                     "wander":"true"
-                    },
-                 "type":"npc",
-                 "visible":true,
-                 "width":0,
-                 "x":256,
-                 "y":224
-                }, 
-                {
-                 "gid":2,
-                 "height":0,
-                 "name":"n001",
-                 "properties":
-                    {
-                     "dialogue":"d001",
-                     "wander":"true"
-                    },
-                 "type":"npc",
-                 "visible":true,
-                 "width":0,
-                 "x":320,
-                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",

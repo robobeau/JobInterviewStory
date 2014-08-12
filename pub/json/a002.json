@@ -75,10 +75,40 @@
                  "width":0,
                  "x":256,
                  "y":224
+                }, 
+                {
+                 "gid":2,
+                 "height":0,
+                 "name":"n000",
+                 "properties":
+                    {
+                     "dialogue":"d000",
+                     "wander":"true"
+                    },
+                 "type":"npc",
+                 "visible":true,
+                 "width":0,
+                 "x":544,
+                 "y":256
+                }, 
+                {
+                 "gid":2,
+                 "height":0,
+                 "name":"n001",
+                 "properties":
+                    {
+                     "dialogue":"d001",
+                     "wander":"true"
+                    },
+                 "type":"npc",
+                 "visible":true,
+                 "width":0,
+                 "x":832,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":54,
          "x":0,
          "y":0
