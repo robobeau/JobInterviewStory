@@ -88,9 +88,33 @@ function NPC () {
      *
      */
     this.move = function (direction) {
-        var npc = $(this);
+        var
+            npc         = $(this),
+            collision   = $.game.checkCollisions(npc, direction),
+            npcPos      = $.game.getCoordinates(npc),
+            npcSprite   = npc.find('.npc-sprite');
 
-        $.game.moveObject(npc, direction);
+        $.game.currentDirection = direction;
+
+        npcSprite.removeClass('walking up down left right').addClass('walking ' + direction);
+
+        if (collision) {
+            npcSprite.removeClass('walking');
+        } else {
+            $.game.moveObject(npc, direction, function () {
+                var newPos = $.game.getCoordinates(npc);
+
+                if (!$.stage.npcsMap[newPos.y]) {
+                    $.stage.npcsMap[newPos.y] = {};
+                }
+
+                $.stage.npcsMap[newPos.y][newPos.x] = npc;
+
+                delete $.stage.npcsMap[npcPos.y][npcPos.x];
+
+                npcSprite.removeClass('walking');
+            });
+        }
     },
 
     /**
@@ -131,28 +155,15 @@ function NPC () {
         clearInterval(npc.data('npc')['wanderInterval']);
 
         npc.data('npc')['wanderInterval'] = setInterval(function () {
-            var direction   = $.game.directions[Object.keys($.game.directions)[Math.floor(Math.random() * Object.keys($.game.directions).length)]],
-                npcPos      = $.game.getCoordinates(npc);
+            var
+                direction = $.game.directions[Object.keys($.game.directions)[Math.floor(Math.random() * Object.keys($.game.directions).length)]];
 
             if (Math.random() < 0.5 || npc.data('npc')['wanderPause'] === true) {
                 return;
             }
 
-            var collision = $.game.checkCollisions(npc, direction);
+            npc.npc('move', direction);
 
-            if (collision == false && !npc.is(':animated')) {
-                $.game.moveObject(npc, direction, function () {
-                    var newPos = $.game.getCoordinates(npc);
-
-                    if (!$.stage.npcsMap[newPos.y]) {
-                        $.stage.npcsMap[newPos.y] = {};
-                    }
-
-                    $.stage.npcsMap[newPos.y][newPos.x] = npc;
-
-                    delete $.stage.npcsMap[npcPos.y][npcPos.x];
-                });
-            }
         }, 1800);
     }
 }
