@@ -26,6 +26,16 @@ module.exports = function (grunt) {
       }
     },
 
+    connect: {
+      pub: {
+        options: {
+          base: 'pub',
+          open: true,
+          useAvailablePort: true
+        }
+      }
+    },
+
     uglify: {
       vendor: {
         src: 'pub/js/vendor.min.js',
@@ -63,5 +73,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // grunt.registerTask('default', ['compass', 'concat', 'uglify']);
-  grunt.registerTask('default', ['compass', 'concat']);
+  grunt.registerTask('default', ['compass', 'concat', 'connect', 'watch']);
 };
