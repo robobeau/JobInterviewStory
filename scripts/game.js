@@ -1,113 +1,113 @@
 
 /** GAME ******************************************************************************************/
 
-function Game () {
-    this.activeNPC          = '';
-    this.currentArea        = 'a000';
-    this.currentDirection   = 'down';
-    this.currentFocus       = '';
-    this.domain             = location.protocol + '//' + location.host;
-    this.directions         = {
+Game = {
+    activeNPC          : '',
+    currentArea        : 'a000',
+    currentDirection   : 'down',
+    currentFocus       : '',
+    domain             : location.protocol + '//' + location.host,
+    directions         : {
         up      : 'up',
         down    : 'down',
         left    : 'left',
         right   : 'right'
-    }
-    this.fps                = 60;
-    this.gridCellSize       = 32;
-    this.loading            = 0;
-    this.preloading         = false;
-    this.pressedKeys        = [];
-    this.prevArea           = 'a000';
+    },
+    fps                : 60,
+    gridCellSize       : 32,
+    loading            : 0,
+    preloading         : false,
+    pressedKeys        : [],
+    prevArea           : 'a000',
 
     /**
      *
      */
-    this.calculateZindex = function (object) {
+    calculateZindex : function (object) {
         object.css({
             zIndex: object.position().top
         });
-    }
+    },
 
     /**
      *
      */
-    this.checkCollisions = function (object, direction) {
+    checkCollisions : function (object, direction) {
         var
-            objectCoord = $.game.getCoordinates(object),
+            objectCoord = Game.getCoordinates(object),
             offsetL     = 0,
             offsetT     = 0;
 
         switch (direction) {
 
             // Up
-            case $.game.directions.up:
+            case Game.directions.up:
                 offsetT = -1;
 
                 break;
 
             // Down
-            case $.game.directions.down:
+            case Game.directions.down:
                 offsetT = 1;
 
                 break;
 
             // Left
-            case $.game.directions.left:
+            case Game.directions.left:
                 offsetL = -1;
 
                 break;
 
             // Right
-            case $.game.directions.right:
+            case Game.directions.right:
                 offsetL = 1;
 
                 break;
         }
 
-        if ($.stage.collisionsMap[objectCoord.y + offsetT]) {
-            if ($.stage.collisionsMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
-                return $.stage.collisionsMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
+        if (Stage.collisionsMap[objectCoord.y + offsetT]) {
+            if (Stage.collisionsMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
+                return Stage.collisionsMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
             }
         }
 
-        if ($.stage.portalsMap[objectCoord.y + offsetT]) {
-            if ($.stage.portalsMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
-                return $.stage.portalsMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
+        if (Stage.portalsMap[objectCoord.y + offsetT]) {
+            if (Stage.portalsMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
+                return Stage.portalsMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
             }
         }
 
-        if ($.stage.npcsMap[objectCoord.y + offsetT]) {
-            if ($.stage.npcsMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
-                return $.stage.npcsMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
+        if (Stage.npcsMap[objectCoord.y + offsetT]) {
+            if (Stage.npcsMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
+                return Stage.npcsMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
             }
         }
 
-        if ($.stage.playersMap[objectCoord.y + offsetT]) {
-            if ($.stage.playersMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
-                return $.stage.playersMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
+        if (Stage.playersMap[objectCoord.y + offsetT]) {
+            if (Stage.playersMap[objectCoord.y + offsetT][objectCoord.x + offsetL]) {
+                return Stage.playersMap[objectCoord.y + offsetT][objectCoord.x + offsetL];
             }
         }
 
         return false;
-    }
+    },
 
     /**
      *
      */
-    this.getCoordinates = function (object) {
+    getCoordinates : function (object) {
         var objectPos = object.position();
 
         return {
-            'x': objectPos.left / $.game.gridCellSize,
-            'y': objectPos.top / $.game.gridCellSize
+            'x': objectPos.left / Game.gridCellSize,
+            'y': objectPos.top / Game.gridCellSize
         }
-    }
+    },
 
     /**
      *
      */
-    this.moveObject = function (object, direction, callback) {
+    moveObject : function (object, direction, callback) {
         var
             animateOptions  = {},
             objectPos       = object.position(),
@@ -117,33 +117,33 @@ function Game () {
         switch (direction) {
 
             // Up
-            case $.game.directions.up:
+            case Game.directions.up:
                 animateOptions = {
-                    top: top - $.game.gridCellSize
+                    top: top - Game.gridCellSize
                 }
 
                 break;
 
             // Down
-            case $.game.directions.down:
+            case Game.directions.down:
                 animateOptions = {
-                    top: top + $.game.gridCellSize
+                    top: top + Game.gridCellSize
                 }
 
                 break;
 
             // Left
-            case $.game.directions.left:
+            case Game.directions.left:
                 animateOptions = {
-                    left: left - $.game.gridCellSize
+                    left: left - Game.gridCellSize
                 }
 
                 break;
 
             // Right
-            case $.game.directions.right:
+            case Game.directions.right:
                 animateOptions = {
-                    left: left + $.game.gridCellSize
+                    left: left + Game.gridCellSize
                 }
 
                 break;
@@ -155,20 +155,20 @@ function Game () {
             180,
             'linear',
             function () {
-                $.game.calculateZindex(object);
+                Game.calculateZindex(object);
 
                 if (callback) {
                     callback();
                 }
             }
         );
-    }
+    },
 
     /**
      *
      */
-    this.preload = function () {
-        $.game.preloading = true;
+    preload : function () {
+        Game.preloading = true;
 
         if ($('#loading').length == 0) {
             $('body').append('<div id="loading">Loading...</div>');
@@ -206,16 +206,16 @@ function Game () {
         ];
 
         $.each(preload, function (index, value) {
-            $.game.loading = true;
+            Game.loading = true;
 
             $.ajax({
                 type    : 'GET',
                 url     : value
             }).done(function () {
                 if (index == (preload.length - 1)) {
-                    $.game.loading = false;
+                    Game.loading = false;
 
-                    $.game.start();
+                    Game.start();
                 }
             }).fail(function () {
                 // Do nothing
@@ -223,24 +223,24 @@ function Game () {
                 // Do nothing
             });
         });
-    }
+    },
 
     /**
      *
      */
-    this.start = function () {
+    start : function () {
         setInterval(function () {
-            $.game.update();
-        }, 1000 / $.game.fps);
+            Game.update();
+        }, 1000 / Game.fps);
 
-        $.stage.init('a000');
-    }
+        Stage.init('a000');
+    },
 
     /**
      *
      */
-    this.update = function () {
-        if ($.game.loading) {
+    update : function () {
+        if (Game.loading) {
             if ($('#loading').length == 0) {
                 $('body').append('<div id="loading">Loading...</div>');
             }
@@ -256,25 +256,9 @@ function Game () {
             $.player.checkButtons();
         }
 
-        $.stage.checkButtons();
+        Stage.checkButtons();
     }
 };
-
-$.fn.game = function (option) {
-    var
-        element     = $(this[0]),
-        otherArgs   = Array.prototype.slice.call(arguments, 1);
-
-    if (typeof option !== 'undefined' && otherArgs.length > 0) {
-        return element.data('game')[option].apply(this[0], [].concat(otherArgs));
-    } else if (typeof option !== 'undefined') {
-        return element.data('game')[option].call (this[0]);
-    } else {
-        return element.data('game');
-    }
-}
-
-$.game = new Game();
 
 /** BINDINGS **************************************************************************************/
 
@@ -282,14 +266,14 @@ $.game = new Game();
 $(document).on('keydown', function (event) {
     var key = event.keyCode || event.which;
 
-    $.game.pressedKeys[event.keyCode] = true;
+    Game.pressedKeys[event.keyCode] = true;
 });
 
 //
 $(document).on('keyup', function (event) {
     var key = event.keyCode || event.which;
 
-    $.game.pressedKeys[event.keyCode]   = false;
+    Game.pressedKeys[event.keyCode]   = false;
     $.modals.allowPress                 = true;
     $.player.allowPress                 = true;
 });
@@ -298,5 +282,5 @@ $(document).on('keyup', function (event) {
 
 //
 $(document).on('ready', function () {
-    $.game.preload();
+    Game.preload();
 });

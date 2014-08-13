@@ -1,22 +1,22 @@
 
 /** STAGE *****************************************************************************************/
 
-function Stage () {
-    this.collisionsMap  = [];
-    this.height         = 0;
-    this.npcsMap        = [];
-    this.playersMap     = [];
-    this.portalsMap     = [];
-    this.tileMap        = {
+Stage = {
+    collisionsMap  : [],
+    height         : 0,
+    npcsMap        : [],
+    playersMap     : [],
+    portalsMap     : [],
+    tileMap        : {
         height  : 50,
         width   : 50
-    }
-    this.width          = 0;
+    },
+    width          : 0,
 
     /**
      *
      */
-    this.center = function () {
+    center : function () {
         var
             left        = 0,
             player      = $('#player'),
@@ -29,58 +29,58 @@ function Stage () {
         left    = (windowW / 2) - (playerPos.left + (player.width() / 2));
         top     = (windowH / 2) - (playerPos.top + ((player.height() + 8)/ 2));
 
-        if ($.stage.width <= windowW && $.stage.height <= windowH) {
-            left    = (windowW - $.stage.width) / 2;
-            top     = (windowH - $.stage.height) / 2;
+        if (Stage.width <= windowW && Stage.height <= windowH) {
+            left    = (windowW - Stage.width) / 2;
+            top     = (windowH - Stage.height) / 2;
         }
 
-        if ($.stage.width > windowW && stage.offset().left > 0 && playerPos.left < windowW
-            && $.stage.height > windowH && stage.offset().top > 0 && playerPos.top < windowH) {
+        if (Stage.width > windowW && stage.offset().left > 0 && playerPos.left < windowW
+            && Stage.height > windowH && stage.offset().top > 0 && playerPos.top < windowH) {
             left    = 0;
             top     = 0;
         }
 
         stage.css({
-            height  : $.stage.height,
+            height  : Stage.height,
             left    : left + 'px',
             top     : top + 'px',
-            width   : $.stage.width
+            width   : Stage.width
         });
-    }
+    },
 
     /**
      *
      */
-    this.checkButtons = function () {
+    checkButtons : function () {
         // Shift
-        if ($.game.pressedKeys[16]) {
+        if (Game.pressedKeys[16]) {
 
         }
 
         // Spacebar, Enter
-        if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
+        if (Game.pressedKeys[13] || Game.pressedKeys[32]) {
 
         }
 
         switch (true) {
 
             // W, Up Arrow
-            case (($.game.pressedKeys[87] || $.game.pressedKeys[38])) :
+            case ((Game.pressedKeys[87] || Game.pressedKeys[38])) :
 
                 break;
 
             // S, Down Arrow
-            case (($.game.pressedKeys[83] || $.game.pressedKeys[40])) :
+            case ((Game.pressedKeys[83] || Game.pressedKeys[40])) :
 
                 break;
 
             // A, Left Arrow
-            case (($.game.pressedKeys[65] || $.game.pressedKeys[37])) :
+            case ((Game.pressedKeys[65] || Game.pressedKeys[37])) :
 
                 break;
 
             // D, Right Arrow
-            case (($.game.pressedKeys[68] || $.game.pressedKeys[39])) :
+            case ((Game.pressedKeys[68] || Game.pressedKeys[39])) :
 
                 break;
 
@@ -88,16 +88,16 @@ function Stage () {
 
                 break;
         }
-    }
+    },
 
     /**
      *
      */
-    this.cleanup = function () {
-        $.stage.collisionsMap   = [];
-        $.stage.npcsMap         = [];
-        $.stage.playersMap      = [];
-        $.stage.portalsMap      = [];
+    cleanup : function () {
+        Stage.collisionsMap   = [];
+        Stage.npcsMap         = [];
+        Stage.playersMap      = [];
+        Stage.portalsMap      = [];
 
         $('.npc').each(function (index, element) {
             $(element).npc('destroy');
@@ -113,12 +113,12 @@ function Stage () {
         $('#tiles').html('');
 
         $(document).trigger('keyup');
-    }
+    },
 
     /**
      *
      */
-    this.drawCollisions = function (collisions) {
+    drawCollisions : function (collisions) {
         var
             counter = 0,
             height  = collisions.height,
@@ -126,16 +126,16 @@ function Stage () {
             width   = collisions.width;
 
         $.each(collisions.data, function (index, value) {
-            if (!$.stage.collisionsMap[row]) {
-                $.stage.collisionsMap[row] = {};
+            if (!Stage.collisionsMap[row]) {
+                Stage.collisionsMap[row] = {};
             }
 
-            $.stage.collisionsMap[row][counter] = value === 2;
+            Stage.collisionsMap[row][counter] = value === 2;
 
             if (value !== 0) { // 0 is empty, 2 is a collision
                 $('#collisions').append(
                     '<div class="collision" '
-                    + 'style="left: ' + (counter * $.game.gridCellSize) + 'px; top: ' + (row * $.game.gridCellSize) + 'px">'
+                    + 'style="left: ' + (counter * Game.gridCellSize) + 'px; top: ' + (row * Game.gridCellSize) + 'px">'
                     + '</div>'
                 );
             }
@@ -143,12 +143,12 @@ function Stage () {
             counter += (index + 1) % width === 0 ? -counter : 1;
             row     += (index + 1) % width === 0 ? 1 : 0;
         });
-    }
+    },
 
     /**
      *
      */
-    this.drawObjects = function (objects) {
+    drawObjects : function (objects) {
         $.each(objects.objects, function (index, value) {
             switch (value.type) {
                 case 'player':
@@ -166,15 +166,15 @@ function Stage () {
                         '<div id="' + value.name + '" '
                         + 'class="object doorway" '
                         + 'data-area="' + value.properties.area + '" '
-                        + 'style="left: ' + value.x + 'px; top: ' + (value.y - $.game.gridCellSize) + 'px">'
+                        + 'style="left: ' + value.x + 'px; top: ' + (value.y - Game.gridCellSize) + 'px">'
                         + '</div>'
                     );
 
-                    if (!$.stage.portalsMap[(value.y / $.game.gridCellSize) - 1]) {
-                        $.stage.portalsMap[(value.y / $.game.gridCellSize) - 1] = {};
+                    if (!Stage.portalsMap[(value.y / Game.gridCellSize) - 1]) {
+                        Stage.portalsMap[(value.y / Game.gridCellSize) - 1] = {};
                     }
 
-                    $.stage.portalsMap[(value.y / $.game.gridCellSize) - 1][(value.x / $.game.gridCellSize)] = $('#' + value.name);
+                    Stage.portalsMap[(value.y / Game.gridCellSize) - 1][(value.x / Game.gridCellSize)] = $('#' + value.name);
 
                     break;
 
@@ -183,25 +183,25 @@ function Stage () {
                         '<div id="' + value.name + '" '
                         + 'class="object stairs" data-area="' + value.properties.area + '" '
                         + 'data-direction="' + value.properties.direction + '" '
-                        + 'style="left: ' + value.x + 'px; top: ' + (value.y - $.game.gridCellSize) + 'px">'
+                        + 'style="left: ' + value.x + 'px; top: ' + (value.y - Game.gridCellSize) + 'px">'
                         + '</div>'
                     );
 
-                    if (!$.stage.portalsMap[(value.y / $.game.gridCellSize) - 1]) {
-                        $.stage.portalsMap[(value.y / $.game.gridCellSize) - 1] = {};
+                    if (!Stage.portalsMap[(value.y / Game.gridCellSize) - 1]) {
+                        Stage.portalsMap[(value.y / Game.gridCellSize) - 1] = {};
                     }
 
-                    $.stage.portalsMap[(value.y / $.game.gridCellSize) - 1][(value.x / $.game.gridCellSize)] = $('#' + value.name);
+                    Stage.portalsMap[(value.y / Game.gridCellSize) - 1][(value.x / Game.gridCellSize)] = $('#' + value.name);
 
                     break;
             }
         });
-    }
+    },
 
     /**
      *
      */
-    this.drawTiles = function (tiles) {
+    drawTiles : function (tiles) {
         var
             counter = 0,
             height  = tiles.height,
@@ -210,14 +210,14 @@ function Stage () {
 
         $.each(tiles.data, function (index, value) {
             var
-                y   = Math.ceil(value / $.stage.tileMap.width),
-                x   = (value - ((y - 1) * $.stage.tileMap.width));
+                y   = Math.ceil(value / Stage.tileMap.width),
+                x   = (value - ((y - 1) * Stage.tileMap.width));
 
             if (value !== 0) { // 0 is empty, therefore don't draw it
                 $('#tiles').append(
                     '<div class="tile t' + value + ' ' + tiles.name + '" '
-                    + 'style="background-position: -' + ((x * $.game.gridCellSize) - $.game.gridCellSize) + 'px -' + ((y * $.game.gridCellSize) - $.game.gridCellSize) + 'px; '
-                    + 'left: ' + (counter * $.game.gridCellSize) + 'px; top: ' + (row * $.game.gridCellSize) + 'px">'
+                    + 'style="background-position: -' + ((x * Game.gridCellSize) - Game.gridCellSize) + 'px -' + ((y * Game.gridCellSize) - Game.gridCellSize) + 'px; '
+                    + 'left: ' + (counter * Game.gridCellSize) + 'px; top: ' + (row * Game.gridCellSize) + 'px">'
                     + '</div>'
                 );
             }
@@ -225,20 +225,20 @@ function Stage () {
             counter += (index + 1) % width === 0 ? -counter : 1;
             row     += (index + 1) % width === 0 ? 1 : 0;
         });
-    }
+    },
 
     /**
      *
      */
-    this.init = function (stage) {
+    init : function (stage) {
         var transition = $('#transition');
 
         transition.animate({
             opacity: 1
         }, 180, function () {
-            $.stage.cleanup();
+            Stage.cleanup();
 
-            $.game.loading = true;
+            Game.loading = true;
 
             $.ajax({
                 // cache       : false, // For development purposes
@@ -246,10 +246,10 @@ function Stage () {
                 type        : 'GET',
                 url         : '../json/'+ stage +'.json',
             }).done(function (data, textStatus, jqXHR) {
-                $.game.prevArea     = $.game.currentArea;
-                $.game.currentArea  = stage;
-                $.stage.height      = data.height * $.game.gridCellSize;
-                $.stage.width       = data.width * $.game.gridCellSize;
+                Game.prevArea     = Game.currentArea;
+                Game.currentArea  = stage;
+                Stage.height      = data.height * Game.gridCellSize;
+                Stage.width       = data.width * Game.gridCellSize;
 
                 $.each(data.layers, function (index, value) {
                     var layer = value;
@@ -258,39 +258,39 @@ function Stage () {
 
                         // Collisions
                         case (layer.name == 'collisions') :
-                            $.stage.drawCollisions(layer);
+                            Stage.drawCollisions(layer);
 
                             break;
 
                         // Objects
                         case (layer.type == 'objectgroup') :
-                            $.stage.drawObjects(layer);
+                            Stage.drawObjects(layer);
 
                             break;
 
                         // Tile Layer
                         default :
-                            $.stage.drawTiles(layer);
+                            Stage.drawTiles(layer);
 
                             break;
                     }
                 });
 
                 for (i = 0; i < $('#player, .npc, .object, .tiles3').length; i++) {
-                    $.game.calculateZindex($('#player, .npc, .object, .tiles3').eq(i));
+                    Game.calculateZindex($('#player, .npc, .object, .tiles3').eq(i));
                 }
 
-                $.stage.center();
+                Stage.center();
 
-                $.game.loading = false;
+                Game.loading = false;
 
-                if (data.properties.music && $.sounds.currentMusic.src != $.sounds.music[data.properties.music]) {
-                    $.sounds.currentMusicId = data.properties.music;
+                if (data.properties.music && Sounds.currentMusic.src != Sounds.music[data.properties.music]) {
+                    Sounds.currentMusicId = data.properties.music;
 
-                    $.sounds.changeMusic($.sounds.music[data.properties.music]);
+                    Sounds.changeMusic(Sounds.music[data.properties.music]);
                 }
 
-                $.sounds.fade($.sounds.currentMusic, data.properties.musicVol);
+                Sounds.fade(Sounds.currentMusic, data.properties.musicVol);
 
                 transition.animate({
                     opacity: 0
@@ -301,9 +301,9 @@ function Stage () {
                 // Do nothing
             });
         });
-    }
+    },
 
-    this.scrollStage = function (direction) {
+    scrollStage : function (direction) {
         var
             player      = $('#player'),
             playerOff   = player.offset(),
@@ -316,46 +316,46 @@ function Stage () {
             windowH     = $(window).height(),
             windowW     = $(window).width();
 
-        if (($.stage.width > windowW || $.stage.height > windowH)) {
+        if ((Stage.width > windowW || Stage.height > windowH)) {
             switch (direction) {
 
                 // Up
-                case $.game.directions.up:
-                    if ((playerOff.top + ($.game.gridCellSize / 2)) < (windowH / 2) && stageT < 0) {
+                case Game.directions.up:
+                    if ((playerOff.top + (Game.gridCellSize / 2)) < (windowH / 2) && stageT < 0) {
                         stage.stop().animate({
-                            top: stageT + $.game.gridCellSize + offset
+                            top: stageT + Game.gridCellSize + offset
                         }, 180, 'linear');
                     }
 
                     break;
 
                 // Down
-                case $.game.directions.down:
-                    if ((playerOff.top + ($.game.gridCellSize / 2)) > (windowH / 2)
-                        && Math.abs(stageT - windowH) < $.stage.height) {
+                case Game.directions.down:
+                    if ((playerOff.top + (Game.gridCellSize / 2)) > (windowH / 2)
+                        && Math.abs(stageT - windowH) < Stage.height) {
                         stage.stop().animate({
-                            top: stageT - $.game.gridCellSize + offset
+                            top: stageT - Game.gridCellSize + offset
                         }, 180, 'linear');
                     }
 
                     break;
 
                 // Left
-                case $.game.directions.left:
-                    if ((playerOff.left + ($.game.gridCellSize / 2)) < (windowW / 2) && stageL < 0) {
+                case Game.directions.left:
+                    if ((playerOff.left + (Game.gridCellSize / 2)) < (windowW / 2) && stageL < 0) {
                         stage.stop().animate({
-                            left: stageL + $.game.gridCellSize + offset
+                            left: stageL + Game.gridCellSize + offset
                         }, 180, 'linear');
                     }
 
                     break;
 
                 // Right
-                case $.game.directions.right:
-                    if ((playerOff.left + ($.game.gridCellSize / 2)) > (windowW / 2)
-                        && Math.abs(stageL - windowW) < $.stage.width) {
+                case Game.directions.right:
+                    if ((playerOff.left + (Game.gridCellSize / 2)) > (windowW / 2)
+                        && Math.abs(stageL - windowW) < Stage.width) {
                         stage.stop().animate({
-                            left: stageL - $.game.gridCellSize + offset
+                            left: stageL - Game.gridCellSize + offset
                         }, 180, 'linear');
                     }
 
@@ -364,19 +364,3 @@ function Stage () {
         }
     }
 }
-
-$.fn.stage = function (option) {
-    var
-        element     = $(this[0]),
-        otherArgs   = Array.prototype.slice.call(arguments, 1);
-
-    if (typeof option !== 'undefined' && otherArgs.length > 0) {
-        return element.data('stage')[option].apply(this[0], [].concat(otherArgs));
-    } else if (typeof option !== 'undefined') {
-        return element.data('stage')[option].call (this[0]);
-    } else {
-        return element.data('stage');
-    }
-}
-
-$.stage = new Stage();

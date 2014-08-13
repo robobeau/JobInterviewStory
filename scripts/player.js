@@ -29,13 +29,13 @@ function Player () {
         player.data('player')['speedMultiplier'] = 1;
 
         // Shift
-        if ($.game.pressedKeys[16]) {
+        if (Game.pressedKeys[16]) {
             player.data('player')['speedMultiplier'] = 2;
         }
 
         // Spacebar, Enter
-        if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
-            var collision = $.game.checkCollisions(player, player.data('player')['direction']);
+        if (Game.pressedKeys[13] || Game.pressedKeys[32]) {
+            var collision = Game.checkCollisions(player, player.data('player')['direction']);
 
             $.player.allowPress = false;
 
@@ -57,32 +57,32 @@ function Player () {
         switch (true) {
 
             // W, Up Arrow
-            case (($.game.pressedKeys[87] || $.game.pressedKeys[38])) :
-                var direction = player.data('player')['direction'] = $.game.directions.up;
+            case ((Game.pressedKeys[87] || Game.pressedKeys[38])) :
+                var direction = player.data('player')['direction'] = Game.directions.up;
 
                 player.player('move', direction);
 
                 break;
 
             // S, Down Arrow
-            case (($.game.pressedKeys[83] || $.game.pressedKeys[40])) :
-                var direction = player.data('player')['direction'] = $.game.directions.down;
+            case ((Game.pressedKeys[83] || Game.pressedKeys[40])) :
+                var direction = player.data('player')['direction'] = Game.directions.down;
 
                 player.player('move', direction);
 
                 break;
 
             // A, Left Arrow
-            case (($.game.pressedKeys[65] || $.game.pressedKeys[37])) :
-                var direction = player.data('player')['direction'] = $.game.directions.left;
+            case ((Game.pressedKeys[65] || Game.pressedKeys[37])) :
+                var direction = player.data('player')['direction'] = Game.directions.left;
 
                 player.player('move', direction);
 
                 break;
 
             // D, Right Arrow
-            case (($.game.pressedKeys[68] || $.game.pressedKeys[39])) :
-                var direction = player.data('player')['direction'] = $.game.directions.right;
+            case ((Game.pressedKeys[68] || Game.pressedKeys[39])) :
+                var direction = player.data('player')['direction'] = Game.directions.right;
 
                 player.player('move', direction);
 
@@ -101,18 +101,18 @@ function Player () {
     this.create = function (data) {
         var player;
 
-        if (data.properties.prevArea === $.game.prevArea) {
-            $('#objects').append('<div id="player" style="left: ' + data.x + 'px; top: ' + (data.y - 32) + 'px;"><div id="player-sprite" class="' + $.game.currentDirection + '"></div></div>');
+        if (data.properties.prevArea === Game.prevArea) {
+            $('#objects').append('<div id="player" style="left: ' + data.x + 'px; top: ' + (data.y - 32) + 'px;"><div id="player-sprite" class="' + Game.currentDirection + '"></div></div>');
 
             player = $('#player');
 
             player.data('player', new Player());
 
-            if (!$.stage.playersMap[(data.y / $.game.gridCellSize) - 1]) {
-                $.stage.playersMap[(data.y / $.game.gridCellSize) - 1] = {};
+            if (!Stage.playersMap[(data.y / Game.gridCellSize) - 1]) {
+                Stage.playersMap[(data.y / Game.gridCellSize) - 1] = {};
             }
 
-            $.stage.playersMap[(data.y / $.game.gridCellSize) - 1][(data.x / $.game.gridCellSize)] = player;
+            Stage.playersMap[(data.y / Game.gridCellSize) - 1][(data.x / Game.gridCellSize)] = player;
         }
     }
 
@@ -131,13 +131,13 @@ function Player () {
     this.move = function (direction, callback) {
         var
             player          = $(this),
-            playerPos       = $.game.getCoordinates(player);
+            playerPos       = Game.getCoordinates(player);
             playerSprite    = $('#player-sprite');
 
         if (player.data('player')['allowMove']) {
-            var collision = $.game.checkCollisions(player, direction);
+            var collision = Game.checkCollisions(player, direction);
 
-            $.game.currentDirection = direction;
+            Game.currentDirection = direction;
 
             playerSprite.removeClass().addClass('walking ' + direction);
 
@@ -148,7 +148,7 @@ function Player () {
                     case (collision) :
                         playerSprite.removeClass('walking');
 
-                        $.sounds.fx.bump.play();
+                        Sounds.fx.bump.play();
 
                         break;
 
@@ -156,22 +156,22 @@ function Player () {
                     case (collision.is('.doorway')) :
                         player.data('player')['allowMove'] = false;
 
-                        $.sounds.fx.door.play();
+                        Sounds.fx.door.play();
 
-                        $.game.moveObject(player, direction, function () {
-                            var newPos = $.game.getCoordinates(player);
+                        Game.moveObject(player, direction, function () {
+                            var newPos = Game.getCoordinates(player);
 
-                            if (!$.stage.playersMap[newPos.y]) {
-                                $.stage.playersMap[newPos.y] = {};
+                            if (!Stage.playersMap[newPos.y]) {
+                                Stage.playersMap[newPos.y] = {};
                             }
 
-                            $.stage.playersMap[newPos.y][newPos.x] = player;
+                            Stage.playersMap[newPos.y][newPos.x] = player;
 
-                            $.sounds.fx.enter.play();
+                            Sounds.fx.enter.play();
 
-                            delete $.stage.playersMap[playerPos.y][playerPos.x];
+                            delete Stage.playersMap[playerPos.y][playerPos.x];
 
-                            $.stage.init(collision.attr('data-area'));
+                            Stage.init(collision.attr('data-area'));
                         });
 
                         break;
@@ -180,10 +180,10 @@ function Player () {
                     case (collision.is('.stairs')) :
                         player.data('player')['allowMove'] = false;
 
-                        $.sounds.fx.enter.play();
+                        Sounds.fx.enter.play();
 
                         player.player('useStairs', collision.attr('data-direction'), function () {
-                            $.stage.init(collision.attr('data-area'));
+                            Stage.init(collision.attr('data-area'));
                         });
 
                         break;
@@ -191,21 +191,21 @@ function Player () {
             } else {
                 player.data('player')['allowMove'] = false;
 
-                $.game.moveObject(player, direction, function () {
-                    var newPos = $.game.getCoordinates(player);
+                Game.moveObject(player, direction, function () {
+                    var newPos = Game.getCoordinates(player);
 
                     player.data('player')['allowMove'] = true;
 
-                    if (!$.stage.playersMap[newPos.y]) {
-                        $.stage.playersMap[newPos.y] = {};
+                    if (!Stage.playersMap[newPos.y]) {
+                        Stage.playersMap[newPos.y] = {};
                     }
 
-                    $.stage.playersMap[newPos.y][newPos.x] = player;
+                    Stage.playersMap[newPos.y][newPos.x] = player;
 
-                    delete $.stage.playersMap[playerPos.y][playerPos.x];
+                    delete Stage.playersMap[playerPos.y][playerPos.x];
                 });
 
-                $.stage.scrollStage(direction);
+                Stage.scrollStage(direction);
             }
         }
     }

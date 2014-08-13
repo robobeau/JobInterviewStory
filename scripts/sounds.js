@@ -1,36 +1,36 @@
 
 /** SOUNDS ****************************************************************************************/
 
-function Sounds () {
-    this.currentMusic   = '';
-    this.currentMusicId = '';
-    this.fx             = {
-        bip     : new Audio($.game.domain + '/sounds/bip.wav'),
-        bump    : new Audio($.game.domain + '/sounds/bump.wav'),
-        door    : new Audio($.game.domain + '/sounds/door.wav'),
-        enter   : new Audio($.game.domain + '/sounds/enter.wav'),
-        error   : new Audio($.game.domain + '/sounds/error.wav')
-    }
-    this.music          = {
-        shadesOfRed : $.game.domain + '/sounds/Pokemon_Red_Version_Shades_of_Red_OC_ReMix.mp3',
-        wetDreams   : $.game.domain + '/sounds/Pokemon_Blue_Version_Wet_Dreams_OC_ReMix.mp3'
-    }
+Sounds = {
+    currentMusic   : '',
+    currentMusicId : '',
+    fx             : {
+        bip     : new Audio(Game.domain + '/sounds/bip.wav'),
+        bump    : new Audio(Game.domain + '/sounds/bump.wav'),
+        door    : new Audio(Game.domain + '/sounds/door.wav'),
+        enter   : new Audio(Game.domain + '/sounds/enter.wav'),
+        error   : new Audio(Game.domain + '/sounds/error.wav')
+    },
+    music          : {
+        shadesOfRed : Game.domain + '/sounds/Pokemon_Red_Version_Shades_of_Red_OC_ReMix.mp3',
+        wetDreams   : Game.domain + '/sounds/Pokemon_Blue_Version_Wet_Dreams_OC_ReMix.mp3'
+    },
 
-    this.changeMusic = function (newMusic) {
-        if ($.sounds.currentMusic) {
-            $.sounds.fade($.sounds.currentMusic, 0, function () {
-                $.sounds.currentMusic.pause();
+    changeMusic : function (newMusic) {
+        if (Sounds.currentMusic) {
+            Sounds.fade(Sounds.currentMusic, 0, function () {
+                Sounds.currentMusic.pause();
             });
         }
 
-        $.game.loading = true;
+        Game.loading = true;
 
-        $.sounds.currentMusic   = new Audio(newMusic);
+        Sounds.currentMusic   = new Audio(newMusic);
 
-        $.sounds.currentMusic.canplaythrough = $.sounds.playMusic();
-    }
+        Sounds.currentMusic.canplaythrough = Sounds.playMusic();
+    },
 
-    this.fade = function (sound, volume, callback) {
+    fade : function (sound, volume, callback) {
         var
             offset  = 0.0001,
             steps   = Math.abs(sound.volume - volume) / 0.0001;
@@ -46,14 +46,14 @@ function Sounds () {
         if (callback) {
             callback();
         }
-    }
+    },
 
-    this.playMusic = function () {
-        $.game.loading = false;
+    playMusic : function () {
+        Game.loading = false;
 
-        $.sounds.currentMusic.loop = true;
+        Sounds.currentMusic.loop = true;
 
-        $.sounds.currentMusic.play();
+        Sounds.currentMusic.play();
 
         $.modals.create(
             {
@@ -64,23 +64,7 @@ function Sounds () {
                 left    : 20 + 3, // The 3 is half the border-image-outset value
                 top     : $(window).height() - 68 - 3 // The 3 is half the border-image-outset value
             },
-            Dialogue[$.sounds.currentMusicId]
+            Dialogue[Sounds.currentMusicId]
         );
     }
 }
-
-$.fn.sounds = function (option) {
-    var
-        element     = $(this[0]),
-        otherArgs   = Array.prototype.slice.call(arguments, 1);
-
-    if (typeof option !== 'undefined' && otherArgs.length > 0) {
-        return element.data('sounds')[option].apply(this[0], [].concat(otherArgs));
-    } else if (typeof option !== 'undefined') {
-        return element.data('sounds')[option].call (this[0]);
-    } else {
-        return element.data('sounds');
-    }
-}
-
-$.sounds = new Sounds();

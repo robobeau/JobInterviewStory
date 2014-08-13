@@ -30,12 +30,12 @@ function Modals () {
         }
 
         // Shift
-        if ($.game.pressedKeys[16]) {
+        if (Game.pressedKeys[16]) {
 
         }
 
         // Spacebar, Enter
-        if ($.game.pressedKeys[13] || $.game.pressedKeys[32]) {
+        if (Game.pressedKeys[13] || Game.pressedKeys[32]) {
             $.modals.allowPress = false;
 
             switch (true) {
@@ -80,7 +80,7 @@ function Modals () {
         switch (true) {
 
             // W, Up Arrow
-            case (($.game.pressedKeys[87] || $.game.pressedKeys[38])) :
+            case ((Game.pressedKeys[87] || Game.pressedKeys[38])) :
                 $.modals.allowPress = false;
 
                 switch (true) {
@@ -93,7 +93,7 @@ function Modals () {
                 break;
 
             // S, Down Arrow
-            case (($.game.pressedKeys[83] || $.game.pressedKeys[40])) :
+            case ((Game.pressedKeys[83] || Game.pressedKeys[40])) :
                 $.modals.allowPress = false;
 
                 switch (true) {
@@ -106,13 +106,13 @@ function Modals () {
                 break;
 
             // A, Left Arrow
-            case (($.game.pressedKeys[65] || $.game.pressedKeys[37])) :
+            case ((Game.pressedKeys[65] || Game.pressedKeys[37])) :
                 $.modals.allowPress = false;
 
                 break;
 
             // D, Right Arrow
-            case (($.game.pressedKeys[68] || $.game.pressedKeys[39])) :
+            case ((Game.pressedKeys[68] || Game.pressedKeys[39])) :
                 $.modals.allowPress = false;
 
                 break;
@@ -233,7 +233,7 @@ function Modals () {
         var
             emote   = dialogue.emote,
             modal   = $(this),
-            npc     = $.game.activeNPC,
+            npc     = Game.activeNPC,
             type    = dialogue.type;
 
         if (npc && emote) {
@@ -278,7 +278,7 @@ function Modals () {
 
                         modal.append(dialogue.text.charAt(counter));
 
-                        $.sounds.fx.bip.play();
+                        Sounds.fx.bip.play();
 
                         counter++;
 

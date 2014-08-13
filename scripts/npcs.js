@@ -25,14 +25,14 @@ function NPC () {
 
         npc.css({
             left    : data.x + 'px',
-            top     : (data.y - $.game.gridCellSize) + 'px'
+            top     : (data.y - Game.gridCellSize) + 'px'
         });
 
-        if (!$.stage.npcsMap[(data.y / $.game.gridCellSize) - 1]) {
-            $.stage.npcsMap[(data.y / $.game.gridCellSize) - 1] = {};
+        if (!Stage.npcsMap[(data.y / Game.gridCellSize) - 1]) {
+            Stage.npcsMap[(data.y / Game.gridCellSize) - 1] = {};
         }
 
-        $.stage.npcsMap[(data.y / $.game.gridCellSize) - 1][(data.x / $.game.gridCellSize)] = npc;
+        Stage.npcsMap[(data.y / Game.gridCellSize) - 1][(data.x / Game.gridCellSize)] = npc;
 
         if (data.properties.wander) {
             npc.npc('wander');
@@ -90,27 +90,27 @@ function NPC () {
     this.move = function (direction) {
         var
             npc         = $(this),
-            collision   = $.game.checkCollisions(npc, direction),
-            npcPos      = $.game.getCoordinates(npc),
+            collision   = Game.checkCollisions(npc, direction),
+            npcPos      = Game.getCoordinates(npc),
             npcSprite   = npc.find('.npc-sprite');
 
-        $.game.currentDirection = direction;
+        Game.currentDirection = direction;
 
         npcSprite.removeClass('walking up down left right').addClass('walking ' + direction);
 
         if (collision) {
             npcSprite.removeClass('walking');
         } else {
-            $.game.moveObject(npc, direction, function () {
-                var newPos = $.game.getCoordinates(npc);
+            Game.moveObject(npc, direction, function () {
+                var newPos = Game.getCoordinates(npc);
 
-                if (!$.stage.npcsMap[newPos.y]) {
-                    $.stage.npcsMap[newPos.y] = {};
+                if (!Stage.npcsMap[newPos.y]) {
+                    Stage.npcsMap[newPos.y] = {};
                 }
 
-                $.stage.npcsMap[newPos.y][newPos.x] = npc;
+                Stage.npcsMap[newPos.y][newPos.x] = npc;
 
-                delete $.stage.npcsMap[npcPos.y][npcPos.x];
+                delete Stage.npcsMap[npcPos.y][npcPos.x];
 
                 npcSprite.removeClass('walking');
             });
@@ -130,7 +130,7 @@ function NPC () {
         $.npc.talking                   = true;
         npc.data('npc')['wanderPause']  = true;
 
-        $.game.activeNPC = npc;
+        Game.activeNPC = npc;
 
         $.modals.create(
             {
@@ -138,7 +138,7 @@ function NPC () {
                 width   : 720
             },
             {
-                left    : ($(window).width() - (720 + $.game.gridCellSize)) / 2,
+                left    : ($(window).width() - (720 + Game.gridCellSize)) / 2,
                 top     : 20
             },
             dialogue,
@@ -156,7 +156,7 @@ function NPC () {
 
         npc.data('npc')['wanderInterval'] = setInterval(function () {
             var
-                direction = $.game.directions[Object.keys($.game.directions)[Math.floor(Math.random() * Object.keys($.game.directions).length)]];
+                direction = Game.directions[Object.keys(Game.directions)[Math.floor(Math.random() * Object.keys(Game.directions).length)]];
 
             if (Math.random() < 0.5 || npc.data('npc')['wanderPause'] === true) {
                 return;
