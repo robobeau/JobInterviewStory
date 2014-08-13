@@ -26,6 +26,16 @@ module.exports = function (grunt) {
       }
     },
 
+    connect: {
+      pub: {
+        options: {
+          base: 'pub',
+          open: true,
+          useAvailablePort: true
+        }
+      }
+    },
+
     uglify: {
       vendor: {
         src: 'pub/js/vendor.min.js',
@@ -43,6 +53,7 @@ module.exports = function (grunt) {
         // tasks: ['concat', 'uglify'],
         tasks: ['concat'],
         options: {
+          livereload: true,
           spawn: false,
         }
       },
@@ -51,6 +62,7 @@ module.exports = function (grunt) {
         files: ['sass/*.scss'],
         tasks: ['compass'],
         options: {
+          livereload: true
           spawn: false,
         }
       }
@@ -59,9 +71,10 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   // grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // grunt.registerTask('default', ['compass', 'concat', 'uglify']);
-  grunt.registerTask('default', ['compass', 'concat']);
+  grunt.registerTask('default', ['compass', 'concat', 'connect', 'watch']);
 };
