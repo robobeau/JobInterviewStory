@@ -17,6 +17,7 @@ Grunt and its dependencies will be installed via **npm install**, but here they 
 * [Grunt](http://gruntjs.com) (0.4.5 or above)
 * [grunt-contrib-compass](https://github.com/gruntjs/grunt-contrib-compass) (0.8.0 or above)
 * [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) (0.4.0 or above)
+* [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect) (0.8.0 or above) 
 * [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) (0.5.0 or above)
 * [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) (0.6.1 or above)
 
@@ -35,12 +36,8 @@ cd your-project-folder-here
 npm install
 ```
 
-Run Grunt in order to compile the newly installed third party vendor scripts:
+Run Grunt in order to compile the newly installed third party vendor scripts, and to serve the game:
 
 ```
 grunt
 ```
-
-The following assumes you're running some version of Apache:
-
-Opening the *index.html* file directly will result in all sorts of 404 errors, so you'll need to [create a Virtual Hosts entry](http://httpd.apache.org/docs/2.2/vhosts/examples.html), and [modify your OS's Hosts file](http://www.rackspace.com/knowledge_center/article/how-do-i-modify-my-hosts-file), accordingly.
