@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         tasks: ['concat'],
         options: {
           livereload: true,
-          spawn: false,
+          spawn: false
         }
       },
 
@@ -62,8 +62,8 @@ module.exports = function (grunt) {
         files: ['sass/*.scss'],
         tasks: ['compass'],
         options: {
-          livereload: true
-          spawn: false,
+          livereload: true,
+          spawn: false
         }
       }
     }
@@ -75,6 +75,6 @@ module.exports = function (grunt) {
   // grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // grunt.registerTask('default', ['compass', 'concat', 'uglify']);
+  // grunt.registerTask('default', ['compass', 'concat', 'connect', 'uglify', 'watch']);
   grunt.registerTask('default', ['compass', 'concat', 'connect', 'watch']);
 };
