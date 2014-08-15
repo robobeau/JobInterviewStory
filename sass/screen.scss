@@ -10,6 +10,8 @@
 html, body {
     font-size: 100%;
     line-height: 100%;
+    height: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -78,6 +80,7 @@ a {
     z-index: 10000;
 
     .modal { // div
+        border-style: solid;
         color: $color-mine-shaft;
         font-family: 'Minecraftia';
         min-height: 0px;
@@ -116,7 +119,12 @@ a {
             @include line-height($window-line-height);
 
             -webkit-border-image: url(../img/modal-border.gif) 16 repeat;
+            -webkit-border-image-outset: 10px;
+            -moz-border-image: url(../img/modal-border.gif) 16 repeat;
+            -moz-border-image-outset: 10px;
+            -ms-border-image-outset: 10px;
             -o-border-image: url(../img/modal-border.gif) 16 repeat;
+            -o-border-image-outset: 10px;
             background-color: $color-alabaster;
             border-image: url(../img/modal-border.gif) 16 repeat;
             border-image-outset: 10px;
@@ -128,9 +136,14 @@ a {
             @include line-height($base-line-height);
 
             -webkit-border-image: url(../img/notification-border.gif) 16 repeat;
+            -webkit-border-image-outset: 6px;
+            -moz-border-image: url(../img/notification-border.gif) 16 repeat;
+            -moz-border-image-outset: 6px;
+            -ms-border-image-outset: 6px;
             -o-border-image: url(../img/notification-border.gif) 16 repeat;
-            border-image: url(../img/notification-border.gif) 16 repeat;
+            -o-border-image-outset: 6px;
             background-color: $color-alabaster;
+            border-image: url(../img/notification-border.gif) 16 repeat;
             border-image-outset: 6px;
             border-width: 16px;
         }

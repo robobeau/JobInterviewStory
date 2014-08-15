@@ -297,8 +297,6 @@ function Modals () {
 
                 modal.html('');
 
-                modal.trigger('focus');
-
                 if (dialogue.action) {
                     dialogue.action();
                 }

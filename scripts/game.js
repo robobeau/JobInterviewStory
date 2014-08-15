@@ -168,42 +168,43 @@ Game = {
      *
      */
     preload : function () {
+        var preload = [
+                // Tile Map
+                '../img/tile-map.gif',
+
+                // Player
+                '../img/rene-down.gif',
+                '../img/rene-down-walking.gif',
+                '../img/rene-left.gif',
+                '../img/rene-left-walking.gif',
+                '../img/rene-up.gif',
+                '../img/rene-up-walking.gif',
+
+                // NPC
+                '../img/dude.gif',
+
+                // Modals
+                '../img/modal-border.gif',
+
+                // Emotes
+                '../img/emote-happiness.gif',
+                '../img/emote-love.gif',
+                '../img/emote-question.gif',
+                '../img/emote-sadness.gif',
+                '../img/emote-talk-angry.gif',
+                '../img/emote-talk-happy.gif',
+                '../img/emote-think.gif',
+
+                // Icons
+                '../img/icon-continue.gif'
+            ],
+            outstanding = preload.length;
+
         Game.preloading = true;
 
         if ($('#loading').length == 0) {
             $('body').append('<div id="loading">Loading...</div>');
         }
-
-        var preload = [
-            // Tile Map
-            '../img/tile-map.gif',
-
-            // Player
-            '../img/rene-down.gif',
-            '../img/rene-down-walking.gif',
-            '../img/rene-left.gif',
-            '../img/rene-left-walking.gif',
-            '../img/rene-up.gif',
-            '../img/rene-up-walking.gif',
-
-            // NPC
-            '../img/dude.gif',
-
-            // Modals
-            '../img/modal-border.gif',
-
-            // Emotes
-            '../img/emote-happiness.gif',
-            '../img/emote-love.gif',
-            '../img/emote-question.gif',
-            '../img/emote-sadness.gif',
-            '../img/emote-talk-angry.gif',
-            '../img/emote-talk-happy.gif',
-            '../img/emote-think.gif',
-
-            // Icons
-            '../img/icon-continue.gif'
-        ];
 
         $.each(preload, function (index, value) {
             Game.loading = true;
@@ -212,15 +213,17 @@ Game = {
                 type    : 'GET',
                 url     : value
             }).done(function () {
-                if (index == (preload.length - 1)) {
+                // Do nothing
+            }).fail(function () {
+                // Do nothing
+            }).always(function () {
+                outstanding--;
+
+                if (outstanding === 0) {
                     Game.loading = false;
 
                     Game.start();
                 }
-            }).fail(function () {
-                // Do nothing
-            }).always(function () {
-                // Do nothing
             });
         });
     },
@@ -264,6 +267,8 @@ Game = {
 
 //
 $(document).on('keydown', function (event) {
+    event.preventDefault();
+
     var key = event.keyCode || event.which;
 
     Game.pressedKeys[event.keyCode] = true;
@@ -271,9 +276,11 @@ $(document).on('keydown', function (event) {
 
 //
 $(document).on('keyup', function (event) {
+    event.preventDefault();
+
     var key = event.keyCode || event.which;
 
-    Game.pressedKeys[event.keyCode]   = false;
+    Game.pressedKeys[event.keyCode]     = false;
     $.modals.allowPress                 = true;
     $.player.allowPress                 = true;
 });
