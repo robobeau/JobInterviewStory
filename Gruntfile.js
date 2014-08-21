@@ -30,6 +30,7 @@ module.exports = function (grunt) {
       pub: {
         options: {
           base: 'pub',
+          hostname: 'localhost',
           open: true,
           useAvailablePort: true
         }
