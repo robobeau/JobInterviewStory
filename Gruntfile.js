@@ -18,12 +18,12 @@ module.exports = function (grunt) {
         ],
         dest: 'pub/js/vendor.min.js'
       },
-      app: {
-        src: [
-          'scripts/*.js'
-        ],
-        dest: 'pub/js/game.min.js'
-      }
+      // app: {
+      //   src: [
+      //     'scripts/*.js'
+      //   ],
+      //   dest: 'pub/js/game.min.js'
+      // }
     },
 
     connect: {
@@ -33,6 +33,15 @@ module.exports = function (grunt) {
           open: true,
           useAvailablePort: true
         }
+      }
+    },
+
+    typescript: {
+      app: {
+        src: [
+          'scripts/*.ts'
+        ],
+        dest: 'pub/js/game.min.js'
       }
     },
 
@@ -49,9 +58,8 @@ module.exports = function (grunt) {
 
     watch: {
       scripts: {
-        files: ['scripts/*.js'],
-        // tasks: ['concat', 'uglify'],
-        tasks: ['concat'],
+        files: ['scripts/*.ts'],
+        tasks: ['typescript'],
         options: {
           livereload: true,
           spawn: false
@@ -74,7 +82,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   // grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-typescript');
 
-  // grunt.registerTask('default', ['compass', 'concat', 'connect', 'uglify', 'watch']);
-  grunt.registerTask('default', ['compass', 'concat', 'connect', 'watch']);
+  grunt.registerTask('default', ['compass', 'concat', 'typescript', 'connect', 'watch']);
 };

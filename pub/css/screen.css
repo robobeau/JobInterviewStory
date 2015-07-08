@@ -7,7 +7,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
 /** DEBUG **/
 /** VARIABLES **/
 /** MIXINS **/
@@ -40,17 +39,17 @@ body {
 
 /* line 28, ../../sass/screen.scss */
 a {
-  color: #4880c0;
+  color: #4880C0;
 }
 /* line 31, ../../sass/screen.scss */
 a:hover {
-  color: #3060a0;
+  color: #3060A0;
 }
 
 /** DEBUG *****************************************************************************************/
 /* line 39, ../../sass/screen.scss */
 #debug #x-axis {
-  background-color: red;
+  background-color: #FF0000;
   height: 1px;
   left: 0px;
   opacity: 0;
@@ -61,7 +60,7 @@ a:hover {
 }
 /* line 50, ../../sass/screen.scss */
 #debug #y-axis {
-  background-color: red;
+  background-color: #FF0000;
   height: 100%;
   left: 50%;
   opacity: 0;
@@ -79,7 +78,7 @@ a:hover {
   line-height: 20px;
   line-height: 1.25rem;
   bottom: 20px;
-  color: white;
+  color: #FFFFFF;
   font-family: 'Minecraftia';
   position: absolute;
   right: 20px;
@@ -117,13 +116,11 @@ a:hover {
 }
 /* line 102, ../../sass/screen.scss */
 #modals .modal .choice li:focus {
-  -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
+  -webkit-border-radius: 2px;
   border-radius: 2px;
   background-color: #706880;
-  color: white;
+  color: #FFFFFF;
 }
 /* line 111, ../../sass/screen.scss */
 #modals .modal .icon {
@@ -144,7 +141,7 @@ a:hover {
   -ms-border-image-outset: 10px;
   -o-border-image: url(../img/modal-border.gif) 16 repeat;
   -o-border-image-outset: 10px;
-  background-color: #f8f8f8;
+  background-color: #F8F8F8;
   border-image: url(../img/modal-border.gif) 16 repeat;
   border-image-outset: 10px;
   border-width: 16px;
@@ -162,7 +159,7 @@ a:hover {
   -ms-border-image-outset: 6px;
   -o-border-image: url(../img/notification-border.gif) 16 repeat;
   -o-border-image-outset: 6px;
-  background-color: #f8f8f8;
+  background-color: #F8F8F8;
   border-image: url(../img/notification-border.gif) 16 repeat;
   border-image-outset: 6px;
   border-width: 16px;
@@ -421,7 +418,7 @@ a:hover {
 /** TRANSITION ************************************************************************************/
 /* line 338, ../../sass/screen.scss */
 #transition {
-  background-color: black;
+  background-color: #000000;
   height: 100%;
   position: absolute;
   width: 100%;
@@ -431,43 +428,45 @@ a:hover {
 /** STAGE *****************************************************************************************/
 /* line 348, ../../sass/screen.scss */
 #stage {
+  height: 100%;
   overflow: hidden;
   position: absolute;
+  width: 100%;
 }
-/* line 353, ../../sass/screen.scss */
+/* line 355, ../../sass/screen.scss */
 #stage #collisions {
   position: relative;
   z-index: 2;
 }
-/* line 357, ../../sass/screen.scss */
+/* line 359, ../../sass/screen.scss */
 #stage #collisions .collision {
-  background-color: red;
+  background-color: #FF0000;
   height: 32px;
   opacity: 0;
   position: absolute;
   width: 32px;
 }
-/* line 367, ../../sass/screen.scss */
+/* line 369, ../../sass/screen.scss */
 #stage #objects {
   position: relative;
   z-index: 1;
 }
-/* line 371, ../../sass/screen.scss */
+/* line 373, ../../sass/screen.scss */
 #stage #objects .object {
   height: 32px;
   position: absolute;
   width: 32px;
 }
-/* line 377, ../../sass/screen.scss */
+/* line 378, ../../sass/screen.scss */
 #stage #objects .object.doorway, #stage #objects .object.stairs {
-  background-color: lime;
+  background-color: #00FF00;
   opacity: 0;
 }
-/* line 385, ../../sass/screen.scss */
+/* line 387, ../../sass/screen.scss */
 #stage #tiles {
   position: relative;
 }
-/* line 388, ../../sass/screen.scss */
+/* line 390, ../../sass/screen.scss */
 #stage #tiles .tile {
   background-image: url(../img/tile-map.gif);
   background-repeat: no-repeat;
