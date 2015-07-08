@@ -112,7 +112,6 @@ class Stage {
 
     public drawCollisions(collisions: any): void {
         var counter: number = 0;
-        var height: number = collisions.height;
         var row: number = 0;
         var width: number = collisions.width;
 
@@ -139,8 +138,11 @@ class Stage {
     }
 
     public drawObjects(objects: any): void {
+        var objectsDiv = (<JQuery>$('#objects'));
+
         for (var i: number = 0; i < objects.objects.length; i++) {
             var object: any = objects.objects[i];
+            var objectDiv = (<JQuery>$('#' + object.name));
 
             switch (object.type) {
                 case 'player':
@@ -154,7 +156,7 @@ class Stage {
                     break;
 
                 case 'doorway':
-                    (<JQuery>$('#objects')).append(
+                    objectsDiv.append(
                         '<div id="' + object.name + '" ' +
                             'class="object doorway" ' +
                             'area="' + object.properties.area + '" ' +
@@ -166,12 +168,12 @@ class Stage {
                         this.portalsMap[(object.y / game.gridCellSize) - 1] = {};
                     }
 
-                    this.portalsMap[(object.y / game.gridCellSize) - 1][(object.x / game.gridCellSize)] = $('#' + object.name);
+                    this.portalsMap[(object.y / game.gridCellSize) - 1][(object.x / game.gridCellSize)] = objectDiv;
 
                     break;
 
                 case 'stairs':
-                    (<JQuery>$('#objects')).append(
+                    objectsDiv.append(
                         '<div id="' + object.name + '" ' +
                             'class="object stairs" ' +
                             'area="' + object.properties.area + '" ' +
@@ -184,7 +186,7 @@ class Stage {
                         this.portalsMap[(object.y / game.gridCellSize) - 1] = {};
                     }
 
-                    this.portalsMap[(object.y / game.gridCellSize) - 1][(object.x / game.gridCellSize)] = $('#' + object.name);
+                    this.portalsMap[(object.y / game.gridCellSize) - 1][(object.x / game.gridCellSize)] = objectDiv;
 
                     break;
             }
@@ -193,7 +195,6 @@ class Stage {
 
     public drawTiles(tiles: any): void {
         var counter: number = 0;
-        var height: number = tiles.height;
         var row: number = 0;
         var width: number = tiles.width;
 
@@ -234,7 +235,7 @@ class Stage {
                     dataType: 'json',
                     type: 'GET',
                     url: '../json/' + stageID + '.json',
-                }).done((data, textStatus, jqXHR) => {
+                }).done((data: any, textStatus: any, jqXHR: any) => {
                     game.prevArea = game.currentArea;
                     game.currentArea = stageID;
 
@@ -265,8 +266,10 @@ class Stage {
                         }
                     }
 
-                    for (var j: number = 0; j < $('#player, .npc, .object, .tiles3').length; j++) {
-                        game.calculateZindex((<JQuery>$('#player, .npc, .object, .tiles3')).eq(j));
+                    var objects: JQuery = $('#player, .npc, .object, .tiles3');
+
+                    for (var j: number = 0; j < objects.length; j++) {
+                        game.calculateZindex(objects.eq(j));
                     }
 
                     this.center();
@@ -285,9 +288,9 @@ class Stage {
                     transition.animate({
                         opacity: 0
                     }, 180);
-                }).fail((jqXHR, textStatus, errorThrown) => {
+                }).fail((jqXHR: any, textStatus: any, errorThrown: any) => {
                     // Do nothing
-                }).always((data, textStatus, jqXHR) => {
+                }).always((data: any, textStatus: any, jqXHR: any) => {
                     // Do nothing
                 });
             }
@@ -297,7 +300,6 @@ class Stage {
     public scrollStage(direction: string): void {
         var playerOff = player.pc.offset();
         var offset = 0;
-        var scrollArea = $('#scroll-area');
         var stageObject = $('#stage');
         var stagePos = stageObject.position();
         var stageL = stagePos.left;
@@ -353,4 +355,4 @@ class Stage {
     }
 }
 
-var stage = new Stage();;
+var stage = new Stage();

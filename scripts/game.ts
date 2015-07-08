@@ -33,7 +33,7 @@ class Game {
     public loading: boolean = false;
     public loadingMessage: string = '<div id="loading">Loading...</div>';
     public preloading: boolean = false;
-    public pressedKeys: any = {}; // @TODO: Figure out how to type something with dynamic propery names...?
+    public pressedKeys: any = {}; // @TODO: Figure out how to type something with dynamic property names...?
     public prevArea: string = 'a000';
 
     constructor() {
@@ -47,7 +47,7 @@ class Game {
     }
 
     public checkCollisions(object: any, direction: string): any {
-        var objectCoord: XYCoordinates = this.getCoordinates(object);
+        var objectCoordinates: XYCoordinates = this.getCoordinates(object);
         var offsetLeft: number = 0;
         var offsetTop: number = 0;
 
@@ -74,27 +74,27 @@ class Game {
                 break;
         }
 
-        if (stage.collisionsMap[objectCoord.y + offsetTop]) {
-            if (stage.collisionsMap[objectCoord.y + offsetTop][objectCoord.x + offsetLeft]) {
-                return stage.collisionsMap[objectCoord.y + offsetTop][objectCoord.x + offsetLeft];
+        if (stage.collisionsMap[objectCoordinates.y + offsetTop]) {
+            if (stage.collisionsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+                return stage.collisionsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft];
             }
         }
 
-        if (stage.portalsMap[objectCoord.y + offsetTop]) {
-            if (stage.portalsMap[objectCoord.y + offsetTop][objectCoord.x + offsetLeft]) {
-                return stage.portalsMap[objectCoord.y + offsetTop][objectCoord.x + offsetLeft];
+        if (stage.portalsMap[objectCoordinates.y + offsetTop]) {
+            if (stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+                return stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft];
             }
         }
 
-        if (stage.npcsMap[objectCoord.y + offsetTop]) {
-            if (stage.npcsMap[objectCoord.y + offsetTop][objectCoord.x + offsetLeft]) {
-                return stage.npcsMap[objectCoord.y + offsetTop][objectCoord.x + offsetLeft];
+        if (stage.npcsMap[objectCoordinates.y + offsetTop]) {
+            if (stage.npcsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+                return stage.npcsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft];
             }
         }
 
-        if (stage.playersMap[objectCoord.y + offsetTop]) {
-            if (stage.playersMap[objectCoord.y + offsetTop][objectCoord.x + offsetLeft]) {
-                return stage.playersMap[objectCoord.y + offsetTop][objectCoord.x + offsetLeft];
+        if (stage.playersMap[objectCoordinates.y + offsetTop]) {
+            if (stage.playersMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+                return stage.playersMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft];
             }
         }
 
@@ -145,7 +145,7 @@ class Game {
                 };
 
                 break;
-        };
+        }
 
         object.stop()
             .animate(
@@ -194,7 +194,6 @@ class Game {
             '../img/icon-continue.gif'
         ];
         var outstanding: number = items.length;
-        var self: Game = this;
 
         this.preloading = true;
 
@@ -219,7 +218,7 @@ class Game {
                     this.loading = false;
 
                     this.start();
-                };
+                }
             });
         }
     }

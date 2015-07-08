@@ -16,7 +16,7 @@ class NPCs {
 
     }
 
-    public create(data) {
+    public create(data: any) {
         var npc;
 
         (<JQuery>$('#objects')).append(
@@ -47,7 +47,7 @@ class NPCs {
         if (data.properties.wander) {
             npc.data('npc').wander();
         }
-    };
+    }
 
     public destroy() {
         clearInterval(this.wanderInterval);
@@ -132,7 +132,7 @@ class NPCs {
 
         game.activeNPC = this.npc;
 
-        // $.modals.create(
+        // modals.create(
         //     {
         //         height  : 80,
         //         width   : 720

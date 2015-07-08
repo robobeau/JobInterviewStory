@@ -182,7 +182,7 @@ class Player {
                     });
 
                     break;
-            };
+            }
         } else {
             this.allowMove = false;
 
