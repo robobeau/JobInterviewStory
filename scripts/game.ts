@@ -1,27 +1,36 @@
-/// <reference path="../node_modules/definitely-typed-jquery/jquery.d.ts" />
-/// <reference path="npcs.ts" />
-/// <reference path="player.ts" />
+/// <reference path="../typings/jquery/jquery.d.ts" />
 /// <reference path="sounds.ts" />
 /// <reference path="stage.ts" />
 
-interface XYCoordinates { // There's already a Coordinates interface? Wut?
-    x: number;
-    y: number;
+interface ICollisionObject {
+    type: string;
+    object: JQuery;
 }
 
-interface Directions {
+interface IDirections {
     up: string;
     down: string;
     left: string;
     right: string;
 }
 
+interface IXYCoordinates {
+    x: number;
+    y: number;
+}
+
 class Game {
+    public activeModal: JQuery;
     public activeNPC: JQuery;
+    public activePlayer: JQuery;
+
+    public bodyDiv: JQuery;
+
     public currentArea: string = 'a000';
     public currentDirection: string = 'down';
     public currentFocus: any;
-    public directions: Directions = {
+
+    public directions: IDirections = {
         up: 'up',
         down: 'down',
         left: 'left',
@@ -31,13 +40,14 @@ class Game {
     public fps: number = 60;
     public gridCellSize: number = 32;
     public loading: boolean = false;
-    public loadingMessage: string = '<div id="loading">Loading...</div>';
+    public loadingDiv: JQuery;
+    public loadingMessage: JQuery = $('<div id="loading">Loading...</div>');
     public preloading: boolean = false;
     public pressedKeys: any = {}; // @TODO: Figure out how to type something with dynamic property names...?
     public prevArea: string = 'a000';
 
     constructor() {
-
+        this.bodyDiv = $('body');
     }
 
     public calculateZindex(object: JQuery): void {
@@ -46,68 +56,97 @@ class Game {
         });
     }
 
-    public checkCollisions(object: any, direction: string): any {
-        var objectCoordinates: XYCoordinates = this.getCoordinates(object);
+    public checkCollisions(object: any, direction: string): ICollisionObject {
+        var collisionType: string;
+        var objectCoordinates: IXYCoordinates = this.getCoordinates(object);
         var offsetLeft: number = 0;
         var offsetTop: number = 0;
 
         switch (direction) {
-            // Up
             case this.directions.up:
                 offsetTop = -1;
 
                 break;
-            // Down
             case this.directions.down:
                 offsetTop = 1;
 
                 break;
-            // Left
             case this.directions.left:
                 offsetLeft = -1;
 
                 break;
-            // Right
             case this.directions.right:
                 offsetLeft = 1;
 
                 break;
         }
 
-        if (stage.collisionsMap[objectCoordinates.y + offsetTop]) {
-            if (stage.collisionsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
-                return stage.collisionsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft];
-            }
+        // Collisions
+        if (stage.collisionsMap[objectCoordinates.y + offsetTop]
+            && stage.collisionsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+            collisionType = 'collision';
+
+            return {
+                type: collisionType,
+                object: stage.collisionsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
+            };
         }
 
-        if (stage.portalsMap[objectCoordinates.y + offsetTop]) {
-            if (stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
-                return stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft];
-            }
+        // Portals
+        if (stage.portalsMap[objectCoordinates.y + offsetTop]
+            && stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+            collisionType = 'portal';
+
+            return {
+                type: collisionType,
+                object: stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
+            };
         }
 
-        if (stage.npcsMap[objectCoordinates.y + offsetTop]) {
-            if (stage.npcsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
-                return stage.npcsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft];
-            }
+        // NPCs
+        if (stage.npcsMap[objectCoordinates.y + offsetTop]
+            && stage.npcsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+            collisionType = 'npc';
+
+            return {
+                type: collisionType,
+                object: stage.npcsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
+            };
         }
 
-        if (stage.playersMap[objectCoordinates.y + offsetTop]) {
-            if (stage.playersMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
-                return stage.playersMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft];
-            }
+        // Players
+        if (stage.playersMap[objectCoordinates.y + offsetTop]
+            && stage.playersMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+            collisionType = 'player';
+
+            return {
+                type: collisionType,
+                object: stage.playersMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
+            };
         }
 
-        return false;
+        return;
     }
 
-    public getCoordinates(object: JQuery): XYCoordinates {
+    public getCoordinates(object: JQuery): IXYCoordinates {
         var objectPos: JQueryCoordinates = object.position();
+
+        console.log(objectPos);
 
         return {
             x: objectPos.left / this.gridCellSize,
             y: objectPos.top / this.gridCellSize
         }
+    }
+
+    public init(): void {
+        stage.collisionsDiv = $('#collisions');
+        stage.modalsDiv = $('#modals');
+        stage.objectsDiv = $('#objects');
+        stage.tilesDiv = $('#tiles');
+        stage.self = $('#stage');
+
+        game.preload();
     }
 
     public moveObject(object: JQuery, direction: string, callback?: any): void {
@@ -117,45 +156,43 @@ class Game {
         var top: number = objectPos.top;
 
         switch (direction) {
-            // Up
             case this.directions.up:
                 animateOptions = {
-                    top: top - this.gridCellSize
+                    top: '-=' + this.gridCellSize
                 };
 
                 break;
-            // Down
             case this.directions.down:
                 animateOptions = {
-                    top: top + this.gridCellSize
+                    top: '+=' + this.gridCellSize
                 };
 
                 break;
-            // Left
             case this.directions.left:
                 animateOptions = {
-                    left: left - this.gridCellSize
+                    left: '-=' + this.gridCellSize
                 };
 
                 break;
-            // Right
             case this.directions.right:
                 animateOptions = {
-                    left: left + this.gridCellSize
+                    left: '+=' + this.gridCellSize
                 };
 
                 break;
         }
 
+        console.log("Animating...");
+
         object.stop()
             .animate(
                 animateOptions,
-                180,
+                200,
                 'linear',
                 () => {
                     this.calculateZindex(object);
 
-                    if (callback) {
+                    if (typeof callback === 'function') {
                         callback();
                     }
                 }
@@ -197,8 +234,10 @@ class Game {
 
         this.preloading = true;
 
-        if ((<JQuery>$('#loading')).length === 0) {
-            (<JQuery>$('body')).append('<div id="loading">Loading...</div>');
+        if (!this.loadingDiv) {
+            this.loadingDiv = this.loadingMessage.clone();
+
+            this.bodyDiv.append(this.loadingDiv);
         }
 
         for (var i: number = 0; i < items.length; i++) {
@@ -215,7 +254,7 @@ class Game {
                 outstanding--;
 
                 if (outstanding === 0) {
-                    this.loading = false;
+                    this.preloading = false;
 
                     this.start();
                 }
@@ -224,31 +263,45 @@ class Game {
     }
 
     public start(): void {
-        setInterval(() => {
-            this.update();
-        }, 1000 / this.fps);
+        // setInterval(() => {
+        //     this.update();
+        // }, 1000 / this.fps);
 
+        var _update = () => {
+            this.update();
+
+            requestAnimationFrame(_update);
+        }
+
+        _update();
+            
         stage.init('a000');
     }
 
     public update(): void {
         if (this.loading) {
-            if ((<JQuery>$('#loading')).length === 0) {
-                (<JQuery>$('body')).append(this.loadingMessage);
+            if (!this.loadingDiv) {
+                this.loadingDiv = this.loadingMessage.clone();
+
+                this.bodyDiv.append(this.loadingDiv);
             }
         } else {
-            (<JQuery>$('#loading')).remove();
-        }
+            if (this.loadingDiv) {
+                this.loadingDiv.remove();
 
-        if ((<JQuery>$('.modal')).length > 0) {
-            // modal.checkButtons();
-        }
+                this.loadingDiv = undefined;
+            }
 
-        if (player.pc) {
-            player.checkButtons();
-        }
+            if (this.activeModal) {
+                this.activeModal.data('modal').checkButtons();
+            }
 
-        stage.checkButtons();
+            if (this.activePlayer) {
+                this.activePlayer.data('player').checkButtons();
+            }
+
+            // stage.checkButtons(); // @TODO: Make this do something or yank it out...
+        }
     }
 }
 
@@ -266,12 +319,18 @@ var game = new Game();
     event.preventDefault();
 
     game.pressedKeys[event.which] = false;
-    // modal.allowPress = true;
-    player.allowPress = true;
+
+    if (game.activeModal) {
+        game.activeModal.data('modal').allowPress = true;
+    }
+
+    if (game.activePlayer) {
+        game.activePlayer.data('player').allowPress = true;
+    }
 });
 
 /** GAME START! **/
 
 (<JQuery>$(document)).on('ready', () => {
-    game.preload();
+    game.init();
 });

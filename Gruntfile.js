@@ -14,7 +14,8 @@ module.exports = function (grunt) {
     concat: {
       vendor: {
         src: [
-          'node_modules/jquery/dist/jquery.min.js'
+          'node_modules/jquery/dist/jquery.min.js',
+          'node_modules/lodash/lodash.min.js'
         ],
         dest: 'pub/js/vendor.min.js'
       },
@@ -46,10 +47,10 @@ module.exports = function (grunt) {
     },
 
     uglify: {
-      vendor: {
-        src: 'pub/js/vendor.min.js',
-        dest: 'pub/js/vendor.min.js'
-      },
+      // vendor: {
+      //   src: 'pub/js/vendor.min.js',
+      //   dest: 'pub/js/vendor.min.js'
+      // },
       app: {
         src: 'pub/js/game.min.js',
         dest: 'pub/js/game.min.js'

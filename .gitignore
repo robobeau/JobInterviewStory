@@ -2,6 +2,7 @@
 .sass-cache
 /bower_components
 /node_modules
+/typings
 
 ## Filename Patterns
 .DS_Store

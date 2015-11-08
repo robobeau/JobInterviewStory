@@ -1,7 +1,5 @@
-/// <reference path="../node_modules/definitely-typed-jquery/jquery.d.ts" />
+/// <reference path="../typings/jquery/jquery.d.ts" />
 /// <reference path="game.ts" />
-/// <reference path="npcs.ts" />
-/// <reference path="player.ts" />
 /// <reference path="stage.ts" />
 
 class Sounds {
@@ -62,17 +60,18 @@ class Sounds {
 
         this.currentMusic.play();
 
-        // modals.create(
-        //     {
-        //         height: 16,
-        //         width: '25%'
-        //     },
-        //     {
-        //         left: 20 + 3, // The 3 is half the border-image-outset value
-        //         top: (<JQuery>$(window)).height() - 68 - 3 // The 3 is half the border-image-outset value
-        //     },
-        //     Dialogue[this.currentMusicId]
-        // );
+        modals.create(
+            {
+                height: 16,
+                width: '25%'
+            },
+            {
+                left: 20 + 3, // The 3 is half the border-image-outset value
+                top: (<JQuery>$(window)).height() - 68 - 3 // The 3 is half the border-image-outset value
+            },
+            music[this.currentMusicId],
+            null
+        );
     }
 }
 
