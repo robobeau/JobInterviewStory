@@ -1,42 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="14" height="10" tilewidth="32" tileheight="32" nextobjectid="32">
  <properties>
   <property name="music" value="shadesOfRed"/>
   <property name="musicVol" value="0.25"/>
  </properties>
- <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32" tilecount="2500">
   <image source="../pub/img/tile-map.gif" width="1600" height="1600"/>
  </tileset>
  <layer name="tiles1" width="14" height="10">
-  <data encoding="base64" compression="zlib">
-   eJxjYCAflDGRhmFgBRNpGAZuA9l3iMC3oBgGeJkZGHwZGRj80LA/EPMxIzA2ffVANQ1ouJFK+mAYWd9GoJpNaHgzEfqwyePClAAApUspnw==
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,630,630,630,630,630,630,630,630,630,630,630,630,0,
+0,680,680,680,680,680,680,680,680,680,680,680,680,0,
+0,731,732,732,732,732,732,732,732,732,732,730,730,0,
+0,781,333,334,334,334,334,335,782,782,782,730,730,0,
+0,781,383,384,384,384,384,385,782,782,782,730,730,0,
+0,781,383,384,384,384,384,385,782,782,782,782,782,0,
+0,781,433,434,434,434,434,435,782,782,782,782,782,0,
+0,781,782,782,782,782,782,782,782,782,782,782,782,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <layer name="tiles2" width="14" height="10">
-  <data encoding="base64" compression="zlib">
-   eJxjYKAMdAKxCiMDgyoQ9wDZvUC8Bcjeyohf324gDgOqCQfifUD2fiB+BmQ/R9KnB8T6WPR2ANV0AvEHIPsjmpwjMwNDApBOJNEfxUB9EYwQjA78mBgYGoHyTUAcxIQp38UIweggEKh2M1DPFmZMc6tYGBiqgbiGhTR3rgGqXwvE60jURy0AACuNFfk=
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,137,292,293,140,141,436,437,0,0,0,0,0,
+0,0,187,342,343,190,191,486,487,0,0,46,47,0,
+0,0,0,392,393,240,241,0,0,0,833,96,97,0,
+0,0,0,0,0,0,0,0,0,0,883,344,344,0,
+0,0,0,590,897,898,594,0,0,0,0,394,394,0,
+0,0,0,593,947,948,344,0,0,0,1146,1147,1148,0,
+0,0,0,0,0,0,0,0,0,0,1196,1197,1198,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <layer name="collisions" width="14" height="10" opacity="0.5">
-  <data encoding="base64" compression="zlib">
-   eJxjYmBgYBoimBRAjj589hFjHro8IfczoakjxZ3k6MPlLlIwAM2gAKE=
-  </data>
+  <data encoding="csv">
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,0,2,2,2,2,0,0,2,2,2,2,2,
+2,0,0,0,0,0,0,0,0,0,0,2,2,2,
+2,0,0,0,0,0,0,0,0,0,0,0,2,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,2,2,0,0,0,0,0,0,0,2,
+2,0,0,0,2,2,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2
+</data>
  </layer>
- <objectgroup name="objects" width="14" height="10">
-  <object name="s000" type="stairs" gid="4" x="352" y="128">
+ <objectgroup name="objects">
+  <object id="1" name="s000" type="stairs" gid="4" x="352" y="128" width="32" height="32">
    <properties>
     <property name="area" value="a001"/>
     <property name="direction" value="ur"/>
    </properties>
   </object>
-  <object name="player" type="player" gid="3" x="320" y="128">
+  <object id="2" name="player" type="player" gid="3" x="320" y="128" width="32" height="32">
    <properties>
     <property name="prevArea" value="a001"/>
    </properties>
   </object>
-  <object name="player" type="player" gid="3" x="128" y="160">
+  <object id="3" name="player" type="player" gid="3" x="128" y="160" width="32" height="32">
    <properties>
     <property name="prevArea" value="a000"/>
+   </properties>
+  </object>
+  <object id="4" name="f000" type="flavor" gid="6" x="64" y="64" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f000"/>
+   </properties>
+  </object>
+  <object id="8" name="f001" type="flavor" gid="6" x="96" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f001"/>
+   </properties>
+  </object>
+  <object id="10" name="f002" type="flavor" gid="6" x="128" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f002"/>
+   </properties>
+  </object>
+  <object id="11" name="f003" type="flavor" gid="6" x="160" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f003"/>
+   </properties>
+  </object>
+  <object id="13" name="f004" type="flavor" gid="6" x="224" y="64" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f004"/>
+   </properties>
+  </object>
+  <object id="19" name="f005" type="flavor" gid="6" x="352" y="160" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f005"/>
+   </properties>
+  </object>
+  <object id="20" name="f006" type="flavor" gid="6" x="192" y="192" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f006"/>
+   </properties>
+  </object>
+  <object id="21" name="f007" type="flavor" gid="6" x="96" y="224" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f007"/>
+   </properties>
+  </object>
+  <object id="22" name="f003" type="flavor" gid="6" x="192" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f003"/>
+   </properties>
+  </object>
+  <object id="23" name="f004" type="flavor" gid="6" x="256" y="64" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f004"/>
+   </properties>
+  </object>
+  <object id="27" name="f005" type="flavor" gid="6" x="384" y="160" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f005"/>
+   </properties>
+  </object>
+  <object id="28" name="f005" type="flavor" gid="6" x="192" y="224" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f005"/>
+   </properties>
+  </object>
+  <object id="29" name="f008" type="flavor" gid="6" x="352" y="224" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f008"/>
+   </properties>
+  </object>
+  <object id="30" name="f008" type="flavor" gid="6" x="352" y="256" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f008"/>
+   </properties>
+  </object>
+  <object id="31" name="s000" type="stairs" gid="4" x="352" y="96" width="32" height="32">
+   <properties>
+    <property name="area" value="a001"/>
+    <property name="direction" value="ur"/>
    </properties>
   </object>
  </objectgroup>

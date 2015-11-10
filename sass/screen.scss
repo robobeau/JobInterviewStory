@@ -114,7 +114,8 @@ a {
             right: 0;
         }
 
-        &.dialogue {
+        &.dialogue,
+        &.flavor {
             @include font-size($window-font-size);
             @include line-height($window-line-height);
 

@@ -23,7 +23,7 @@
          "y":0
         }, 
         {
-         "data":[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+         "data":[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
          "height":10,
          "name":"collisions",
          "opacity":0.5,
@@ -34,65 +34,315 @@
          "y":0
         }, 
         {
-         "height":10,
+         "draworder":"topdown",
+         "height":0,
          "name":"objects",
          "objects":[
                 {
                  "gid":4,
-                 "height":0,
+                 "height":32,
+                 "id":1,
                  "name":"s000",
                  "properties":
                     {
                      "area":"a001",
                      "direction":"ur"
                     },
+                 "rotation":0,
                  "type":"stairs",
                  "visible":true,
-                 "width":0,
+                 "width":32,
                  "x":352,
                  "y":128
                 }, 
                 {
                  "gid":3,
-                 "height":0,
+                 "height":32,
+                 "id":2,
                  "name":"player",
                  "properties":
                     {
                      "prevArea":"a001"
                     },
+                 "rotation":0,
                  "type":"player",
                  "visible":true,
-                 "width":0,
+                 "width":32,
                  "x":320,
                  "y":128
                 }, 
                 {
                  "gid":3,
-                 "height":0,
+                 "height":32,
+                 "id":3,
                  "name":"player",
                  "properties":
                     {
                      "prevArea":"a000"
                     },
+                 "rotation":0,
                  "type":"player",
                  "visible":true,
-                 "width":0,
+                 "width":32,
                  "x":128,
                  "y":160
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":4,
+                 "name":"f000",
+                 "properties":
+                    {
+                     "dialogue":"f000"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":64
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":8,
+                 "name":"f001",
+                 "properties":
+                    {
+                     "dialogue":"f001"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":96,
+                 "y":96
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":10,
+                 "name":"f002",
+                 "properties":
+                    {
+                     "dialogue":"f002"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":128,
+                 "y":96
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":11,
+                 "name":"f003",
+                 "properties":
+                    {
+                     "dialogue":"f003"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":160,
+                 "y":96
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":13,
+                 "name":"f004",
+                 "properties":
+                    {
+                     "dialogue":"f004"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":224,
+                 "y":64
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":19,
+                 "name":"f005",
+                 "properties":
+                    {
+                     "dialogue":"f005"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":352,
+                 "y":160
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":20,
+                 "name":"f006",
+                 "properties":
+                    {
+                     "dialogue":"f006"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":192
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":21,
+                 "name":"f007",
+                 "properties":
+                    {
+                     "dialogue":"f007"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":96,
+                 "y":224
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":22,
+                 "name":"f003",
+                 "properties":
+                    {
+                     "dialogue":"f003"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":96
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":23,
+                 "name":"f004",
+                 "properties":
+                    {
+                     "dialogue":"f004"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":64
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":27,
+                 "name":"f005",
+                 "properties":
+                    {
+                     "dialogue":"f005"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":384,
+                 "y":160
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":28,
+                 "name":"f005",
+                 "properties":
+                    {
+                     "dialogue":"f005"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":224
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":29,
+                 "name":"f008",
+                 "properties":
+                    {
+                     "dialogue":"f008"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":352,
+                 "y":224
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":30,
+                 "name":"f008",
+                 "properties":
+                    {
+                     "dialogue":"f008"
+                    },
+                 "rotation":0,
+                 "type":"flavor",
+                 "visible":true,
+                 "width":32,
+                 "x":352,
+                 "y":256
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":31,
+                 "name":"s000",
+                 "properties":
+                    {
+                     "area":"a001",
+                     "direction":"ur"
+                    },
+                 "rotation":0,
+                 "type":"stairs",
+                 "visible":true,
+                 "width":32,
+                 "x":352,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":14,
+         "width":0,
          "x":0,
          "y":0
         }],
+ "nextobjectid":32,
  "orientation":"orthogonal",
  "properties":
     {
      "music":"shadesOfRed",
      "musicVol":"0.25"
     },
+ "renderorder":"left-down",
  "tileheight":32,
  "tilesets":[
         {
@@ -107,6 +357,7 @@
 
             },
          "spacing":0,
+         "tilecount":2500,
          "tileheight":32,
          "tilewidth":32
         }],

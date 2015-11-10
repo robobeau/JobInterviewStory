@@ -7,6 +7,7 @@
 interface IStage {
     collisionsDiv: JQuery;
     collisionsMap: any;
+    flavorsMap: any;
     height: number;
     modalsDiv: JQuery;
     npcsMap: any;
@@ -27,6 +28,7 @@ interface ITileMap {
 class Stage implements IStage {
     public collisionsDiv: JQuery;
     public collisionsMap: any = [];
+    public flavorsMap: any = [];
     public height: number = 0;
     public modalsDiv: JQuery;
     public npcsMap: any = [];
@@ -74,30 +76,11 @@ class Stage implements IStage {
         });
     }
 
-    public checkButtons(): void {
-        if (game.pressedKeys[16]) { // Shift
-            // Modify stuff!
-        }
-
-        if (game.pressedKeys[13] || game.pressedKeys[32]) { // Spacebar, Enter
-            // Uhhhh... do something...?
-        }
-
-        if ((game.pressedKeys[87] || game.pressedKeys[38])) { // W, Up Arrow
-            // Uhhhh... do something...?
-        } else if ((game.pressedKeys[83] || game.pressedKeys[40])) { // S, Down Arrow
-            // Uhhhh... do something...?
-        } else if ((game.pressedKeys[65] || game.pressedKeys[37])) { // A, Left Arrow
-            // Uhhhh... do something...?
-        } else if ((game.pressedKeys[68] || game.pressedKeys[39])) { // D, Right Arrow
-            // Uhhhh... do something...?
-        }
-    }
-
     public cleanup(): void {
         var npcs: JQuery = $('.npc');
 
         this.collisionsMap = [];
+        this.flavorsMap = [];
         this.npcsMap = [];
         this.playersMap = [];
         this.portalsMap = [];
@@ -125,6 +108,10 @@ class Stage implements IStage {
                                 'class="object ' + object.type + '" ' +
                                 'area="' + object.properties.area + '" ';
 
+        if (object.properties.dialogue) {
+            objectTemplate += 'dialogue="' + object.properties.dialogue + '" ';
+        }
+
         if (object.properties.direction) {
             objectTemplate += 'direction="' + object.properties.direction + '" ';
         }
@@ -135,11 +122,25 @@ class Stage implements IStage {
 
         this.objectsDiv.append(objectDiv);
 
-        if (!this.portalsMap[(object.y / game.gridCellSize) - 1]) {
-            this.portalsMap[(object.y / game.gridCellSize) - 1] = {};
-        }
+        switch (object.type) {
+            case 'doorway':
+            case 'stairs':
+                if (!this.portalsMap[(object.y / game.gridCellSize) - 1]) {
+                    this.portalsMap[(object.y / game.gridCellSize) - 1] = {};
+                }
 
-        this.portalsMap[(object.y / game.gridCellSize) - 1][(object.x / game.gridCellSize)] = objectDiv;
+                this.portalsMap[(object.y / game.gridCellSize) - 1][(object.x / game.gridCellSize)] = objectDiv;
+
+                break;
+            case 'flavor':
+                if (!this.flavorsMap[(object.y / game.gridCellSize) - 1]) {
+                    this.flavorsMap[(object.y / game.gridCellSize) - 1] = {};
+                }
+
+                this.flavorsMap[(object.y / game.gridCellSize) - 1][(object.x / game.gridCellSize)] = objectDiv;
+
+                break;
+        }
     }
 
     public drawCollisions(collisions: any): void {
@@ -182,8 +183,7 @@ class Stage implements IStage {
                     npcs.create(object);
 
                     break;
-                case 'doorway':
-                case 'stairs':
+                default:
                     this.createObject(object);
 
                     break;

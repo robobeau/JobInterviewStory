@@ -1,6 +1,7 @@
 /// <reference path="../typings/jquery/jquery.d.ts" />
 /// <reference path="../typings/lodash/lodash.d.ts" />
 /// <reference path="game.ts" />
+/// <reference path="modals.ts" />
 /// <reference path="npcs.ts" />
 /// <reference path="script.ts" />
 /// <reference path="sounds.ts" />
@@ -68,9 +69,9 @@ class Player implements IPlayer {
         }
 
         if (game.pressedKeys[13] || game.pressedKeys[32]) { // Spacebar, Enter
-            var collision: ICollisionObject = game.checkCollisions(this.self, this.direction);
-
             this.allowPress = false;
+
+            var collision: ICollisionObject = game.checkCollisions(this.self, this.direction);
 
             if (collision) {
                 switch (collision.type) {
@@ -78,6 +79,27 @@ class Player implements IPlayer {
                         this.allowMove = false;
 
                         collision.object.data('npc').talk(dialogue[collision.object.data('npc').dialogueId]);
+
+                        break;
+                    case 'flavor':
+                        if (this.talking) {
+                            return;
+                        }
+
+                        this.allowMove = false;
+                        this.talking = true;
+
+                        modals.create(
+                            {
+                                height: 80,
+                                width: 720
+                            },
+                            {
+                                left: ((<JQuery>$(window)).width() - (720 + game.gridCellSize)) / 2,
+                                top: 20
+                            },
+                            flavor[collision.object.attr('dialogue')]
+                        );
 
                         break;
                 }

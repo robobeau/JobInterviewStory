@@ -13,6 +13,7 @@ interface IModal {
     modalTimeout: number;
     npc: JQuery;
     self: JQuery; // The modal's jQuery object reference
+    type: string;
     typing: boolean;
 }
 
@@ -23,7 +24,7 @@ class Modals {
 
     }
 
-    public create(size, position, dialogue, npc): void {
+    public create(size, position, dialogue, npc?): void {
         var delay: number = 0;
         var id: string = String(this.modalCounter);
         var modal: JQuery;
@@ -46,18 +47,14 @@ class Modals {
 
         setTimeout(() => {
             modal.data('modal', new Modal(modal));
-            modal.data('modal').allowPress = false;
             modal.data('modal').id = id;
+            modal.data('modal').type = dialogue.type;
 
             if (npc) {
                 modal.data('modal').npc = npc;
             }
 
             stage.modalsDiv.append(modal);
-
-            if (dialogue.type !== 'notification') {
-                game.activeModal = modal;
-            }
 
             modal.css({
                 left: position.left,
@@ -70,6 +67,10 @@ class Modals {
             },
             200,
             () => {
+                if (dialogue.type !== 'notification') {
+                    game.activeModal = modal;
+                }
+
                 modal.data('modal').populate(dialogue);
             });
         }, delay);
@@ -88,6 +89,7 @@ class Modal implements IModal {
     public modalTimeout: number;
     public npc: JQuery;
     public self: JQuery;
+    public type: string;
     public typing: boolean = false;
 
     constructor(modal) {
@@ -100,10 +102,6 @@ class Modal implements IModal {
         }
 
         var activeElement = $(document.activeElement);
-
-        if (game.pressedKeys[16]) { // Shift
-            // Modify stuff...?
-        }
 
         if (game.pressedKeys[13] || game.pressedKeys[32]) { // Spacebar, Enter
             this.allowPress = false;
@@ -123,12 +121,8 @@ class Modal implements IModal {
                     this.cancelTyping = true;
                 } else if (this.dialogue.goTo) {
                     this.populate(dialogue[this.dialogue.goTo]);
-                } else if (this.dialogue.end) {
+                } else {
                     this.destroy(game.activePlayer);
-
-                    if (this.npc) {
-                        this.npc.data('npc').wanderPause = false;
-                    }
                 }
             }
         }
@@ -158,26 +152,30 @@ class Modal implements IModal {
         },
         200,
         () => {
-            game.activeModal = undefined;
-
             this.modalInterval && clearInterval(this.modalInterval);
             this.modalTimeout && clearTimeout(this.modalTimeout);
 
-            if (this.npc) {
-                this.npc.data('npc').destroyEmote();
+            if (this.type !== 'notification') {
+                game.activeModal = undefined;
 
-                this.npc.data('npc').talking = false;
+                if (this.npc) {
+                    this.npc.data('npc').destroyEmote();
+
+                    this.npc.data('npc').talking = false;
+                    this.npc.data('npc').wanderPause = false;
+                }
+
+                if (game.activePlayer) {
+                    game.activePlayer.data('player').allowMove = true;
+                    game.activePlayer.data('player').talking = false;
+                }
             }
-
-            this.self.remove();
 
             if (focus) {
                 focus.trigger('focus');
             }
 
-            if (game.activePlayer) {
-                game.activePlayer.data('player').allowMove = true;
-            }
+            this.self.remove();
         });
     }
 
@@ -203,14 +201,14 @@ class Modal implements IModal {
 
                 break;
             case 'dialogue':
+            case 'flavor':
                 var counter = 0;
                 var interval = setInterval(() => {
                     if (this.cancelTyping) {
-                        this.self.append(dialogue.text.substr(counter, dialogue.text.length));
-
                         this.cancelTyping = false;
                         this.typing = false;
 
+                        this.self.append(dialogue.text.substr(counter, dialogue.text.length));
                         this.self.append(this.continueIcon);
 
                         clearInterval(interval);

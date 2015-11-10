@@ -84,32 +84,26 @@ class Game {
         // Collisions
         if (stage.collisionsMap[objectCoordinates.y + offsetTop]
             && stage.collisionsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
-            collisionType = 'collision';
-
             return {
-                type: collisionType,
+                type: 'collision',
                 object: stage.collisionsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
             };
         }
 
-        // Portals
-        if (stage.portalsMap[objectCoordinates.y + offsetTop]
-            && stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
-            collisionType = 'portal';
-
+        // Flavor
+        if (stage.flavorsMap[objectCoordinates.y + offsetTop]
+            && stage.flavorsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
             return {
-                type: collisionType,
-                object: stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
+                type: 'flavor',
+                object: stage.flavorsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
             };
         }
 
         // NPCs
         if (stage.npcsMap[objectCoordinates.y + offsetTop]
             && stage.npcsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
-            collisionType = 'npc';
-
             return {
-                type: collisionType,
+                type: 'npc',
                 object: stage.npcsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
             };
         }
@@ -117,11 +111,18 @@ class Game {
         // Players
         if (stage.playersMap[objectCoordinates.y + offsetTop]
             && stage.playersMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
-            collisionType = 'player';
-
             return {
-                type: collisionType,
+                type: 'player',
                 object: stage.playersMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
+            };
+        }
+
+        // Portals
+        if (stage.portalsMap[objectCoordinates.y + offsetTop]
+            && stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]) {
+            return {
+                type: 'portal',
+                object: stage.portalsMap[objectCoordinates.y + offsetTop][objectCoordinates.x + offsetLeft]
             };
         }
 
@@ -130,8 +131,6 @@ class Game {
 
     public getCoordinates(object: JQuery): IXYCoordinates {
         var objectPos: JQueryCoordinates = object.position();
-
-        console.log(objectPos);
 
         return {
             x: objectPos.left / this.gridCellSize,
@@ -181,8 +180,6 @@ class Game {
 
                 break;
         }
-
-        console.log("Animating...");
 
         object.stop()
             .animate(
@@ -299,8 +296,6 @@ class Game {
             if (this.activePlayer) {
                 this.activePlayer.data('player').checkButtons();
             }
-
-            // stage.checkButtons(); // @TODO: Make this do something or yank it out...
         }
     }
 }

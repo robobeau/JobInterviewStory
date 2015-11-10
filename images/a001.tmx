@@ -1,47 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="14" height="10" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="14" height="10" tilewidth="32" tileheight="32" nextobjectid="22">
  <properties>
   <property name="music" value="shadesOfRed"/>
   <property name="musicVol" value="0.25"/>
  </properties>
- <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Tile Map" tilewidth="32" tileheight="32" tilecount="2500">
   <image source="../pub/img/tile-map.gif" width="1600" height="1600"/>
  </tileset>
  <layer name="tiles1" width="14" height="10">
-  <data encoding="base64" compression="zlib">
-   eJxjYCAflDGRhmFgBRNpGAZuA9l38OBbUAxTBwO8zAwMfHgwTB9MHbH6YPbykagPHQ+UPnIAAOtMHyE=
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,630,630,630,630,630,630,630,630,630,630,630,630,0,
+0,680,680,680,680,680,680,680,680,680,680,680,680,0,
+0,731,732,732,732,732,732,732,732,730,730,731,732,0,
+0,781,782,782,782,782,782,782,782,730,730,781,782,0,
+0,781,782,782,782,782,782,782,782,732,732,782,782,0,
+0,781,782,782,782,782,782,782,782,782,782,782,782,0,
+0,781,782,782,782,782,782,782,782,782,782,782,782,0,
+0,781,782,782,782,782,782,782,782,782,782,782,782,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <layer name="tiles2" width="14" height="10">
-  <data encoding="base64" compression="zlib">
-   eJxjYKAM7GBkYOgD0v1APAFJfCcjhFYBYlUgVkPT9woofwBIHwTiQ0CsCcRaQPwaKG4ApMOAOByII9D0yTAxMHwC0p+B+AsQRwNxDBDLAsWTgHQyEDsyo+p5COTLA7ECED9CkwOBKUA8FYiL0eRcWRgYAoFiQUDsxoI3GIgGDUB3NgLNawLiRibS9G0G6tmCQ99doNg9IL5PgpkgwA80TwCIBbGECzYAAKIFGko=
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,440,142,143,144,0,0,441,0,36,37,138,0,
+0,0,490,192,193,194,41,42,491,48,86,87,188,0,
+0,0,540,242,243,244,91,92,541,98,99,833,0,0,
+0,993,799,800,994,0,0,0,0,148,149,883,0,0,
+0,1093,849,850,1094,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,640,897,898,641,0,0,
+0,0,0,0,0,0,0,0,640,947,948,641,0,0,
+0,0,733,734,735,0,0,0,0,0,0,0,0,0,
+0,0,783,784,785,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <layer name="collisions" width="14" height="10" opacity="0.5">
-  <data encoding="base64" compression="zlib">
-   eJxjYmBgYBoimBBAV0OsOejilNhPjjpa68NlDrJ+YuMAANYoAKU=
-  </data>
+  <data encoding="csv">
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,0,0,2,
+2,0,0,0,0,0,2,2,0,2,2,0,0,2,
+2,0,0,0,0,0,0,0,0,2,0,0,0,2,
+2,2,2,2,2,0,0,0,0,2,2,0,0,2,
+2,2,2,2,2,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,2,2,0,0,2,
+2,0,0,0,0,0,0,0,0,2,2,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,2,2,0,2,2,2,2,2,2,2,2,2,2
+</data>
  </layer>
- <objectgroup name="objects" width="14" height="10">
-  <object name="s001" type="stairs" gid="4" x="320" y="128">
+ <objectgroup name="objects">
+  <object id="1" name="s100" type="stairs" gid="4" x="320" y="128" width="32" height="32">
    <properties>
     <property name="area" value="a000"/>
     <property name="direction" value="dl"/>
    </properties>
   </object>
-  <object name="player" type="player" gid="3" x="352" y="128">
+  <object id="2" name="player" type="player" gid="3" x="352" y="128" width="32" height="32">
    <properties>
     <property name="prevArea" value="a000"/>
    </properties>
   </object>
-  <object name="d000" type="doorway" gid="4" x="96" y="320">
+  <object id="3" name="d100" type="doorway" gid="4" x="96" y="320" width="32" height="32">
    <properties>
     <property name="area" value="a002"/>
    </properties>
   </object>
-  <object name="player" type="player" gid="3" x="96" y="288">
+  <object id="4" name="player" type="player" gid="3" x="96" y="288" width="32" height="32">
    <properties>
     <property name="prevArea" value="a002"/>
+   </properties>
+  </object>
+  <object id="13" name="f101" type="flavor" gid="6" x="96" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f101"/>
+   </properties>
+  </object>
+  <object id="14" name="f102" type="flavor" gid="6" x="128" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f102"/>
+   </properties>
+  </object>
+  <object id="15" name="f103" type="flavor" gid="6" x="160" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f103"/>
+   </properties>
+  </object>
+  <object id="16" name="f104" type="flavor" gid="6" x="256" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f104"/>
+   </properties>
+  </object>
+  <object id="17" name="f105" type="flavor" gid="6" x="352" y="64" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f105"/>
+   </properties>
+  </object>
+  <object id="20" name="f100" type="flavor" gid="6" x="64" y="96" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f100"/>
+   </properties>
+  </object>
+  <object id="21" name="f106" type="flavor" gid="6" x="384" y="64" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f106"/>
    </properties>
   </object>
  </objectgroup>
