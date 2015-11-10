@@ -1,6 +1,6 @@
 /// <reference path="../typings/jquery/jquery.d.ts" />
+/// <reference path="dialogue.ts" />
 /// <reference path="game.ts" />
-/// <reference path="script.ts" />
 /// <reference path="sounds.ts" />
 
 interface IModal {
@@ -17,6 +17,14 @@ interface IModal {
     typing: boolean;
 }
 
+interface IModalOptions {
+    dialogue: any;
+    npc?: JQuery;
+    size: any;
+    position?: any;
+    type: any;
+}
+
 class Modals {
     public modalCounter: number = 0;
 
@@ -24,7 +32,7 @@ class Modals {
 
     }
 
-    public create(size, position, dialogue, npc?): void {
+    public create(options: IModalOptions): void {
         var delay: number = 0;
         var id: string = String(this.modalCounter);
         var modal: JQuery;
@@ -35,9 +43,9 @@ class Modals {
 
         id = 'm' + id;
 
-        modal = $('<div id="' + id + '" class="modal ' + dialogue.type + '" tabindex="0"></div>');
+        modal = $('<div id="' + id + '" class="modal ' + options.type + '" tabindex="0"></div>');
 
-        if (dialogue.type === 'notification') {
+        if (options.type === 'notification') {
             delay = 200;
 
             (<JQuery>$('.modal.notification')).not(modal).each((index, element) => {
@@ -48,30 +56,33 @@ class Modals {
         setTimeout(() => {
             modal.data('modal', new Modal(modal));
             modal.data('modal').id = id;
-            modal.data('modal').type = dialogue.type;
+            modal.data('modal').dialogue = options.dialogue;
+            modal.data('modal').type = options.type;
 
-            if (npc) {
-                modal.data('modal').npc = npc;
+            if (options.npc) {
+                modal.data('modal').npc = options.npc;
             }
 
             stage.modalsDiv.append(modal);
 
-            modal.css({
-                left: position.left,
-                top: position.top
-            });
+            if (options.position) {
+                modal.css({
+                    left: options.position.left,
+                    top: options.position.top
+                });
+            }
 
             modal.animate({
-                height: size.height,
-                width: size.width
+                height: options.size.height,
+                width: options.size.width
             },
             200,
             () => {
-                if (dialogue.type !== 'notification') {
+                if (options.type !== 'notification') {
                     game.activeModal = modal;
                 }
 
-                modal.data('modal').populate(dialogue);
+                modal.data('modal').populate();
             });
         }, delay);
 
@@ -114,13 +125,19 @@ class Modal implements IModal {
                 }
 
                 if (choice.goTo) {
-                    return this.populate(dialogue[choice.goTo]);
+                    this.dialogue = dialogue[choice.goTo];
+                    this.type = this.dialogue.choices ? 'choice' : 'dialogue';
+
+                    this.populate();
                 }
             } else {
                 if (this.typing) {
                     this.cancelTyping = true;
                 } else if (this.dialogue.goTo) {
-                    this.populate(dialogue[this.dialogue.goTo]);
+                    this.dialogue = dialogue[this.dialogue.goTo];
+                    this.type = this.dialogue.choices ? 'choice' : 'dialogue';
+
+                    this.populate();
                 } else {
                     this.destroy(game.activePlayer);
                 }
@@ -179,18 +196,16 @@ class Modal implements IModal {
         });
     }
 
-    public populate(dialogue): void {
-        if (game.activeNPC && dialogue.emote) {
-            game.activeNPC.data('npc').emote(dialogue.emote);
+    public populate(): void {
+        if (game.activeNPC && this.dialogue.emote) {
+            game.activeNPC.data('npc').emote(this.dialogue.emote);
         }
 
-        this.dialogue = dialogue;
-
-        switch (dialogue.type) {
+        switch (this.type) {
             case 'choice':
                 var choices = '<ul class="choice">';
 
-                $.each(dialogue.choices, (index, value) => {
+                $.each(this.dialogue.choices, (index, value) => {
                     choices += '<li tabindex="0">' + value.label + '</li>'
                 });
 
@@ -208,7 +223,7 @@ class Modal implements IModal {
                         this.cancelTyping = false;
                         this.typing = false;
 
-                        this.self.append(dialogue.text.substr(counter, dialogue.text.length));
+                        this.self.append(this.dialogue.text.substr(counter, this.dialogue.text.length));
                         this.self.append(this.continueIcon);
 
                         clearInterval(interval);
@@ -216,13 +231,13 @@ class Modal implements IModal {
                         return;
                     };
 
-                    this.self.append(dialogue.text.charAt(counter));
+                    this.self.append(this.dialogue.text.charAt(counter));
 
                     sounds.fx.bip.play();
 
                     counter++;
 
-                    if (counter >= dialogue.text.length) {
+                    if (counter >= this.dialogue.text.length) {
                         this.typing = false;
 
                         this.self.append(this.continueIcon);
@@ -237,13 +252,13 @@ class Modal implements IModal {
 
                 this.self.html('');
 
-                if (typeof dialogue.action === 'function') {
-                    dialogue.action();
+                if (typeof this.dialogue.action === 'function') {
+                    this.dialogue.action();
                 }
 
                 break;
             case 'notification':
-                this.self.append(dialogue.text);
+                this.self.append(this.dialogue.text);
 
                 this.modalTimeout = setTimeout(() => {
                     this.destroy(null);

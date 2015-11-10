@@ -60,18 +60,18 @@ class Sounds {
 
         this.currentMusic.play();
 
-        modals.create(
-            {
-                height: 16,
-                width: '25%'
-            },
-            {
+        modals.create({
+            dialogue: music[this.currentMusicId],
+            position: {
                 left: 20 + 3, // The 3 is half the border-image-outset value
                 top: (<JQuery>$(window)).height() - 68 - 3 // The 3 is half the border-image-outset value
             },
-            music[this.currentMusicId],
-            null
-        );
+            size: {
+                height: 16,
+                width: '25%'
+            },
+            type: 'notification'
+        });
     }
 }
 

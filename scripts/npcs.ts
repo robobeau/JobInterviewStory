@@ -1,4 +1,5 @@
 /// <reference path="../typings/jquery/jquery.d.ts" />
+/// <reference path="dialogue.ts" />
 /// <reference path="game.ts" />
 /// <reference path="sounds.ts" />
 /// <reference path="stage.ts" />
@@ -130,7 +131,7 @@ class NPC implements INPC {
         }
     }
 
-    public talk(dialogue) {
+    public talk() {
         if (this.talking) {
             return;
         }
@@ -140,18 +141,19 @@ class NPC implements INPC {
 
         game.activeNPC = this.self;
 
-        modals.create(
-            {
-                height: 80,
-                width: 720
-            },
-            {
+        modals.create({
+            dialogue: dialogue[this.dialogueId],
+            npc: this.self,
+            position: {
                 left: ((<JQuery>$(window)).width() - (720 + game.gridCellSize)) / 2,
                 top: 20
             },
-            dialogue,
-            this.self
-        );
+            size: {
+                height: 80,
+                width: 720
+            },
+            type: 'dialogue'
+        });
     }
 
     public wander() {

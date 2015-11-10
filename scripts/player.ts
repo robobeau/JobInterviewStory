@@ -1,9 +1,7 @@
 /// <reference path="../typings/jquery/jquery.d.ts" />
-/// <reference path="../typings/lodash/lodash.d.ts" />
 /// <reference path="game.ts" />
 /// <reference path="modals.ts" />
 /// <reference path="npcs.ts" />
-/// <reference path="script.ts" />
 /// <reference path="sounds.ts" />
 /// <reference path="stage.ts" />
 
@@ -78,7 +76,7 @@ class Player implements IPlayer {
                     case 'npc':
                         this.allowMove = false;
 
-                        collision.object.data('npc').talk(dialogue[collision.object.data('npc').dialogueId]);
+                        collision.object.data('npc').talk();
 
                         break;
                     case 'flavor':
@@ -89,17 +87,18 @@ class Player implements IPlayer {
                         this.allowMove = false;
                         this.talking = true;
 
-                        modals.create(
-                            {
-                                height: 80,
-                                width: 720
-                            },
-                            {
+                        modals.create({
+                            dialogue: flavor[collision.object.attr('dialogue')],
+                            position: {
                                 left: ((<JQuery>$(window)).width() - (720 + game.gridCellSize)) / 2,
                                 top: 20
                             },
-                            flavor[collision.object.attr('dialogue')]
-                        );
+                            size: {
+                                height: 80,
+                                width: 720
+                            },
+                            type: 'dialogue'
+                        });
 
                         break;
                 }
