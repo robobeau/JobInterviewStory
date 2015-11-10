@@ -14,8 +14,7 @@ module.exports = function (grunt) {
     concat: {
       vendor: {
         src: [
-          'node_modules/jquery/dist/jquery.min.js',
-          'node_modules/lodash/lodash.min.js'
+          'node_modules/jquery/dist/jquery.min.js'
         ],
         dest: 'pub/js/vendor.min.js'
       },

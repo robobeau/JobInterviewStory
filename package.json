@@ -17,8 +17,7 @@
   },
   "homepage": "https://github.com/robobeau/JobInterviewStory",
   "dependencies": {
-    "jquery": "jquery/jquery#1.11.3",
-    "lodash": "lodash/lodash#3.10.1"
+    "jquery": "jquery/jquery#1.11.3"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
