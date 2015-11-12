@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="54" height="30" tilewidth="32" tileheight="32" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="54" height="30" tilewidth="32" tileheight="32" nextobjectid="35">
  <properties>
   <property name="music" value="shadesOfRed"/>
   <property name="musicVol" value="1"/>
@@ -112,32 +112,32 @@
  <layer name="collisions" width="54" height="30" opacity="0.5">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,0,0,2,0,2,2,0,0,2,2,0,0,2,2,0,0,0,0,0,0,
+0,0,0,0,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,0,0,0,0,2,2,0,0,2,2,0,0,2,2,0,0,0,0,0,0,
 0,0,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,0,0,0,0,0,0,0,0,2,2,0,0,2,2,0,0,2,2,0,0,0,0,
 0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
 0,0,0,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,0,0,0,
 0,0,0,2,0,2,0,2,2,2,2,0,2,0,0,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,0,2,0,0,0,
 0,0,0,2,0,2,0,2,0,2,2,0,2,0,0,2,0,2,2,2,2,2,2,0,2,0,2,2,2,2,2,2,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,0,2,0,0,0,
-0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,2,2,0,0,0,2,2,2,2,2,2,0,2,2,2,2,2,2,0,2,0,0,0,
+0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,2,2,2,2,0,0,0,2,2,2,2,2,2,0,2,2,2,2,2,2,0,2,0,0,0,
 0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,
 0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,
-0,0,0,2,0,2,2,0,0,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,0,2,0,0,0,
+0,0,0,2,0,2,2,0,0,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,0,0,0,2,2,2,2,0,0,0,0,0,2,2,2,2,0,2,0,0,0,
 0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
 0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
 0,0,0,2,0,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,2,2,2,0,0,0,0,2,0,0,0,
 0,0,0,2,0,2,2,2,2,2,0,0,2,0,0,0,2,0,2,2,2,2,2,2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,2,2,2,2,2,2,2,0,0,2,0,0,0,
-0,0,0,2,0,2,2,0,2,2,2,2,2,0,0,0,2,2,2,0,2,2,2,2,0,0,0,0,0,0,0,2,0,2,2,2,0,2,0,0,2,2,2,2,2,2,2,2,0,0,2,0,0,0,
-0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,2,0,2,0,0,2,0,2,0,0,2,2,2,0,0,2,0,2,2,0,2,2,2,2,2,2,0,2,0,0,0,
-0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,2,0,0,0,0,0,2,2,2,0,2,0,0,0,
+0,0,0,2,0,2,2,0,2,2,2,2,2,0,0,0,2,2,2,0,2,2,2,2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,2,2,2,2,2,2,2,2,0,0,2,0,0,0,
+0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,2,0,2,0,0,2,0,2,0,0,0,0,0,0,0,2,0,2,2,0,2,2,2,2,2,2,0,2,0,0,0,
+0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,2,2,0,2,0,0,0,
 0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
-0,0,0,2,0,2,0,0,2,2,2,2,2,0,0,0,2,2,0,0,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,2,2,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,
+0,0,0,2,0,2,0,0,2,2,2,2,2,0,0,0,2,2,0,0,2,2,2,2,0,0,0,0,0,0,0,2,2,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
 0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
 0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
 0,0,0,2,0,2,2,2,2,2,0,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,0,0,0,
 0,0,0,2,0,2,0,0,0,0,2,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,
 0,0,0,2,0,2,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,
 0,0,0,2,0,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,0,0,0,
-0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
+0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
 0,0,0,2,2,2,0,0,2,2,0,0,0,0,0,0,0,0,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,0,0,
 0,0,0,0,0,0,2,2,0,0,2,2,0,0,0,0,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -166,32 +166,137 @@
     <property name="wander" value="true"/>
    </properties>
   </object>
-  <object id="5" name="f200" type="flavor" gid="6" x="224" y="352" width="32" height="32">
+  <object id="5" name="f203" type="flavor" gid="6" x="224" y="352" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f203"/>
+   </properties>
+  </object>
+  <object id="7" name="f204" type="flavor" gid="6" x="480" y="352" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f204"/>
+   </properties>
+  </object>
+  <object id="8" name="f204" type="flavor" gid="6" x="768" y="352" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f204"/>
+   </properties>
+  </object>
+  <object id="9" name="f204" type="flavor" gid="6" x="192" y="640" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f204"/>
+   </properties>
+  </object>
+  <object id="10" name="f204" type="flavor" gid="6" x="576" y="640" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f204"/>
+   </properties>
+  </object>
+  <object id="11" name="f204" type="flavor" gid="6" x="1280" y="352" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f204"/>
+   </properties>
+  </object>
+  <object id="12" name="f201" type="flavor" gid="6" x="512" y="224" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f201"/>
+   </properties>
+  </object>
+  <object id="13" name="f201" type="flavor" gid="6" x="800" y="224" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f201"/>
+   </properties>
+  </object>
+  <object id="14" name="f201" type="flavor" gid="6" x="224" y="512" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f201"/>
+   </properties>
+  </object>
+  <object id="15" name="f201" type="flavor" gid="6" x="608" y="512" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f201"/>
+   </properties>
+  </object>
+  <object id="16" name="f202" type="flavor" gid="6" x="672" y="256" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f202"/>
+   </properties>
+  </object>
+  <object id="17" name="f200" type="flavor" gid="6" x="1152" y="64" width="32" height="32">
    <properties>
     <property name="dialogue" value="f200"/>
    </properties>
   </object>
-  <object id="7" name="f201" type="flavor" gid="6" x="480" y="352" width="32" height="32">
+  <object id="18" name="f207" type="flavor" gid="6" x="1056" y="512" width="32" height="32">
    <properties>
-    <property name="dialogue" value="f201"/>
+    <property name="dialogue" value="f207"/>
    </properties>
   </object>
-  <object id="8" name="f201" type="flavor" gid="6" x="768" y="352" width="32" height="32">
+  <object id="19" name="f207" type="flavor" gid="6" x="1088" y="512" width="32" height="32">
    <properties>
-    <property name="dialogue" value="f201"/>
+    <property name="dialogue" value="f207"/>
    </properties>
   </object>
-  <object id="9" name="f201" type="flavor" gid="6" x="192" y="640" width="32" height="32">
+  <object id="20" name="f207" type="flavor" gid="6" x="1120" y="512" width="32" height="32">
    <properties>
-    <property name="dialogue" value="f201"/>
+    <property name="dialogue" value="f207"/>
    </properties>
   </object>
-  <object id="10" name="f201" type="flavor" gid="6" x="576" y="640" width="32" height="32">
+  <object id="21" name="f207" type="flavor" gid="6" x="1120" y="544" width="32" height="32">
    <properties>
-    <property name="dialogue" value="f201"/>
+    <property name="dialogue" value="f207"/>
    </properties>
   </object>
-  <object id="11" name="f201" type="flavor" gid="6" x="1280" y="352" width="32" height="32">
+  <object id="22" name="f207" type="flavor" gid="6" x="1088" y="544" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f207"/>
+   </properties>
+  </object>
+  <object id="23" name="f207" type="flavor" gid="6" x="1056" y="544" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f207"/>
+   </properties>
+  </object>
+  <object id="25" name="f208" type="flavor" gid="6" x="1472" y="576" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f208"/>
+   </properties>
+  </object>
+  <object id="26" name="f209" type="flavor" gid="6" x="1408" y="640" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f209"/>
+   </properties>
+  </object>
+  <object id="27" name="f206" type="flavor" gid="6" x="832" y="544" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f206"/>
+   </properties>
+  </object>
+  <object id="28" name="f206" type="flavor" gid="6" x="864" y="544" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f206"/>
+   </properties>
+  </object>
+  <object id="30" name="f205" type="flavor" gid="6" x="1408" y="352" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f205"/>
+   </properties>
+  </object>
+  <object id="31" name="f202" type="flavor" gid="6" x="1280" y="576" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f202"/>
+   </properties>
+  </object>
+  <object id="32" name="f200" type="flavor" gid="6" x="512" y="864" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f200"/>
+   </properties>
+  </object>
+  <object id="33" name="f210" type="flavor" gid="6" x="320" y="736" width="32" height="32">
+   <properties>
+    <property name="dialogue" value="f210"/>
+   </properties>
+  </object>
+  <object id="34" name="f201" type="flavor" gid="6" x="1344" y="544" width="32" height="32">
    <properties>
     <property name="dialogue" value="f201"/>
    </properties>
