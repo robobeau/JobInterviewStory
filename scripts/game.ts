@@ -20,6 +20,7 @@ interface IXYCoordinates {
 }
 
 class Game {
+    public activeBattle: JQuery;
     public activeModal: JQuery;
     public activeNPC: JQuery;
     public activePlayer: JQuery;

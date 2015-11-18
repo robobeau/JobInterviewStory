@@ -8,7 +8,9 @@
 interface IPlayer {
     allowMove: boolean;
     allowPress: boolean;
+    currentHP?: number;
     direction: any;
+    maxHP?: number;
     self: any; // The player's jQuery object reference
     sprite: JQuery;
     speedMultiplier: number; // @TODO: Implement this. :P
@@ -26,8 +28,9 @@ class Players {
                                     '<div id="player-sprite" class="' + game.currentDirection + '"></div>' +
                                 '</div>');
             
-            player.data('player', new Player(player));
-            player.data('player').sprite = player.find('#player-sprite');
+            var playerData = $.data(player[0], 'player', new Player(player));
+
+            playerData.sprite = player.find('#player-sprite');
 
             stage.objectsDiv.append(player);
 

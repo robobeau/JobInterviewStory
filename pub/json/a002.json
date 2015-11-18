@@ -88,7 +88,7 @@
                  "name":"n000",
                  "properties":
                     {
-                     "dialogue":"d200",
+                     "dialogue":"n200",
                      "wander":"true"
                     },
                  "rotation":0,
@@ -105,7 +105,7 @@
                  "name":"n001",
                  "properties":
                     {
-                     "dialogue":"d201",
+                     "dialogue":"n201",
                      "wander":"true"
                     },
                  "rotation":0,

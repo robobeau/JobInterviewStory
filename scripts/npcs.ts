@@ -1,4 +1,5 @@
 /// <reference path="../typings/jquery/jquery.d.ts" />
+/// <reference path="battles.ts" />
 /// <reference path="dialogue.ts" />
 /// <reference path="game.ts" />
 /// <reference path="sounds.ts" />
@@ -6,7 +7,7 @@
 
 interface INPC {
     dialogueId: string;
-    id: number;
+    id: string;
     self: any; // The NPC's jQuery object reference
     talking: boolean;
     wanderInterval: any;
@@ -23,13 +24,12 @@ class NPCs {
                                 '<div class="npc-sprite"></div>' +
                             '</div>');
 
-        npc.data('npc', new NPC(npc));
+        var npcData = $.data(npc[0], 'npc', new NPC(npc));
+
+        npcData.dialogueId = data.properties.dialogue;
+        npcData.id = data.name;
 
         stage.objectsDiv.append(npc);
-
-        npc.data('npc').dialogueId = data.properties.dialogue;
-        npc.data('npc').id = data.name;
-        npc.data('npc').npc = npc;
 
         npc.css({
             left: data.x + 'px',
@@ -43,14 +43,14 @@ class NPCs {
         stage.npcsMap[(data.y / game.gridCellSize) - 1][(data.x / game.gridCellSize)] = npc;
 
         if (data.properties.wander) {
-            npc.data('npc').wander();
+            npcData.wander();
         }
     }
 }
 
 class NPC implements INPC {
     public dialogueId: string = 'd000';
-    public id: number = 0;
+    public id: string;
     public self: any;
     public talking: boolean = false;
     public wanderInterval: any;
@@ -58,6 +58,11 @@ class NPC implements INPC {
 
     constructor(npc: JQuery) {
         this.self = npc;
+    }
+
+    public battle() {
+        console.log("BATTLE FARTS!!!");
+        // battles.create(enemies[this.id]);
     }
 
     public destroy() {

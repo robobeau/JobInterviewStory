@@ -156,13 +156,13 @@
   </object>
   <object id="3" name="n000" type="npc" gid="2" x="544" y="256" width="32" height="32">
    <properties>
-    <property name="dialogue" value="d200"/>
+    <property name="dialogue" value="n200"/>
     <property name="wander" value="true"/>
    </properties>
   </object>
   <object id="4" name="n001" type="npc" gid="2" x="832" y="256" width="32" height="32">
    <properties>
-    <property name="dialogue" value="d201"/>
+    <property name="dialogue" value="n201"/>
     <property name="wander" value="true"/>
    </properties>
   </object>

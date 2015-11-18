@@ -5,6 +5,7 @@
 /// <reference path="sounds.ts" />
 
 interface IStage {
+    battleDiv: JQuery;
     collisionsDiv: JQuery;
     collisionsMap: any;
     flavorsMap: any;
@@ -26,6 +27,7 @@ interface ITileMap {
 }
 
 class Stage implements IStage {
+    public battleDiv: JQuery;
     public collisionsDiv: JQuery;
     public collisionsMap: any = [];
     public flavorsMap: any = [];

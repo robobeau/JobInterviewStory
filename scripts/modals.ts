@@ -8,7 +8,7 @@ interface IModal {
     cancelTyping: boolean;
     continueIcon: JQuery;
     dialogue: any;
-    id: number;
+    id: string;
     modalInterval: number;
     modalTimeout: number;
     npc: JQuery;
@@ -54,13 +54,18 @@ class Modals {
         }
 
         setTimeout(() => {
-            modal.data('modal', new Modal(modal));
-            modal.data('modal').id = id;
-            modal.data('modal').dialogue = options.dialogue;
-            modal.data('modal').type = options.type;
+            var modalData = $.data(modal[0], 'modal', new Modal(modal));
+
+            modalData.id = id;
+            modalData.dialogue = options.dialogue;
+            modalData.type = options.type;
 
             if (options.npc) {
-                modal.data('modal').npc = options.npc;
+                modalData.npc = options.npc;
+            }
+
+            if (typeof modalData.dialogue.transform === 'function') {
+                modalData.dialogue.transform();
             }
 
             stage.modalsDiv.append(modal);
@@ -82,7 +87,7 @@ class Modals {
                     game.activeModal = modal;
                 }
 
-                modal.data('modal').populate();
+                modalData.populate();
             });
         }, delay);
 
@@ -95,7 +100,7 @@ class Modal implements IModal {
     public cancelTyping: boolean = false;
     public continueIcon: JQuery = $('<div class="icon continue"></div>');
     public dialogue: any;
-    public id: number = 0;
+    public id: string;
     public modalInterval: number;
     public modalTimeout: number;
     public npc: JQuery;
@@ -169,6 +174,7 @@ class Modal implements IModal {
         },
         200,
         () => {
+
             this.modalInterval && clearInterval(this.modalInterval);
             this.modalTimeout && clearTimeout(this.modalTimeout);
 
@@ -176,16 +182,24 @@ class Modal implements IModal {
                 game.activeModal = undefined;
 
                 if (this.npc) {
-                    this.npc.data('npc').destroyEmote();
+                    var npcData = this.npc.data('npc');
 
-                    this.npc.data('npc').talking = false;
-                    this.npc.data('npc').wanderPause = false;
+                    npcData.destroyEmote();
+
+                    npcData.talking = false;
+                    npcData.wanderPause = false;
                 }
 
                 if (game.activePlayer) {
-                    game.activePlayer.data('player').allowMove = true;
-                    game.activePlayer.data('player').talking = false;
+                    var playerData = game.activePlayer.data('player');
+
+                    playerData.allowMove = true;
+                    playerData.talking = false;
                 }
+            }
+
+            if (typeof this.dialogue.action === 'function') {
+                this.dialogue.action();
             }
 
             if (focus) {
@@ -251,10 +265,6 @@ class Modal implements IModal {
                 this.typing = true;
 
                 this.self.html('');
-
-                if (typeof this.dialogue.action === 'function') {
-                    this.dialogue.action();
-                }
 
                 break;
             case 'notification':
