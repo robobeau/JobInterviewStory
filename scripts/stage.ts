@@ -1,4 +1,4 @@
-/// <reference path="../typings/jquery/jquery.d.ts" />
+/// <reference path="../typings/globals/jquery/index.d.ts" />
 /// <reference path="game.ts" />
 /// <reference path="npcs.ts" />
 /// <reference path="player.ts" />

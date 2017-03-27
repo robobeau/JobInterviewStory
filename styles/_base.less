@@ -1,0 +1,78 @@
+
+/** COLORS **/
+
+// Blacks
+@color-black        : #000000;
+@color-mine-shaft   : #303030;
+
+// Blues
+@color-azure        : #3060A0;
+@color-rum          : #706880;
+@color-steel-blue   : #4880C0;
+
+// Greens
+@color-green        : #00FF00;
+
+// Reds
+@color-red          : #FF0000;
+
+// Whites
+@color-alabaster    : #F8F8F8;
+@color-white        : #FFFFFF;
+
+// Link Colors
+@link-color         : @color-steel-blue;
+@link-hover-color   : @color-azure;
+
+/** FONTS **/
+
+@font-face {
+    font-family: "Minecraftia";
+    src: url("/fonts/minecraftia.eot");
+    src: url("/fonts/minecraftia.woff") format("woff"),
+         url("/fonts/minecraftia.ttf") format("truetype"),
+         url("/fonts/minecraftia.svg#minecraftiaregular") format("svg");
+}
+
+// Font Sizes
+@base-font-size                 : 0.750;    // 12px
+@base-line-height               : 1;        // 16px
+
+@window-font-size 				: 1;        // 16px
+@window-line-height 			: 1.250;    // 20px
+
+@primary-title-font-size        : 1.500;    // 24px
+@primary-title-line-height      : 1.750;    // 28px
+
+@secondary-title-font-size      : 1.250;    // 20px
+@secondary-title-line-height    : 1.500;    // 24px
+
+@tertiary-title-font-size       : 1;        // 16px
+@tertiary-title-line-height     : 1.250;    // 20px
+
+/** DEBUG **/
+
+@collisionOpacity : 0;
+
+/** VARIABLES **/
+
+@npc-limit : 200;
+
+/** MIXINS **/
+
+// Font Size
+.font-size(@sizeValue: 1) {
+    font-size: unit(@sizeValue * 16, px);
+    font-size: unit(@sizeValue, rem);
+}
+
+// Line Height
+.line-height(@sizeValue: 1) {
+    line-height: unit(@sizeValue * 16, px);
+    line-height: unit(@sizeValue, rem);
+}
+
+// Tile
+.tile(@column: 0, @row: 0) {
+    background-position: unit((@column * 32) * -1, px) unit((@row * 32) * -1, px);
+}

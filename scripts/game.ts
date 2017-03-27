@@ -1,4 +1,4 @@
-/// <reference path="../typings/jquery/jquery.d.ts" />
+/// <reference path="../typings/globals/jquery/index.d.ts" />
 /// <reference path="sounds.ts" />
 /// <reference path="stage.ts" />
 
@@ -305,13 +305,13 @@ var game = new Game();
 
 /** BINDINGS **/
 
-(<JQuery>$(document)).on('keydown', (event) => {
+$(document).on('keydown', (event) => {
     event.preventDefault();
 
     game.pressedKeys[event.which] = true;
 });
 
-(<JQuery>$(document)).on('keyup', (event) => {
+$(document).on('keyup', (event) => {
     event.preventDefault();
 
     game.pressedKeys[event.which] = false;
@@ -327,6 +327,6 @@ var game = new Game();
 
 /** GAME START! **/
 
-(<JQuery>$(document)).on('ready', () => {
+$(document).ready(() => {
     game.init();
 });

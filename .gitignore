@@ -1,9 +1,9 @@
 ## Directory Patterns
-.sass-cache
-/bower_components
+/.tscache
 /node_modules
+/pub/js
+/pub/css
 /typings
 
 ## Filename Patterns
 .DS_Store
-/pub/js/vendor.min.js
