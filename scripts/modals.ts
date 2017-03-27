@@ -245,7 +245,20 @@ class Modal implements IModal {
                         return;
                     };
 
-                    this.self.append(this.dialogue.text.charAt(counter));
+                    var output = this.dialogue.text.charAt(counter);
+                    var matches = this.dialogue.text.match(/<[\s\S][^>]*>[\s\S]*?<\/[\s\S]>/);
+
+                    if (matches && matches.length > 0) {
+                        var index = this.dialogue.text.indexOf(matches[0]);
+
+                        if (counter === index) {
+                            output = matches[0];
+
+                            counter = index + (matches[0].length - 1);
+                        }
+                    }
+
+                    this.self.append(output);
 
                     sounds.fx.bip.play();
 
