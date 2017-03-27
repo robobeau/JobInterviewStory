@@ -115,7 +115,7 @@ class NPC implements INPC {
         game.currentDirection = direction;
 
         npcSprite.removeClass('walking up down left right')
-            .addClass('walking ' + direction);
+            .addClass('walking ' + Directions[direction]);
 
         if (collision) {
             npcSprite.removeClass('walking');
@@ -169,7 +169,7 @@ class NPC implements INPC {
                 return;
             }
 
-            this.move(game.directions[Object.keys(game.directions)[Math.floor(Math.random() * Object.keys(game.directions).length)]]);
+            this.move(Directions[Directions[Math.floor(Math.random() * 4)]]);
         }, Math.floor(Math.random() * (1800 - 600) + 600)); // @TODO: Tweak this more
     }
 }

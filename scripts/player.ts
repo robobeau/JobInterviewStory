@@ -48,7 +48,7 @@ class Players {
 class Player implements IPlayer {
     public allowMove: boolean = true;
     public allowPress: boolean = true;
-    public direction: any;
+    public direction: Directions;
     public self: any;
     public sprite: JQuery;
     public speedMultiplier: number = 1;
@@ -109,19 +109,19 @@ class Player implements IPlayer {
         }
 
         if (game.pressedKeys[87] || game.pressedKeys[38]) { // W, Up Arrow
-            game.currentDirection = this.direction = game.directions.up;
+            game.currentDirection = this.direction = Directions.up;
 
             this.move();
         } else if (game.pressedKeys[83] || game.pressedKeys[40]) { // S, Down Arrow
-            game.currentDirection = this.direction = game.directions.down;
+            game.currentDirection = this.direction = Directions.down;
 
             this.move();
         } else if (game.pressedKeys[65] || game.pressedKeys[37]) { // A, Left Arrow
-            game.currentDirection = this.direction = game.directions.left;
+            game.currentDirection = this.direction = Directions.left;
 
             this.move();
         } else if (game.pressedKeys[68] || game.pressedKeys[39]) { // D, Right Arrow
-            game.currentDirection = this.direction = game.directions.right;
+            game.currentDirection = this.direction = Directions.right;
 
             this.move();
         } else {
@@ -143,7 +143,7 @@ class Player implements IPlayer {
         var collision: ICollisionObject = game.checkCollisions(this.self, this.direction);
         var pcMapPosition: IXYCoordinates = game.getCoordinates(this.self);
 
-        this.sprite.removeClass().addClass('walking ' + this.direction);
+        this.sprite.removeClass().addClass('walking ' + Directions[this.direction]);
 
         if (collision) {
             switch (collision.type) {

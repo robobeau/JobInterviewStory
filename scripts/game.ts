@@ -7,11 +7,11 @@ interface ICollisionObject {
     object: JQuery;
 }
 
-interface IDirections {
-    up: string;
-    down: string;
-    left: string;
-    right: string;
+enum Directions {
+    down,
+    left,
+    right,
+    up
 }
 
 interface IXYCoordinates {
@@ -28,15 +28,9 @@ class Game {
     public bodyDiv: JQuery;
 
     public currentArea: string = 'a000';
-    public currentDirection: string = 'down';
+    public currentDirection: Directions = Directions.down;
     public currentFocus: any;
 
-    public directions: IDirections = {
-        up: 'up',
-        down: 'down',
-        left: 'left',
-        right: 'right'
-    };
     public domain: string = location.protocol + '//' + location.host;
     public fps: number = 60;
     public gridCellSize: number = 32;
@@ -57,26 +51,26 @@ class Game {
         });
     }
 
-    public checkCollisions(object: any, direction: string): ICollisionObject {
+    public checkCollisions(object: any, direction: Directions): ICollisionObject {
         var collisionType: string;
         var objectCoordinates: IXYCoordinates = this.getCoordinates(object);
         var offsetLeft: number = 0;
         var offsetTop: number = 0;
 
         switch (direction) {
-            case this.directions.up:
+            case Directions.up:
                 offsetTop = -1;
 
                 break;
-            case this.directions.down:
+            case Directions.down:
                 offsetTop = 1;
 
                 break;
-            case this.directions.left:
+            case Directions.left:
                 offsetLeft = -1;
 
                 break;
-            case this.directions.right:
+            case Directions.right:
                 offsetLeft = 1;
 
                 break;
@@ -149,32 +143,32 @@ class Game {
         game.preload();
     }
 
-    public moveObject(object: JQuery, direction: string, callback?: any): void {
+    public moveObject(object: JQuery, direction: Directions, callback?: any): void {
         var animateOptions: any = {};
         var objectPos: JQueryCoordinates = object.position();
         var left: number = objectPos.left;
         var top: number = objectPos.top;
 
         switch (direction) {
-            case this.directions.up:
+            case Directions.up:
                 animateOptions = {
                     top: '-=' + this.gridCellSize
                 };
 
                 break;
-            case this.directions.down:
+            case Directions.down:
                 animateOptions = {
                     top: '+=' + this.gridCellSize
                 };
 
                 break;
-            case this.directions.left:
+            case Directions.left:
                 animateOptions = {
                     left: '-=' + this.gridCellSize
                 };
 
                 break;
-            case this.directions.right:
+            case Directions.right:
                 animateOptions = {
                     left: '+=' + this.gridCellSize
                 };

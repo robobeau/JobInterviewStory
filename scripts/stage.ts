@@ -292,7 +292,7 @@ class Stage implements IStage {
         );
     }
 
-    public scrollStage(direction: string): void {
+    public scrollStage(direction: Directions): void {
         var playerOff = game.activePlayer.offset();
         var offset = 0;
         var stagePos = this.self.position();
@@ -303,7 +303,7 @@ class Stage implements IStage {
 
         if ((this.width > windowW || this.height > windowH)) {
             switch (direction) {
-                case game.directions.up:
+                case Directions.up:
                     if ((playerOff.top + (game.gridCellSize / 2)) < (windowH / 2) && stageT < 0) {
                         this.self.stop().animate({
                             top: stageT + game.gridCellSize + offset
@@ -311,7 +311,7 @@ class Stage implements IStage {
                     }
 
                     break;
-                case game.directions.down:
+                case Directions.down:
                     if ((playerOff.top + (game.gridCellSize / 2)) > (windowH / 2)
                         && Math.abs(stageT - windowH) < this.height) {
                         this.self.stop().animate({
@@ -320,7 +320,7 @@ class Stage implements IStage {
                     }
 
                     break;
-                case game.directions.left:
+                case Directions.left:
                     if ((playerOff.left + (game.gridCellSize / 2)) < (windowW / 2) && stageL < 0) {
                         this.self.stop().animate({
                             left: stageL + game.gridCellSize + offset
@@ -328,7 +328,7 @@ class Stage implements IStage {
                     }
 
                     break;
-                case game.directions.right:
+                case Directions.right:
                     if ((playerOff.left + (game.gridCellSize / 2)) > (windowW / 2)
                         && Math.abs(stageL - windowW) < this.width) {
                         this.self.stop().animate({
